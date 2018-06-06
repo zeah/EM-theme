@@ -1,0 +1,12 @@
+
+
+legg til advarsel å forandre permalink struktur med å legge til categori - slik at posts har en bedre url strukture
+
+
+legge til <picture> i content filter for responsive design eller ikke: bare bruk løsningen med width 100% height auto
+
+
+gjøre email greiene tilslutt
+
+
+legge til feature for privacy popup
