@@ -1,5 +1,8 @@
 
 
+langauge!!
+
+
 legg til advarsel å forandre permalink struktur med å legge til categori - slik at posts har en bedre url strukture
 
 
@@ -10,3 +13,6 @@ gjøre email greiene tilslutt
 
 
 legge til feature for privacy popup
+
+
+bruke wp cache api

@@ -70,16 +70,20 @@ final class EM_functions {
 
 	/* hooks only needed when in admin area */
 	private function admin_hooks() {
+		/* adding image to dropdown selector when inserting media into post */
         add_filter('image_size_names_choose', array($this, 'add_image_size'));
 	}
 
 
 	/* hooks for all */
 	private function wp_hooks() {
-		/* adding image to dropdown selector when inserting media into post */
 
-        /* adding styles and scripts for all (sands = Scripts AND Styles) */ 
-        add_action('wp_enqueue_scripts', array($this, 'add_sands'));
+		/* register navigation area */
+        add_action('init', array($this, 'register_nav'));
+
+
+        /* adding styles and scripts for front-end (sands = Scripts AND Styles) */ 
+        if (!is_admin()) add_action('wp_enqueue_scripts', array($this, 'add_sands'));
 	}
 
 
@@ -97,11 +101,15 @@ final class EM_functions {
 		));
 	}
 
+	public function register_nav() {
+        register_nav_menu('header-menu', __('Header Menu'));
+	}
+
 
 	/*
-
+		adding front end styles and scripts
 	*/
-	public function add_sands() {
+	public function add_frontend_sands() {
 		/* adding script for mobile nav and search feature */
         wp_enqueue_script('front_end_theme', get_theme_file_uri().'/assets/pub/js/emtheme.js', array(), '0.0.1', true);
 
