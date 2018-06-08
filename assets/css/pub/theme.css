@@ -1,0 +1,47 @@
+
+
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+}
+
+
+.custom-logo-link {
+	display: block;
+}
+
+.custom-logo {
+	display: block;
+}
+
+.emtheme-navbar-description {
+	position: absolute;
+	display: block;
+	/*position: relative;*/
+	/*bottom: 1.4rem;*/
+	/*left: 1.2rem;*/
+	background-color: #a22;
+	font-family: verdana;
+	font-size: 1.2rem;
+	/*letter-spacing: 1px;*/
+	display: none;
+	z-index: 99;
+}
+
+.sub-menu > .menu-item > .emtheme-navbar-description {
+	right: 0;
+	top: 0;
+	/*bottom: 0;*/
+}
+
+.menu-item:hover > .emtheme-navbar-description {
+	display: block;
+}
+
+.emtheme-navbar-description::before {
+	content: '\203A ';
+}

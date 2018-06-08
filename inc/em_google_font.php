@@ -1,10 +1,10 @@
 <?php 
 
-final class EM_google_font {
+final class Emtheme_google_font {
 	/* singleton */
 	private static $instance = null;
 
-    private $default = 'Open+Sans:600|Roboto:100,300,400,700';
+    private $default = 'Open+Sans:600|Roboto:400,700|Roboto+Condensed:400,700';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
@@ -16,4 +16,8 @@ final class EM_google_font {
 		
 	}
 
+	public function get_link() {
+		$out_link = '<link href="https://fonts.googleapis.com/css?family='.$this->default.'" rel="stylesheet">';
+		return $out_link;
+	}
 }
