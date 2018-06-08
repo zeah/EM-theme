@@ -212,7 +212,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
 		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover] !important; }";
 		
-		$css .= "\n.menu-current::before { display: block; position: absolute; bottom:0; right: 0; left: 0; content: ''; border-bottom: solid 3px red; }";
+		$css .= "\n.menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 2px #2a2; border-top: solid 2px #2a2; }";
 		
 		// $css .= "\n.menu-current:hover { border-top: solid 2px red; }";
 		
