@@ -1,6 +1,8 @@
 <?php 
 
 require_once 'inc/em_css.php';
+require_once 'inc/em_widget.php';
+require_once 'inc/em_admin.php';
 
 /* */
 
@@ -21,15 +23,16 @@ if (! function_exists('emtheme_setup')) {
 		add_theme_support( 'custom-background' );
 
 		// add image size to array of images when uploading
-        add_image_size('em_main_column_image', 970);
-        add_image_size('em_content_image', 1240);
+        add_image_size('em_main_column_image', 910);
+        add_image_size('em_content_image', 1220);
 
         // activating theme functions
         Emtheme_functions::get_instance();
 
+        // registering sidebars (widgets)
+        Emtheme_widget::get_instance();
 
-
-
+        Emtheme_admin::get_instance();
 
         // Emtheme_Admin::get_instance();
 
@@ -147,7 +150,7 @@ final class Emtheme_functions {
 	public function add_frontend_sands() {
 
 		/* adding script for mobile nav and search feature */
-        wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/emtheme.js', array(), '0.0.1', true);
+        wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/theme.js', array('jquery'), '0.0.1', true);
 
         /* adding css files to front-end - desktop sizes vs others */
         wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '0.0.1', '(min-width: 1280px)');

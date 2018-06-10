@@ -1,47 +1,178 @@
 
+/*
+	(a lot of css is set through inline-css by php reading from customizer settings (inc/em_css.php))
+
+	0.1 html
+	0.2 body
+
+	1.0 header
+	2.0 content
+		2.1 widgets
 
 
+*/
+
+/* 0.1 html */
+
+/* 
+	sets 1rem equal 10px 
+	use rem for accessibility
+*/
 html {
 	font-size: 62.5%;
 }
 
+/* 0.2 body */
+
+/* overwrite wordpress body margin css */
 body {
 	margin: 0;
 }
 
+/* 1.0 header */
 
+/* fixing wordpress custom logo */
+.custom-logo,
 .custom-logo-link {
 	display: block;
 }
 
-.custom-logo {
-	display: block;
-}
-
+/* if description on links is added through menu customizer */
 .emtheme-navbar-description {
 	position: absolute;
 	display: block;
-	/*position: relative;*/
-	/*bottom: 1.4rem;*/
-	/*left: 1.2rem;*/
+	top: 0;
+	right: 0;
 	background-color: #a22;
 	font-family: verdana;
 	font-size: 1.2rem;
-	/*letter-spacing: 1px;*/
 	display: none;
 	z-index: 99;
 }
 
-.sub-menu > .menu-item > .emtheme-navbar-description {
-	right: 0;
-	top: 0;
-	/*bottom: 0;*/
-}
-
+/* show the link description on hover */
 .menu-item:hover > .emtheme-navbar-description {
 	display: block;
 }
 
+/* add arrow to description */
 .emtheme-navbar-description::before {
 	content: '\203A ';
+}
+
+
+/* 2.0 content */
+
+/* 2.1 widgets */
+.widget-title {
+	margin: 0;
+	font-size: 2rem;
+}
+
+/* 2.2 post content */
+.main p {
+	margin-top: 0;
+} 
+
+
+.main {
+	font-size: 1.6rem;
+	/*height: 300vh;*/
+}
+
+.main-sidebar {
+	display: flex;
+	align-items: flex-start;
+}
+
+.content-column {
+	flex: 1;
+}
+
+.sidebar-def-tem {
+	min-width: 25rem;
+	margin-left: 4rem;
+	padding: 1rem;
+	padding-top: 0;
+}
+
+.content {
+	box-sizing: border-box;
+	padding: 1rem;
+
+	margin-bottom: 4rem;
+}
+
+.content-title-text {
+	margin: 0;
+	font-size: 2.4rem;
+}
+
+/* 3.0 misc elements */
+
+/* 3.1 go up "button" */
+.emtheme-goup {
+	display: none;
+	position: fixed;
+	right: 60px;
+	bottom: 60px;
+
+	background-color: pink;
+	border-radius: 25%;
+	border: solid 2px black;
+	cursor: pointer;
+}
+.emtheme-goup > .material-icons {
+	font-size: 6rem;
+}
+
+/* 3.2 accept cookie window */
+.emtheme-cookie-container {
+	position: fixed;
+	bottom: 5%;
+	width: 100%;
+
+	display: flex;
+	justify-content: center;
+	align-content: center;
+
+	font-size: 1.6rem;
+}
+
+
+.emtheme-cookie {
+	display: inline-flex;
+	padding: 2rem;
+	justify-content: space-between;
+	min-width: 30%;
+	/*max-width: 60%;*/
+	/*font-size: 1.2rem;*/
+	border-radius: 10px;
+	background-color: red;
+	opacity: 0;
+}
+
+.emtheme-cookie-text {
+	align-self: center;
+	padding-right: 2rem;
+}
+
+.emtheme-cookie-text > p {
+	margin-bottom: 0;
+}
+
+.emtheme-cookie-button {
+	border: none;
+	padding: 0.5rem 2rem;
+
+	border-radius: 10px;
+	font-size: 2rem;
+	cursor: pointer;
+
+	align-self: center;
+}
+
+.emtheme-cookie-fade {
+	opacity: 0;
+	transition: opacity 1s;
 }

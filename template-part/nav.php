@@ -72,9 +72,6 @@ final class Emtheme_nav {
 		)); 
 
 		return $menu;
-		// return '<nav>'.$menu.'</nav>';
-		// return wp_page_menu(['exclude' => implode(',', $ignore), 'echo' => false, 'depth' => 2]);
-
 	}
 
 }
@@ -96,29 +93,53 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
 
 		// translates depth to class
-		$depth_class = ($depth == 0) ? ' menu-level-top' : ' menu-level-second';
+		// $depth_class = ($depth == 0) ? ' menu-level-top' : ' menu-level-second';
 		$has_child = ($args->walker->has_children > 0) ? ' menu-has-child' : ''; 
 
-		// wp_die('<xmp style="font-size: 1.6rem; line-height: 1.5;">'.print_r($args->walker->has_children, true).'</xmp>');
 		
 		// finding custom classes
 		$classes = '';
 		foreach($item->classes as $name)
-			if ($name == 'menu-item') break;
+			// all custom classes comes before first default class
+			if ($name == 'menu-item') break; 
+
+			// adding custom classes
 			else $classes .= ' '.$name;
 
 		// $output .= print_r($item, true);
 		$output .= sprintf('<li class="menu-item%s"><a class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s%s</a>%s',
-					$has_child, // add class (is empty if no child)
-					(($item->object_id == get_the_ID()) ? ' menu-current' : ''), // current page 
-					$depth_class, // nav depth 
-					esc_html($classes), // custom classes from menu customizer
-					esc_url($item->url), // url
-					($item->xfn) ? ' '.esc_html($item->xfn) : '', // rel relationship e.g. friend
-					($item->attr_title) ? ' title="'.esc_html($item->attr_title).'"' : '', // title attribute on tag
-					($item->target) ? ' target="_blank"' : '', // open link in new window
-					esc_html($item->title), // page title or 'navigation label' 
+					
+					// adds "menu-has-child" class to parent items
+					$has_child, 
+					
+					// adds "menu-current" to nav item which matches current page
+					(($item->object_id == get_the_ID()) ? ' menu-current' : ''), 
+
+					// translates nav depth to css class 
+					($depth == 0) ? ' menu-level-top' : ' menu-level-second',
+
+					// adds user made classes (from menu customizer)
+					esc_html($classes), 
+
+					// the url to which the nav item points to
+					esc_url($item->url),
+
+					// user created rel - meant to signal relationship between sites
+					($item->xfn) ? ' '.esc_html($item->xfn) : '',
+
+					// user created title attribute (from menu customizer) (shows as tooltip)
+					($item->attr_title) ? ' title="'.esc_html($item->attr_title).'"' : '',
+					
+					// (user set) whether to open page in new tab or same window
+					($item->target) ? ' target="_blank"' : '',
+
+					// text of nav item (the html anchor)
+					esc_html($item->title),
+
+					// adds visual to parent nav items
 					($has_child) ? '<i class="material-icons nav-arrow">arrow_drop_down</i>' : '', // add icon if true
+
+					// user created descriptions. shows up when hover on same nav item.
 					($item->description) ? '<span class="emtheme-navbar-description">'.esc_html($item->description).'</span>' : ''
 				);
     }

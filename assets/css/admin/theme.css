@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
+
+
+a.toplevel_page_em-settings-page > div.wp-menu-image:before,
+a.toplevel_page_em-documentation-page > div.wp-menu-image:before {
+	content: 'EM';
+	position: relative;
+	top: 4px;
+	font-family: 'Black Han Sans', sans-serif;
+	font-size: 14px;
+}
+
+
+li.toplevel_page_em-documentation-page {
+	margin-top: 40px !important; 
+}
+
+a.toplevel_page_em-documentation-page > div.wp-menu-image:before {
+	color: #cc4 !important;
+}
+
+a.toplevel_page_em-settings-page > div.wp-menu-image:before {
+	color: #c4c !important;
+}
+
+
+
+/* emtheme documention page */
+.emtheme-documentation {
+	margin: 50px 0 0 50px;
+	height: 300vh;
+}
+
+.emtheme-documentation h2 {
+	margin: 0;
+}
+
+.emtheme-documentation-info li {
+	margin: 5px 0 !important;
+	/*display: inline-block !important;*/
+	padding: 5px;
+}
+
+.emtheme-documentation ul {
+	margin-left: 1rem !important;
+}
+
+.emtheme-documentation-info {
+	display: flex;
+	flex-direction: row;
+}
+
+.emtheme-documentation-info > ul > li,
+.emtheme-documentation > div > ul > li {
+	list-style-type: decimal;
+	margin-bottom: 25px !important;
+}
+
+.emtheme-documentation-info > div > ul > li > ul > li,
+.emtheme-documentation > div > ul > li > ul > li {
+	list-style-type: lower-alpha;
+	margin: 0;
+	/*margin-left: 2rem;*/
+}
+.emtheme-documentation-info > div > ul > li > ul > li > ul > li,
+.emtheme-documentation > div > ul > li > ul > li > ul > li {
+	list-style-type: lower-roman;
+}
+

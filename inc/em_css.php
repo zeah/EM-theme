@@ -5,6 +5,7 @@ final class Emtheme_css {
 	private static $instance = null;
 	private $colors;
 	private $fonts;
+	private $privacy;
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
@@ -13,39 +14,38 @@ final class Emtheme_css {
 	}
 
 	private function __construct() {
-		$col = get_option('emtheme_color');
-		$fon = get_option('emtheme_font');
+		$col = get_theme_mod('emtheme_color');
+		// $col = get_option('emtheme_color');
+		$fon = get_theme_mod('emtheme_font');
+		// $fon = get_option('emtheme_font');
 		
-		// wp_die('<xmp>'.print_r($col, true).'</xmp>');
+
+		// checking custom colors and setting defaults
 		
 		// COLORS
 		$colors = [];
 
 		// page background color (body tag)
-		$colors['background'] = isset($col['background']) ? sanitize_hex_color($col['background']) : '#fff'; 
+		// $colors['background'] = isset($col['background']) ? sanitize_hex_color($col['background']) : '#fff'; 
+		$colors['background'] = sanitize_hex_color('#'.get_background_color());
 
 		// main background color 
 		$colors['main_background'] = isset($col['main_background']) ? sanitize_hex_color($col['main_background']) : '#fff';
 
 		if (isset($col['main_shadow'])) {
-			// $css = '0 0 5px';
 
 			if ($col['main_shadow'] == '') $css = 'none';
-			else $css = '0 0 5px '.sanitize_hex_color($col['main_shadow']);
+			else $css = '0 0 2px '.sanitize_hex_color($col['main_shadow']);
 
 			$colors['main_shadow'] = $css;  
 		}
-		else $colors['main_shadow'] = 'none';
+		else $colors['main_shadow'] = '0 0 2px #888';
 
 		// header font
 		$colors['header_font'] = isset($col['emtop_font']) ? sanitize_hex_color($col['emtop_font']) : '#000';
 
 		// header background
 		$colors['header_background'] = isset($col['emtop_bg']) ? sanitize_hex_color($col['emtop_bg']) : '#fff';
-
-		// $colors['header_image'] = isset($col['emtop_bg_image']) ? esc_url($col['emtop_bg_image']) : false;
-
-		// $colors['header_image_opacity'] = isset($col['emtop_bg_image_opacity']) ? esc_html($col['emtop_bg_image_opacity']) : '0.5';
 
 		// search
 		$colors['search'] = isset($col['search']) ? sanitize_hex_color($col['search']) : '#000';
@@ -100,14 +100,31 @@ final class Emtheme_css {
 		// submenu hover
 		$colors['submenu_hover'] = isset($col['navsub_bg_hover']) ? sanitize_hex_color($col['navsub_bg_hover']) : '#ddd';
 		
+
+		// privacy css
+		$pri = get_theme_mod('theme_privacy');
+		// wp_die('<xmp>'.print_r($pri, true).'</xmp>');
+		
+		// privacy window background
+		$colors['privacy_bg'] = isset($pri['bg']) ? sanitize_hex_color($pri['bg']) : '#eee';
+		$colors['privacy_font'] = isset($pri['font']) ? sanitize_hex_color($pri['font']) : '#000';
+
+		$colors['privacy_button_bg'] = isset($pri['button_bg']) ? sanitize_hex_color($pri['button_bg']) : '#aaa';
+		$colors['privacy_button_font'] = isset($pri['button_font']) ? sanitize_hex_color($pri['button_font']) : '#000';
+
+		// wp_die('<xmp>'.print_r($colors, true).'</xmp>');
+		
+
 		$this->colors = $colors;
+
+
+
 
 		// FONTS
 		$fonts = [];
 
 		// content font family
 		$fonts['content_family'] = (isset($fon['standard']) && $fon['standard'] != '') ? esc_html($fon['standard']) : 'arial';
-		// wp_die('<xmp>'.print_r($fonts['content_family'].'..'.$fon['standard'], true).'</xmp>');
 		
 		// content weight
 		$fonts = array_merge($fonts, $this->check_weight((isset($fon['standard_weight']) ? $fon['standard_weight'] : false), 'content'));
@@ -172,10 +189,14 @@ final class Emtheme_css {
 
 	private function top() {
 		global $content_width;
+		$col = $this->colors;
+		$fon = $this->fonts;
 
 		$width = $content_width / 10;
 
-		$css = "\n.emtheme-identity { display: flex; width: {$width}rem; margin: auto; }";
+		$css = "\n.emtheme-header { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
+		
+		$css .= "\n.emtheme-identity { display: flex; width: {$width}rem; margin: auto;}";
 		
 
 		return $css;
@@ -189,13 +210,12 @@ final class Emtheme_css {
 
 		// wp_die('<xmp>'.print_r($col, true).'</xmp>');
 		
-		
 		$css .= "\n@media only screen and (min-width: 1280px) {";
 		
 		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
 		$css .= "\n.menu-list { position: relative; right: 1rem; display: flex; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
 		
-		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; }";
+		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px rgb(0, 0, 0, .1); }";
 						
 		
 		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
@@ -208,7 +228,8 @@ final class Emtheme_css {
 
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
 
-		$css .= "\n.menu-level-second { color: $col[submenu_font]; margin-bottom: 1rem; }";
+		$css .= "\n.menu-level-second { color: $col[submenu_font]; border-bottom: solid 1px rgba(0, 0, 0, .1); }";
+		$css .= "\n.menu-item:last-child > .menu-level-second { border-bottom: none; }";
 		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
 		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover] !important; }";
 		
@@ -225,10 +246,24 @@ final class Emtheme_css {
 
 	private function page() {
 		global $content_width;
+		$fon = $this->fonts;
+		$col = $this->colors;
+
+		// wp_die('<xmp>'.print_r($col, true).'</xmp>');
+		
 
 		$width = $content_width / 10;
 
-		$css .= "\n.main { width: {$width}rem; margin: auto; }";
+		$css .= "\nbody { background-color: $col[background]; }";
+		
+		$css .= "\n.main { width: {$width}rem; margin: 2rem auto; font-family: $fon[content_family]; }";
+		$css .= "\n.content, .sidebar-def-tem { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
+		
+		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; }";
+		$css .= "\n.emtheme-cookie-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
+		
+
 		return $css;
 	}	
 }
