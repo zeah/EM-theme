@@ -37,29 +37,86 @@ body {
 	display: block;
 }
 
+/* 1.1 header */
+
+.emtheme-header-container {
+	display: flex; 
+	align-items: center;
+	justify-content: center; 
+	min-height: 10rem;
+	padding: 2rem 0;
+}
+
+.emtheme-header {
+	display: flex;
+	align-items: center;
+}
+
+.emtheme-title-tagline {
+	margin-left: 2rem;
+	margin-right: auto;
+}
+
+.emtheme-header-title {
+	font-size: 4rem;
+}
+.emtheme-header-tagline {
+	font-size: 1.6rem;
+}
+
+.emtheme-header-search {
+	align-self: flex-start;
+}
+
+/* 1.2 navbar */
+
+.menu-container {
+	/*opacity: 1 !important;*/
+}
+
 /* if description on links is added through menu customizer */
 .emtheme-navbar-description {
 	position: absolute;
 	display: block;
-	top: 0;
-	right: 0;
-	background-color: #a22;
+	top: 2px;
+	right: 2px;
+	/*background-color: #a22;*/
 	font-family: verdana;
 	font-size: 1.2rem;
-	display: none;
+	/*display: none;*/
 	z-index: 99;
 }
 
 /* show the link description on hover */
 .menu-item:hover > .emtheme-navbar-description {
-	display: block;
+	/*display: block;*/
 }
 
 /* add arrow to description */
 .emtheme-navbar-description::before {
-	content: '\203A ';
+	/*content: '\203A ';*/
 }
 
+
+.menu-current:after {
+	position: absolute;
+	content: '';
+	/*width: 1px;*/
+	/*margin: auto;*/
+	top: 0;
+	bottom: 0;
+	/*left: 50%;*/
+	/*right: 50%;*/
+	left: 0;
+ 	/*width: 0; */
+	/*height: 0; */
+	 border-top: 15px solid transparent;
+ 	 border-bottom: 15px solid transparent;
+  
+  		border-left: 15px solid #ccc;
+}
+	/*box-shadow: 0 0 2px black;*/
+}
 
 /* 2.0 content */
 
@@ -83,6 +140,9 @@ body {
 .main-sidebar {
 	display: flex;
 	align-items: flex-start;
+
+	/*position: sticky;
+	top: 150px;*/
 }
 
 .content-column {
@@ -91,42 +151,77 @@ body {
 
 .sidebar-def-tem {
 	min-width: 25rem;
-	margin-left: 4rem;
+	margin-left: 2rem;
 	padding: 1rem;
 	padding-top: 0;
+
+	position: sticky;
+	top: 2rem;
 }
 
 .content {
 	box-sizing: border-box;
-	padding: 1rem;
+	padding: 2rem;
 
 	margin-bottom: 4rem;
 }
 
 .content-title-text {
-	margin: 0;
-	font-size: 2.4rem;
+	margin-top: 0;
+	font-size: 3.4rem;
 }
 
-/* 3.0 misc elements */
+.alignright {
+	float: right;
+}
 
-/* 3.1 go up "button" */
+/* 3.0 footer */
+
+.emtheme-footer-container {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+}
+
+.emtheme-footer {
+	display: flex;
+	justify-content: space-between;
+
+	box-sizing: border-box;
+	padding: 2rem;
+}
+
+.emtheme-footer-social,
+.emtheme-footer-contact,
+.emtheme-footer-aboutus {
+	max-width: 35rem;
+}
+
+/* */
+
+/* 4.0 misc elements */
+
+/* 4.1 go up "button" */
 .emtheme-goup {
 	display: none;
 	position: fixed;
 	right: 60px;
 	bottom: 60px;
 
-	background-color: pink;
+	/*background-color: pink;*/
 	border-radius: 25%;
 	border: solid 2px black;
 	cursor: pointer;
+	user-select: none;
 }
 .emtheme-goup > .material-icons {
 	font-size: 6rem;
 }
 
-/* 3.2 accept cookie window */
+/* 4.2 accept cookie window */
 .emtheme-cookie-container {
 	position: fixed;
 	bottom: 5%;
@@ -145,8 +240,7 @@ body {
 	padding: 2rem;
 	justify-content: space-between;
 	min-width: 30%;
-	/*max-width: 60%;*/
-	/*font-size: 1.2rem;*/
+	max-width: 60%;
 	border-radius: 10px;
 	background-color: red;
 	opacity: 0;
@@ -155,6 +249,7 @@ body {
 .emtheme-cookie-text {
 	align-self: center;
 	padding-right: 2rem;
+	user-select: none;
 }
 
 .emtheme-cookie-text > p {
@@ -170,9 +265,15 @@ body {
 	cursor: pointer;
 
 	align-self: center;
+	user-select: none;
+}
+
+.emtheme-cookie-button:focus {
+	outline:none;
+	/*border: none;*/
 }
 
 .emtheme-cookie-fade {
-	opacity: 0;
+	opacity: 0 !important;
 	transition: opacity 1s;
 }

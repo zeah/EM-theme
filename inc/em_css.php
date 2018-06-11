@@ -28,7 +28,10 @@ final class Emtheme_css {
 		// page background color (body tag)
 		// $colors['background'] = isset($col['background']) ? sanitize_hex_color($col['background']) : '#fff'; 
 		$colors['background'] = sanitize_hex_color('#'.get_background_color());
+		if ($colors['background'] == '') $colors['background'] = '#eee';
 
+
+		// wp_die('<xmp>'.print_r($colors, true).'</xmp>');
 		// main background color 
 		$colors['main_background'] = isset($col['main_background']) ? sanitize_hex_color($col['main_background']) : '#fff';
 
@@ -91,6 +94,9 @@ final class Emtheme_css {
 		}
 		else $colors['navbar_hover'] = 'background-color: #353';
 
+		// navbar borders
+		$colors['navbar_border'] = isset($col['navbar_border']) ? sanitize_hex_color($col['navbar_border']) : '#666';
+
 		// submenu font
 		$colors['submenu_font'] = isset($col['navsub_font']) ? sanitize_hex_color($col['navsub_font']) : '#000';
 		
@@ -100,10 +106,17 @@ final class Emtheme_css {
 		// submenu hover
 		$colors['submenu_hover'] = isset($col['navsub_bg_hover']) ? sanitize_hex_color($col['navsub_bg_hover']) : '#ddd';
 		
+		// footer background
+		$colors['footer_bg'] = isset($col['footer_bg']) ? sanitize_hex_color($col['footer_bg']) : '#000';
+
+		// footer font color
+		$colors['footer_font'] = isset($col['footer_font']) ? sanitize_hex_color($col['footer_font']) : '#fff';
+
+		// go up button 
+		$colors['goup_bg'] = isset($col['goup_bg']) ? sanitize_hex_color($col['goup_bg']) : '#ccc';
 
 		// privacy css
 		$pri = get_theme_mod('theme_privacy');
-		// wp_die('<xmp>'.print_r($pri, true).'</xmp>');
 		
 		// privacy window background
 		$colors['privacy_bg'] = isset($pri['bg']) ? sanitize_hex_color($pri['bg']) : '#eee';
@@ -112,7 +125,6 @@ final class Emtheme_css {
 		$colors['privacy_button_bg'] = isset($pri['button_bg']) ? sanitize_hex_color($pri['button_bg']) : '#aaa';
 		$colors['privacy_button_font'] = isset($pri['button_font']) ? sanitize_hex_color($pri['button_font']) : '#000';
 
-		// wp_die('<xmp>'.print_r($colors, true).'</xmp>');
 		
 
 		$this->colors = $colors;
@@ -194,9 +206,12 @@ final class Emtheme_css {
 
 		$width = $content_width / 10;
 
-		$css = "\n.emtheme-header { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
-		
-		$css .= "\n.emtheme-identity { display: flex; width: {$width}rem; margin: auto;}";
+		$css = "\n.emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
+		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; }";
+		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; }";
+
+
+		$css .= "\n.emtheme-header { width: {$width}rem; }";
 		
 
 		return $css;
@@ -212,16 +227,17 @@ final class Emtheme_css {
 		
 		$css .= "\n@media only screen and (min-width: 1280px) {";
 		
-		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
-		$css .= "\n.menu-list { position: relative; right: 1rem; display: flex; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
+		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none; }";
+		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
 		
+
 		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px rgb(0, 0, 0, .1); }";
 						
 		
 		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
 		
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
-		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: 0.3rem 1rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: 0.6rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
 		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		
@@ -233,7 +249,9 @@ final class Emtheme_css {
 		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
 		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover] !important; }";
 		
-		$css .= "\n.menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 2px #2a2; border-top: solid 2px #2a2; }";
+		$css .= "\n.menu-level-top { border-right: solid 1px $col[navbar_border]; }";
+
+		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
 		// $css .= "\n.menu-current:hover { border-top: solid 2px red; }";
 		
@@ -258,11 +276,15 @@ final class Emtheme_css {
 		
 		$css .= "\n.main { width: {$width}rem; margin: 2rem auto; font-family: $fon[content_family]; }";
 		$css .= "\n.content, .sidebar-def-tem { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
-		
+
+		$css .= "\n.emtheme-footer { width: {$width}rem; background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
+
+
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
-		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; }";
+		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: solid 1px $col[privacy_button_bg]; }";
 		$css .= "\n.emtheme-cookie-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
-		
+		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; }";
 
 		return $css;
 	}	

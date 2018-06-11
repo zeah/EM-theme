@@ -19,10 +19,23 @@ final class Emtheme_bigtop {
 
 	public function get_html() {
 
-		$html = '<div class="emtheme-header">';
+		$html = '<div class="emtheme-header-container">';
+
+		$html .= '<div class="emtheme-header">';
 
 		if (function_exists('the_custom_logo')) $html .= '<div class="emtheme-identity">'.get_custom_logo().'</div>';
-		
+
+		$html .= '<div class="emtheme-title-tagline">';
+
+		if (get_bloginfo('name')) $html .= '<div class="emtheme-header-title">'.esc_html(get_bloginfo('name')).'</div>';
+
+		if (get_bloginfo('description')) $html .= '<div class="emtheme-header-tagline">'.esc_html(get_bloginfo('description')).'</div>';
+
+		$html .= '</div>';
+
+		$html .= '<div class="emtheme-header-search"><i class="material-icons">search</i></div>';
+
+		$html .= '</div>';
 
 
 		$html .= '</div>';

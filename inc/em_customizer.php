@@ -16,6 +16,7 @@ final class Emtheme_customizer {
 
 	private function hooks() {
 		add_action('customize_register', array($this, 'privacy_popup'));
+		add_action('customize_register', array($this, 'footer_info'));
 		add_action('customize_preview_init', array($this, 'customizer_sands'), 9999);
 		add_action('customize_controls_enqueue_scripts', array($this, 'customizer_pane_sands'));
 	}
@@ -130,6 +131,71 @@ final class Emtheme_customizer {
 			)
 		));
 
+
+	}
+
+
+	public function footer_info($cust) {
+
+
+		$cust->add_setting('theme_footer[active]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'
+		));
+
+		$cust->add_control('theme_footer[active]', array(
+			'type' => 'checkbox',
+			'description' => 'If checked, then footer info will not be shown at all.',
+			'label' => 'Disable footer info',
+			'priority' => 159,
+			'section' => 'title_tagline'
+		));
+
+
+		$cust->add_setting('theme_footer[social]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'wp_kses_post'
+		));
+
+		$cust->add_control('theme_footer[social]', array(
+			'type' => 'textarea',
+			'label' => 'Social Info',
+			'priority' => 160,
+			'section' => 'title_tagline'
+
+		));
+
+
+		$cust->add_setting('theme_footer[contact]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'wp_kses_post'
+		));
+
+		$cust->add_control('theme_footer[contact]', array(
+			'type' => 'textarea',
+			'label' => 'Contact Info',
+			'priority' => 161,
+			'section' => 'title_tagline'
+
+		));
+
+
+		$cust->add_setting('theme_footer[aboutus]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'wp_kses_post'
+		));
+
+		$cust->add_control('theme_footer[aboutus]', array(
+			'type' => 'textarea',
+			'label' => 'About Us Info',
+			'priority' => 162,
+			'section' => 'title_tagline'
+
+		));
 
 	}
 

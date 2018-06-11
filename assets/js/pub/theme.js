@@ -1,5 +1,5 @@
 jQuery(function() {
-	var $ = jQuery;
+	// var $ = jQuery;
 
 	var H = function(o = {}) {
 		var e = document.createElement(o.el || 'div');
@@ -49,7 +49,7 @@ jQuery(function() {
 
 		});
 
-		document.body.appendChild(goUp);
+		setTimeout(function() { document.body.appendChild(goUp) }, 0);
 	}
 
 
@@ -83,5 +83,6 @@ jQuery(function() {
 
 
 	addCookieAccept();
+	// setTimeout(function() { addGoUp() }, 500);
 	addGoUp();
 });

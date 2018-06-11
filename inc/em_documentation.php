@@ -60,10 +60,24 @@ final class Emtheme_documentation {
 									  </ul>
 								   </li>
 								   <li>
-									  <h2><a href="#theme-templates">Theme Customizer</a></h2>
+									  <h2><a href="#theme-customizer">Theme Customizer</a></h2>
 									  <ul>
 										 <li><a href="#theme-customizer-color">Color</a></li>
 										 <li><a href="#theme-customizer-font">Font</a></li>
+									  </ul>
+								   </li>
+								   <li>
+									  <h2><a href="#theme-menu">Menu</a></h2>
+									  <ul>
+										 <li><a href="#theme-menu-locations">Locations</a></li>
+										 <li><a href="#theme-menu-attributes">Attributes</a></li>
+									  </ul>
+								   </li>
+								   <li>
+									  <h2><a href="#theme-features">Features</a></h2>
+									  <ul>
+										 <li><a href="#theme-features-privacy">Privacy Window</a></li>
+										 <li><a href="#theme-features-goup">Go Up Button</a></li>
 									  </ul>
 								   </li>
 								   ';
@@ -76,12 +90,46 @@ final class Emtheme_documentation {
 								 			<li>Widget locations</li>
 								 		</ul></li>
 								 	</ul>
-								  </li>';
+								  </li>
+								  <li>
+									  <h2 id="theme-customizer">Theme Customizer</h2>
+									  <ul>
+										 <li id="theme-customizer-color">Color</li>
+										 <li id="theme-customizer-font">Font</li>
+									  </ul>
+								   </li>
+								   <li>
+									  <h2 id="theme-menu">Menu</h2>
+									  <ul>
+										 <li><h3 id="theme-menu-locations">Locations</h3>
+										 <ul>
+										 	<li><b>Head</b><br>
+										 	If no menu assigned, then theme will create a menu from pages. If "Don\'t add to menu" is selected, then theme will not add it to generated menu.<br> 
+										 	The menu, both custom and theme generated is sorted by menu order, with lowest value put on the left.</li>
+										 </ul>
+										 </li>
+										 <li><h3 id="theme-menu-attributes">Attributes</h3><br>Option to show these attributes for editing is "Screen Options" in Apperance -> Menu page or cog icon in customize page. 
+										 	<ul>
+										 		<li><b>Link Target</b><br>If set then link will open in a new tab.<br> All menu links will regardless have rel=noopener for security reason.</li>
+										 		<li><b>Title Attribute</b><br>Value set will show as link tooltip.</li>
+										 		<li><b>CSS classes</b><br>Adds css classes to the a-tag in menu. Which can be styled from customize -> additional css.</li>
+										 		<li><b>Link Relationship (XFN)</b><br>XFN stands for xhtml friends network and it is meant to represent human relationship using links.<br>
+										 		<a href="https://codex.wordpress.org/Defining_Relationships_with_XFN">Read More</a></li>
+										 		<li><b>Description</b><br>Is shown as extra text in the same menu item, but in the upper right corner on hover. (best fit in sub-menus)</li>
+										 	</ul>
+										 </li>
+									  </ul>
+								   </li>
+								   <li>
+									  <h2 id="theme-features">Features</h2>
+									  <ul>
+										 <li id="theme-features-privacy"><b>Privacy Window</b><br>Visitors will get an element centered at bottom of screen with customizable text and colors. When visitor clicks the button (default text: "OK") they will not see the element again.</li>
+										 <li id="theme-features-goup"><b>Go Up Button</b><br>Is shown in bottom right corner if user has scrolled more than 100px from the top. Colors can be set from customizer.</li>
+									  </ul>
+								   </li>	
 
+								   ';
 
-
-		// $dat = new stdClass;
-		// $dat->theme->title = 'Emtheme';
 
 		return $data;
 	}
