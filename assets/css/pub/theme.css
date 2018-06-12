@@ -87,6 +87,10 @@ body {
 	z-index: 99;
 }
 
+/*.theme-nav-arrow {*/
+	/*fill: white;*/
+/*}*/
+
 /* show the link description on hover */
 .menu-item:hover > .emtheme-navbar-description {
 	/*display: block;*/
@@ -98,25 +102,19 @@ body {
 }
 
 
-.menu-current:after {
+/*.menu-current:after {
 	position: absolute;
 	content: '';
-	/*width: 1px;*/
-	/*margin: auto;*/
 	top: 0;
 	bottom: 0;
-	/*left: 50%;*/
-	/*right: 50%;*/
 	left: 0;
- 	/*width: 0; */
-	/*height: 0; */
 	 border-top: 15px solid transparent;
  	 border-bottom: 15px solid transparent;
   
   		border-left: 15px solid #ccc;
-}
+}*/
 	/*box-shadow: 0 0 2px black;*/
-}
+/*}*/
 
 /* 2.0 content */
 

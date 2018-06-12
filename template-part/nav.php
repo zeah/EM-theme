@@ -107,7 +107,13 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 			else $classes .= ' '.$name;
 
 		// $output .= print_r($item, true);
-		$output .= sprintf('<li class="menu-item%s"><a class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s%s</a>%s',
+		   // $output .= sprintf('<li class="menu-item%s"><a class="menu-link" href="">%s</a>', 
+					// $has_child, 
+		   		
+		   // 			$item->title
+
+		   // 		);
+			$output .= sprintf('<li class="menu-item%s"><a class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s%s</a>%s',
 					
 					// adds "menu-has-child" class to parent items
 					$has_child, 
@@ -137,7 +143,10 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 					esc_html($item->title),
 
 					// adds visual to parent nav items
-					($has_child) ? '<i class="material-icons nav-arrow">arrow_drop_down</i>' : '', // add icon if true
+					// ($has_child) ? '<i class="material-icons nav-arrow">arrow_drop_down</i>' : '', // add icon if true
+					($has_child) ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+										<path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
+									</svg>' : '', // add icon if true
 
 					// user created descriptions. shows up when hover on same nav item.
 					($item->description) ? '<span class="emtheme-navbar-description">'.esc_html($item->description).'</span>' : ''

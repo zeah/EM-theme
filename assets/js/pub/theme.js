@@ -81,8 +81,11 @@ jQuery(function() {
 
 	}
 
+	setTimeout(function(){
+		var nav = document.querySelector('.menu-list');
+		nav.style.opacity = 1;
+	}, 0);
 
 	addCookieAccept();
-	// setTimeout(function() { addGoUp() }, 500);
 	addGoUp();
 });

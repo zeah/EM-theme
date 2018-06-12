@@ -115,6 +115,9 @@ final class Emtheme_css {
 		// go up button 
 		$colors['goup_bg'] = isset($col['goup_bg']) ? sanitize_hex_color($col['goup_bg']) : '#ccc';
 
+		// go up font color
+		$colors['goup_font'] = isset($col['goup_font']) ? sanitize_hex_color($col['goup_font']) : '#000';
+
 		// privacy css
 		$pri = get_theme_mod('theme_privacy');
 		
@@ -190,12 +193,15 @@ final class Emtheme_css {
 
 	public function get_css() {
 
+		// $html = '<style>';
 		$html = $this->top();
 
 		$html .= $this->navbar();
 
 		$html .= $this->page();
 
+		// $html .= '</style>';
+		// return $html;
 		wp_add_inline_style('style', $html);
 	}
 
@@ -206,7 +212,7 @@ final class Emtheme_css {
 
 		$width = $content_width / 10;
 
-		$css = "\n.emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
+		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
 		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; }";
 		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; }";
 
@@ -223,13 +229,11 @@ final class Emtheme_css {
 		$fon = $this->fonts;
 		global $content_width;
 
-		// wp_die('<xmp>'.print_r($col, true).'</xmp>');
 		
 		$css .= "\n@media only screen and (min-width: 1280px) {";
 		
-		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none; }";
+		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
 		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
-		
 
 		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px rgb(0, 0, 0, .1); }";
 						
@@ -251,9 +255,11 @@ final class Emtheme_css {
 		
 		$css .= "\n.menu-level-top { border-right: solid 1px $col[navbar_border]; }";
 
-		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
+		$css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
-		// $css .= "\n.menu-current:hover { border-top: solid 2px red; }";
+		$css .= "\n.theme-nav-arrow { fill: $col[navbar_font]; }";
+		
+
 		
 
 		$css .= "\n}";
@@ -262,12 +268,12 @@ final class Emtheme_css {
 		return $css;
 	}
 
+
 	private function page() {
 		global $content_width;
 		$fon = $this->fonts;
 		$col = $this->colors;
 
-		// wp_die('<xmp>'.print_r($col, true).'</xmp>');
 		
 
 		$width = $content_width / 10;
@@ -284,7 +290,7 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: solid 1px $col[privacy_button_bg]; }";
 		$css .= "\n.emtheme-cookie-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
-		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; }";
+		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; color: $col[goup_font]; }";
 
 		return $css;
 	}	
