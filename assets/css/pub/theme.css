@@ -27,6 +27,9 @@ html {
 /* overwrite wordpress body margin css */
 body {
 	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
 }
 
 /* 1.0 header */
@@ -132,6 +135,7 @@ body {
 
 .main {
 	font-size: 1.6rem;
+	/*margin-bottom: auto !important;*/
 	/*height: 300vh;*/
 }
 
@@ -176,10 +180,10 @@ body {
 /* 3.0 footer */
 
 .emtheme-footer-container {
-	position: absolute;
+	/*position: absolute;
 	bottom: 0;
 	left: 0;
-	right: 0;
+	right: 0;*/
 	display: flex;
 	justify-content: center;
 }
@@ -189,13 +193,14 @@ body {
 	justify-content: space-between;
 
 	box-sizing: border-box;
-	padding: 2rem;
+	padding: 0 2rem;
 }
 
 .emtheme-footer-social,
 .emtheme-footer-contact,
 .emtheme-footer-aboutus {
 	max-width: 35rem;
+	padding: 2rem 0;
 }
 
 /* */
@@ -211,18 +216,31 @@ body {
 
 	/*background-color: pink;*/
 	border-radius: 25%;
-	border: solid 2px black;
+	/*border: solid 2px black;*/
 	cursor: pointer;
 	user-select: none;
 }
-.emtheme-goup > .material-icons {
-	font-size: 6rem;
+.emtheme-goup-arrow-svg {
+	height: 5rem;
+	width: 5rem;
 }
+
+.goup-arrow {
+	/*fill: red;*/
+}
+
+
+/*.emtheme-goup > .material-icons {*/
+	/*font-size: 6rem;*/
+/*}*/
+
+
+
 
 /* 4.2 accept cookie window */
 .emtheme-cookie-container {
 	position: fixed;
-	bottom: 5%;
+	bottom: 60px;
 	width: 100%;
 
 	display: flex;

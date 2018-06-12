@@ -280,7 +280,7 @@ final class Emtheme_css {
 
 		$css .= "\nbody { background-color: $col[background]; }";
 		
-		$css .= "\n.main { width: {$width}rem; margin: 2rem auto; font-family: $fon[content_family]; }";
+		$css .= "\n.main { width: {$width}rem; margin: 2rem auto auto; font-family: $fon[content_family]; }";
 		$css .= "\n.content, .sidebar-def-tem { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
 		$css .= "\n.emtheme-footer { width: {$width}rem; background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
@@ -290,7 +290,9 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: solid 1px $col[privacy_button_bg]; }";
 		$css .= "\n.emtheme-cookie-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
-		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; color: $col[goup_font]; }";
+		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; border: solid 2px $col[goup_font]; }";
+		$css .= "\n.emtheme-goup-arrow { fill: $col[goup_font]; }";
+		
 
 		return $css;
 	}	

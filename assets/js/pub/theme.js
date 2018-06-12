@@ -30,7 +30,7 @@ jQuery(function() {
 	var addGoUp = function() {
 		var goUp = H({class: 'emtheme-goup'});
 
-		goUp.appendChild(H({class: 'material-icons', text: 'keyboard_arrow_up'}));
+		goUp.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="emtheme-goup-arrow-svg" viewBox="0 0 24 24"><path class="emtheme-goup-arrow" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'
 
 		goUp.addEventListener('click', function() { window.scrollTo(0, 0) });
 
@@ -49,7 +49,7 @@ jQuery(function() {
 
 		});
 
-		setTimeout(function() { document.body.appendChild(goUp) }, 0);
+		document.body.appendChild(goUp);
 	}
 
 
@@ -59,8 +59,6 @@ jQuery(function() {
 
 		var button = document.querySelector('.emtheme-cookie-button');
 		if (!button) return;
-
-		// var cookies = decodeURIComponent(document.cookie).split('; ');
 
 		if (location.href.indexOf('customize_changeset') == -1)
 			for (var cookie of decodeURIComponent(document.cookie).split('; '))
@@ -81,10 +79,10 @@ jQuery(function() {
 
 	}
 
-	setTimeout(function(){
-		var nav = document.querySelector('.menu-list');
-		nav.style.opacity = 1;
-	}, 0);
+	// setTimeout(function(){
+	// 	var nav = document.querySelector('.menu-list');
+	// 	nav.style.opacity = 1;
+	// }, 0);
 
 	addCookieAccept();
 	addGoUp();

@@ -85,7 +85,6 @@ final class Emtheme_customizer {
 		));
 
 
-
 		$cust->add_setting('theme_privacy[button_text]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
@@ -101,6 +100,8 @@ final class Emtheme_customizer {
 
 
 
+		
+
 		$cust->add_setting('theme_privacy[button_bg]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
@@ -115,6 +116,8 @@ final class Emtheme_customizer {
 				'section' => 'theme_privacy_section',
 			)
 		));
+
+		
 
 		$cust->add_setting('theme_privacy[button_font]', array(
 			'type' => 'theme_mod',
@@ -138,65 +141,142 @@ final class Emtheme_customizer {
 	public function footer_info($cust) {
 
 
-		$cust->add_setting('theme_footer[active]', array(
-			'type' => 'theme_mod',
-			'transport' => 'postMessage',
-			'sanitize_callback' => 'sanitize_text_field'
-		));
+		$this->register_cust($cust, 'theme_footer[active]', 'title_tagline', 'checkbox', 
+							_x('Deactivate Info Footer', 'check to deactivate info footer element', 'emtheme'), 
+							_x('Check to deactivate info footer element', 'Description of checkbox to deactivate info footer element', 'emtheme'), 
+							'', 
+							159, 'sanitize_text_field');
 
-		$cust->add_control('theme_footer[active]', array(
-			'type' => 'checkbox',
-			'description' => 'If checked, then footer info will not be shown at all.',
-			'label' => 'Disable footer info',
-			'priority' => 159,
-			'section' => 'title_tagline'
-		));
+		// $cust->add_setting('theme_footer[active]', array(
+		// 	'type' => 'theme_mod',
+		// 	'transport' => 'postMessage',
+		// 	'sanitize_callback' => 'sanitize_text_field'
+		// ));
 
-
-		$cust->add_setting('theme_footer[social]', array(
-			'type' => 'theme_mod',
-			'transport' => 'postMessage',
-			'sanitize_callback' => 'wp_kses_post'
-		));
-
-		$cust->add_control('theme_footer[social]', array(
-			'type' => 'textarea',
-			'label' => 'Social Info',
-			'priority' => 160,
-			'section' => 'title_tagline'
-
-		));
+		// $cust->add_control('theme_footer[active]', array(
+		// 	'type' => 'checkbox',
+		// 	'description' => 'If checked, then footer info will not be shown at all.',
+		// 	'label' => 'Disable footer info',
+		// 	'priority' => 159,
+		// 	'section' => 'title_tagline'
+		// ));
 
 
-		$cust->add_setting('theme_footer[contact]', array(
-			'type' => 'theme_mod',
-			'transport' => 'postMessage',
-			'sanitize_callback' => 'wp_kses_post'
-		));
 
-		$cust->add_control('theme_footer[contact]', array(
-			'type' => 'textarea',
-			'label' => 'Contact Info',
-			'priority' => 161,
-			'section' => 'title_tagline'
+		$this->register_cust($cust, 'theme_footer[social]', 'title_tagline', 'textarea', 
+							_x('Social Info', 'front-end footer element', 'emtheme'), 
+							_x('Is shown as the left-most column.', 'description of social info footer element', 'emtheme'), 
+							'', 
+							160, 'sanitize_text_field');
 
-		));
+		// $cust->add_setting('theme_footer[social]', array(
+		// 	'type' => 'theme_mod',
+		// 	'transport' => 'postMessage',
+		// 	'sanitize_callback' => 'wp_kses_post'
+		// ));
+
+		// $cust->add_control('theme_footer[social]', array(
+		// 	'type' => 'textarea',
+		// 	'label' => 'Social Info',
+		// 	'priority' => 160,
+		// 	'section' => 'title_tagline'
+
+		// ));
 
 
-		$cust->add_setting('theme_footer[aboutus]', array(
-			'type' => 'theme_mod',
-			'transport' => 'postMessage',
-			'sanitize_callback' => 'wp_kses_post'
-		));
+		
 
-		$cust->add_control('theme_footer[aboutus]', array(
-			'type' => 'textarea',
-			'label' => 'About Us Info',
-			'priority' => 162,
-			'section' => 'title_tagline'
+		$this->register_cust($cust, 'theme_footer[contact]', 'title_tagline', 'textarea', 
+							_x('Contact Info', 'front-end footer element', 'emtheme'), 
+							_x('Is shown in the middle or on the left.', 'description of contact footer element', 'emtheme'), 
+							'', 
+							161, 'sanitize_text_field');
 
-		));
 
+		// $cust->add_setting('theme_footer[contact]', array(
+				// 	'type' => 'theme_mod',
+				// 	'transport' => 'postMessage',
+				// 	'sanitize_callback' => 'wp_kses_post'
+		// ));
+		// $cust->add_control('theme_footer[contact]', array(
+		// 	'type' => 'textarea',
+		// 	'label' => 'Contact Info',
+		// 	'priority' => 161,
+		// 	'section' => 'title_tagline'
+
+		// ));
+
+
+
+		$this->register_cust($cust, 'theme_footer[aboutus]', 'title_tagline', 'textarea', 
+							_x('About Us Info', 'front-end footer element', 'emtheme'), 
+							_x('Is shown as the right-most column.', 'description of about us footer element', 'emtheme'), 
+							'', 
+							162, 'sanitize_text_field');
+		
+
+		// $cust->add_setting('theme_footer[aboutus]', array(
+		// 	'type' => 'theme_mod',
+		// 	'transport' => 'postMessage',
+		// 	'sanitize_callback' => 'wp_kses_post'
+		// ));
+
+		// $cust->add_control('theme_footer[aboutus]', array(
+		// 	'type' => 'textarea',
+		// 	'label' => 'About Us Info',
+		// 	'priority' => 162,
+		// 	'section' => 'title_tagline'
+
+		// ));
+
+	}
+
+	private function register_cust(	$cust = null, 
+									$setting = null, 
+									$section = null, 
+									$type = 'text', 
+									$label = '', 
+									$description = '', 
+									$default = '',
+									$priority = 170, 
+									$sanitize = 'sanitize_text_field'
+								) {
+
+		if (!$cust || !$setting || !$section) return false;
+
+		if ($type != 'color') {
+			$cust->add_setting($setting, array(
+				'type' => 'theme_mod',
+				'transport' => 'postMessage',
+				'default' => $default,
+				'sanitize_callback' => $sanitize
+			));
+
+			$cust->add_control($setting, array(
+				'type' => $type,
+				'label' => $label,
+				'description' => $description,
+				'priority' => $priority,
+				'section' => $section
+			));
+		}
+		elseif ($type == 'color') {
+			$cust->add_setting($setting, array(
+				'type' => 'theme_mod',
+				'transport' => 'postMessage',
+				'default' => $default,
+				'sanitize_callback' => 'sanitize_hex_color'
+			));
+
+			$cust->add_control(
+				new WP_Customize_Color_Control($cust, $setting,
+				array(
+					'label' => $label,
+					'priority' => $priority,
+					'section' => $section
+				)
+			));
+		}
 	}
 
 }
