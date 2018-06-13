@@ -190,7 +190,7 @@ body {
 
 .emtheme-footer {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 
 	box-sizing: border-box;
 	padding: 0 2rem;

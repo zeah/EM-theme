@@ -20,9 +20,10 @@ $(() => {
 
 
 
-		api('theme_footer[social]', (v) => v.bind((nv) => $('.emtheme-footer-social').html(nv)));
-		api('theme_footer[contact]', (v) => v.bind((nv) => $('.emtheme-footer-contact').html(nv)));
-		api('theme_footer[aboutus]', (v) => v.bind((nv) => $('.emtheme-footer-aboutus').html(nv)));
+		api('theme_footer[active]', (v) => v.bind((nv) => $('.emtheme-footer-container').toggle()));
+		api('theme_footer[social]', (v) => v.bind((nv) => $('.emtheme-footer-social').html(nv.replace(/\n/g, '<br>'))));
+		api('theme_footer[contact]', (v) => v.bind((nv) => $('.emtheme-footer-contact').html(nv.replace(/\n/g, '<br>'))));
+		api('theme_footer[aboutus]', (v) => v.bind((nv) => $('.emtheme-footer-aboutus').html(nv.replace(/\n/g, '<br>'))));
 
 
 	})(wp.customize);
