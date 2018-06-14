@@ -98,13 +98,15 @@ final class Emtheme_css {
 		$colors['navbar_border'] = isset($col['navbar_border']) ? sanitize_hex_color($col['navbar_border']) : '#666';
 
 		// submenu font
-		$colors['submenu_font'] = isset($col['navsub_font']) ? sanitize_hex_color($col['navsub_font']) : '#000';
+		$colors['submenu_font'] = isset($col['submenu_font']) ? sanitize_hex_color($col['submenu_font']) : '#000';
 		
 		// submenu bg
-		$colors['submenu_background'] = isset($col['navsub_bg']) ? sanitize_hex_color($col['navsub_bg']) : '#eee';
+		$colors['submenu_background'] = isset($col['submenu_bg']) ? sanitize_hex_color($col['submenu_bg']) : '#eee';
 						
 		// submenu hover
-		$colors['submenu_hover'] = isset($col['navsub_bg_hover']) ? sanitize_hex_color($col['navsub_bg_hover']) : '#ddd';
+		$colors['submenu_hover'] = isset($col['submenu_hover']) ? sanitize_hex_color($col['submenu_hover']) : '#ddd';
+
+		$colors['submenu_border'] = isset($col['submenu_border']) ? sanitize_hex_color($col['submenu_border']) : '#bbb';
 		
 		// footer background
 		$colors['footer_bg'] = isset($col['footer_bg']) ? sanitize_hex_color($col['footer_bg']) : '#000';
@@ -139,34 +141,34 @@ final class Emtheme_css {
 		$fonts = [];
 
 		// content font family
-		$fonts['content_family'] = (isset($fon['standard']) && $fon['standard'] != '') ? esc_html($fon['standard']) : 'arial';
+		$fonts['content_family'] = (isset($fon['standard']) && $fon['standard'] != '') ? esc_html($fon['standard']) : 'Open Sans';
 		
 		// content weight
 		$fonts = array_merge($fonts, $this->check_weight((isset($fon['standard_weight']) ? $fon['standard_weight'] : false), 'content'));
 
 		// content font size
-		$fonts['content_size'] = isset($fon['standard_size']) ? esc_html($fon['standard_size']) : '1.6';
+		$fonts['content_size'] = isset($fon['standard_size']) ? floatval($fon['standard_size']) / 10 : '1.6';
 
 		// content lineheight
 		$fonts['content_lineheight'] = isset($fon['standard_lineheight']) ? esc_html($fon['standard_lineheight']) : 1;
 
 		// title font family
-		$fonts['title_family'] = (isset($fon['title']) && $fon['title'] != '') ? esc_html($fon['title']) : 'verdana';
+		$fonts['title_family'] = (isset($fon['title']) && $fon['title'] != '') ? esc_html($fon['title']) : 'Roboto';
 
 		// title weight
 		$fonts = array_merge($fonts, $this->check_weight((isset($fon['title_weight']) ? $fon['title_weight'] : false), 'title'));
 
 		// title font size
-		$fonts['title_size'] = isset($fon['title_size']) ? esc_html($fon['title_size']) : '4.6';
+		$fonts['title_size'] = isset($fon['title_size']) ? floatval($fon['title_size']) / 10 : '4';
 
 		// navbar font family
-		$fonts['navbar_family'] = (isset($fon['nav']) && $fon['nav'] != '') ? esc_html($fon['nav']) : 'arial';
+		$fonts['navbar_family'] = (isset($fon['nav']) && $fon['nav'] != '') ? esc_html($fon['nav']) : 'Roboto';
 
 		// navbar weight
 		$fonts = array_merge($fonts, $this->check_weight((isset($fon['nav_weight']) ? $fon['nav_weight'] : false), 'navbar'));
 
 		// navbar font-size
-		$fonts['navbar_size'] = isset($fon['nav_size']) ? esc_html($fon['nav_size']) : '2';
+		$fonts['navbar_size'] = isset($fon['nav_size']) ? floatval($fon['nav_size']) / 10 : '2';
 
 		$this->fonts = $fonts;
 		add_action( 'wp_enqueue_scripts', array($this, 'get_css') );
@@ -213,8 +215,8 @@ final class Emtheme_css {
 		$width = $content_width / 10;
 
 		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
-		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; }";
-		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
+		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
 
 
 		$css .= "\n.emtheme-header { width: {$width}rem; }";
@@ -235,7 +237,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
 		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
 
-		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px rgb(0, 0, 0, .1); }";
+		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
 						
 		
 		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
@@ -248,11 +250,13 @@ final class Emtheme_css {
 
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
 
-		$css .= "\n.menu-level-second { color: $col[submenu_font]; border-bottom: solid 1px rgba(0, 0, 0, .1); }";
+		$css .= "\n.menu-level-second { color: $col[submenu_font]; border-bottom: solid 1px $col[submenu_border]; }";
 		$css .= "\n.menu-item:last-child > .menu-level-second { border-bottom: none; }";
 		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
-		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover] !important; }";
+		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
 		
+		$css .= "\n.sub-menu .emtheme-navbar-description { color: $col[submenu_font]; }";
+
 		$css .= "\n.menu-level-top { border-right: solid 1px $col[navbar_border]; }";
 
 		$css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
@@ -274,18 +278,16 @@ final class Emtheme_css {
 		$fon = $this->fonts;
 		$col = $this->colors;
 
-		
 
 		$width = $content_width / 10;
 
 		$css .= "\nbody { background-color: $col[background]; }";
 		
-		$css .= "\n.main { width: {$width}rem; margin: 2rem auto auto; font-family: $fon[content_family]; }";
+		$css .= "\n.main { width: {$width}rem; margin: 2rem auto auto; font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; line-height: $fon[content_lineheight]; }";
 		$css .= "\n.content, .sidebar-def-tem { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
 		$css .= "\n.emtheme-footer { width: {$width}rem; background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
-
 
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: solid 1px $col[privacy_button_bg]; }";
@@ -293,7 +295,6 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; border: solid 2px $col[goup_font]; }";
 		$css .= "\n.emtheme-goup-arrow { fill: $col[goup_font]; }";
 		
-
 		return $css;
 	}	
 }

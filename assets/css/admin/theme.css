@@ -64,7 +64,6 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 .emtheme-documentation > div > ul > li > ul > li {
 	list-style-type: lower-alpha;
 	margin: 0;
-	/*margin-left: 2rem;*/
 }
 .emtheme-documentation-info > div > ul > li > ul > li > ul > li,
 .emtheme-documentation > div > ul > li > ul > li > ul > li {
@@ -74,7 +73,17 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 /*
 	Customizer Pane	
  */
-#customize-control-emtheme_color-navbar_bg_top::before,
+
+.customize-control > label {
+	text-transform: capitalize;
+}
+
+#customize-control-emtheme_color-emtop_bg::before,
+#customize-control-emtheme_font-content_lineheight::before,
+#customize-control-emtheme_font-title_family::before,
+#customize-control-emtheme_font-title_weight::before,
+#customize-control-emtheme_font-title_size::before,
+#customize-control-emtheme_color-nav_bg_top::before,
 #customize-control-emtheme_color-submenu_bg::before,
 #customize-control-theme_footer-active::before {
 	display: block;
@@ -84,25 +93,19 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	margin-bottom: 10px;
 }
 
-#customize-control-theme_footer-active::before {
+/*#customize-control-theme_footer-active::before {
 	content: 'Footer Info';
-}
+}*/
 
 #customize-control-theme_footer-active label {
 	font-weight: bold;
 }
 
-
-#customize-control-emtheme_color-navbar_bg_top::before {
-	content: 'NAV COLORS\A\ANavbar';
-	/*display: block;
-	font-size: 20px;
-	font-weight: bold;
-	margin-top: 30px;
-	margin-bottom: 10px;*/
+#customize-control-emtheme_color-nav_bg_top::before {
+	/*content: 'NAV COLORS\A\ANavbar';*/
 	white-space: pre;
 }
 
-#customize-control-emtheme_color-submenu_bg::before {
+/*#customize-control-emtheme_color-submenu_bg::before {
 	content: 'Sub-menu';
-}
+}*/

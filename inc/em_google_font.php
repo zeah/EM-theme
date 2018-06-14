@@ -4,7 +4,7 @@ final class Emtheme_google_font {
 	/* singleton */
 	private static $instance = null;
 
-    private $default = 'Open+Sans:400,700|Roboto:400,700|Roboto+Condensed:400,700';
+    private $default = 'Open+Sans:400|Roboto:400,700';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
