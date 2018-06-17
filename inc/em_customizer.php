@@ -18,6 +18,7 @@ final class Emtheme_customizer {
 
 		add_action('customize_register', array($this, 'colors'));
 		add_action('customize_register', array($this, 'fonts'));
+		add_action('customize_register', array($this, 'widgets'));
 
 		add_action('customize_register', array($this, 'privacy_popup'));
 		add_action('customize_register', array($this, 'footer_info'));
@@ -64,6 +65,9 @@ final class Emtheme_customizer {
 		
 		$css .= '#customize-control-emtheme_color-emtop_bg::before { content: \''._x('Header', 'Customizer title for header colors', 'emtheme').'\';}';
 
+		$css .= '#customize-control-background_color::before { content: \''._x('Content', 'Customizer title for content.', 'emtheme').'\';}';
+
+		$css .= '#customize-control-emtheme_color-footer_bg::before { content: \''._x('Footer', 'Customizer title for footer', 'emtheme').'\';}';
 
 		return $css;
 	}
@@ -74,7 +78,7 @@ final class Emtheme_customizer {
 
 
 		$this->add($cust, 'emtheme_color[main_background]', 'colors', 'color', 
-							_x('Content Background', 'Customizer color', 'emtheme'), 
+							_x('Content area', 'Customizer color', 'emtheme'), 
 							'',
 							'#ffffff', 
 							50, 'sanitize_hex_color');
@@ -84,6 +88,14 @@ final class Emtheme_customizer {
 							'',
 							'', 
 							51, 'sanitize_hex_color');
+
+
+		$this->add($cust, 'emtheme_color[main_font]', 'colors', 'color', 
+							_x('Font', 'Customizer title for font color', 'emtheme'), 
+							'',
+							'#000000', 
+							52, 'sanitize_hex_color');
+		
 
 		$this->add($cust, 'emtheme_color[emtop_bg]', 'colors', 'color', 
 							_x('Background', 'Customizer color', 'emtheme'), 
@@ -108,14 +120,14 @@ final class Emtheme_customizer {
 		/* navbar bg middle color */
 		$this->add($cust, 'emtheme_color[nav_bg_middle]', 'colors', 'color', 
 									_x('Background: Middle', 'Title for customizer: navbar background color middle color in linear-gradient.', 'emtheme'), 
-									'', 
+									'Gradient', 
 									'', 
 									101, 'sanitize_hex_color');
 
 		/* navbar bg bottom color */
 		$this->add($cust, 'emtheme_color[nav_bg_bottom]', 'colors', 'color', 
 									_x('Background: Bottom', 'Title for customizer: navbar background color bottom color in linear-gradient.', 'emtheme'), 
-									'', 
+									'Gradient', 
 									'', 
 									102, 'sanitize_hex_color');
 		
@@ -131,14 +143,14 @@ final class Emtheme_customizer {
 		/* navbar hover middle color */
 		$this->add($cust, 'emtheme_color[nav_bg_hover_middle]', 'colors', 'color', 
 									_x('Hover: Middle', 'Title for customizer: navbar hover color middle color in linear-gradient.', 'emtheme'), 
-									'', 
+									'Gradient', 
 									'', 
 									104, 'sanitize_hex_color');
 
 		/* navbar hover bottom color */
 		$this->add($cust, 'emtheme_color[nav_bg_hover_bottom]', 'colors', 'color', 
 									_x('Hover: Bottom', 'Title for customizer: navbar hover color bottom color in linear-gradient.', 'emtheme'), 
-									'', 
+									'Gradient', 
 									'', 
 									105, 'sanitize_hex_color');
 
@@ -193,6 +205,22 @@ final class Emtheme_customizer {
 							'',
 							'#ffffff', 
 							110, 'sanitize_hex_color');
+
+
+
+
+		$this->add($cust, 'emtheme_color[footer_bg]', 'colors', 'color', 
+							_x('Background', 'Customizer title for footer background color setting', 'emtheme'), 
+							'',
+							'#000000', 
+							80, 'sanitize_hex_color');
+		
+		$this->add($cust, 'emtheme_color[footer_font]', 'colors', 'color', 
+							_x('Font', 'Customizer title for footer font color setting', 'emtheme'), 
+							'',
+							'#ffffff', 
+							81, 'sanitize_hex_color');
+		
 	}
 
 
@@ -284,11 +312,12 @@ final class Emtheme_customizer {
 							202, 'sanitize_text_field');
 
 
+		// content lineheight
 		$cust->add_setting('emtheme_font[content_lineheight]', array(
 							'type' => 'theme_mod',
 							'transport' => 'postMessage',
 							'sanitize_callback' => 'sanitize_text_field',
-							'default' => '1'	
+							'default' => '1.3'	
 						));
 
 		$cust->add_control('emtheme_font[content_lineheight]', array(
@@ -300,14 +329,17 @@ final class Emtheme_customizer {
 								'step' => 0.1 
 							)
 						));
-		// $this->add($cust, 'emtheme_font[content_lineheight]', 'theme_fonts', 'number', 
-		// 					_x('Content', 'Customizer title for lineheight settings', 'emtheme'), 
-		// 					'',
-		// 					'1', 
-		// 					250, 'sanitize_text_field');
-		
-		
 
+	}
+
+	public function widgets($cust) {
+
+		$this->add($cust, 'emtheme_widget[leftone]', 'widgets', 'checkbox', 
+							_x('label', 'tes', 'emtheme'), 
+							'',
+							'', 
+							100, 'sanitize_text_field');
+		
 	}
 
 	/**
@@ -457,6 +489,7 @@ final class Emtheme_customizer {
 				new WP_Customize_Color_Control($cust, $setting,
 				array(
 					'label' => $label,
+					'description' => $description,
 					'priority' => $priority,
 					'section' => $section
 				)

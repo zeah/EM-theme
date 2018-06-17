@@ -7,6 +7,7 @@ require_once 'inc/em_admin.php';
 /* */
 
 /* content area is 1280px wide with 20px padding */
+// (1280px on chrome's very large font size setting equals to 1920px wide content.)
 if (!isset($content_width)) $content_width = 1240;
 
 if (! function_exists('emtheme_setup')) {

@@ -137,16 +137,21 @@ $(() => { ((api) => {
 		}
 	}
 
-	api('emtheme_color[main_background]', (v) => v.bind((nv) => $('.content, .sidebar-def-tem').css('background-color', nv)));
+	api('emtheme_color[main_background]', (v) => v.bind((nv) => $('.content, .default-template-widget').css('background-color', nv)));
 	api('emtheme_color[emtop_bg]', (v) => v.bind((nv) => $('.emtheme-header-container').css('background-color', nv)));
 	api('emtheme_color[emtop_font]', (v) => v.bind((nv) => $('.emtheme-header-container').css('color', nv)));
+	api('emtheme_color[main_font]', (v) => v.bind((nv) => $('.main').css('color', nv)));
+	api('emtheme_color[footer_bg]', (v) => v.bind((nv) => $('.emtheme-footer').css('background-color', nv)));
+	api('emtheme_color[footer_font]', (v) => v.bind((nv) => $('.emtheme-footer, .emtheme-footer a').css('color', nv)));
+
+
 
 	api('emtheme_color[main_shadow]', (v) => v.bind((nv) => {
 		let css = 'none';
 
 		if (nv != '') css = '0 0 2px '+nv;
 
-		$('.content, .sidebar-def-tem').css('box-shadow', css);
+		$('.content, .default-template-widget').css('box-shadow', css);
 
 	}));
 	

@@ -3,16 +3,16 @@
 // make it into a grid !
 
 $sidebar = ''; 
-if (is_active_sidebar('emtheme-def-template')) {
-	ob_start();
-	dynamic_sidebar('emtheme-def-template');
-	$sidebar = '<div class="sidebar-def-tem">'.ob_get_clean().'</div>';
-	$html = '<div class="main main-sidebar">';
-}
-else
-	$html = '<div class="main">';
+ob_start();
 
-// global $post;
+dynamic_sidebar('default-template-right');
+dynamic_sidebar('default-template-left');
+dynamic_sidebar('default-template-top');
+dynamic_sidebar('default-template-bottom');
+
+$sidebar .= ob_get_clean();
+
+$html = '<div class="main main-sidebar">';
 
 $html .= '<div class="content-column">';
 if (have_posts()) {

@@ -1,4 +1,52 @@
 
+dokumentasjon
+search
+search form css (lagt til search i widget)
+settings
+	adwords
+	sitemap
+	maintenance mode
+
+templates
+widgets (create more widgets)
+transient api
+custom title meta box
+category template
+tag template
+archive template
+404 template
+code comments (comments in the code)
+add icon/title to navbar when header is decactivated (add it as a seperate option?)
+add activate/deactive to privacy customizer
+
+meta box med meta:
+og:title
+og:image
+og:site_name
+og:description
+(finne en side som kan teste og-meta)
+meta description
+custom title
+robots:
+nofollow
+noindex
+noimageindex
+noarchive
+canonical
+
+
+em doc
+	body tag class
+	customizer
+	templates
+	settings
+
+add code for the_content filter to make flex/grid out of .. like ##grid 1## or/and make js buttons to insert them - make modular window to preview pad/mobile?
+or moveable live updating window
+
+
+
+
 
 langauge!!
 
@@ -12,10 +60,8 @@ legge til <picture> i content filter for responsive design eller ikke: bare bruk
 gjøre email greiene tilslutt (må være i plugin)
 
 
-legge til feature for privacy popup
 
-
-bruke wp cache api
+bruke wp cache api transient
 
 
 version compare
@@ -32,8 +78,6 @@ set_search i functions er disabled.. vil at den skal searche for posts og pages 
 
 html lang="'.get_locale().'" legg til customizer for lang så man ka engelsk wordpress admin med "norsk" fremside
 
-
-add by js "to top" button
 
 add to customizer -> menu ability to make navbar sticky or show when scrolled up
 

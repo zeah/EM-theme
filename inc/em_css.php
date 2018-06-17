@@ -26,12 +26,9 @@ final class Emtheme_css {
 		$colors = [];
 
 		// page background color (body tag)
-		// $colors['background'] = isset($col['background']) ? sanitize_hex_color($col['background']) : '#fff'; 
 		$colors['background'] = sanitize_hex_color('#'.get_background_color());
 		if ($colors['background'] == '') $colors['background'] = '#eee';
 
-
-		// wp_die('<xmp>'.print_r($colors, true).'</xmp>');
 		// main background color 
 		$colors['main_background'] = isset($col['main_background']) ? sanitize_hex_color($col['main_background']) : '#fff';
 
@@ -43,6 +40,10 @@ final class Emtheme_css {
 			$colors['main_shadow'] = $css;  
 		}
 		else $colors['main_shadow'] = '0 0 2px #888';
+
+		// font color in main area
+		$colors['main_font'] = isset($col['main_font']) ? sanitize_hex_color($col['main_font']) : '#000';
+
 
 		// header font
 		$colors['header_font'] = isset($col['emtop_font']) ? sanitize_hex_color($col['emtop_font']) : '#000';
@@ -150,7 +151,7 @@ final class Emtheme_css {
 		$fonts['content_size'] = isset($fon['standard_size']) ? floatval($fon['standard_size']) / 10 : '1.6';
 
 		// content lineheight
-		$fonts['content_lineheight'] = isset($fon['standard_lineheight']) ? esc_html($fon['standard_lineheight']) : 1;
+		$fonts['content_lineheight'] = isset($fon['standard_lineheight']) ? esc_html($fon['standard_lineheight']) : 1.3;
 
 		// title font family
 		$fonts['title_family'] = (isset($fon['title']) && $fon['title'] != '') ? esc_html($fon['title']) : 'Roboto';
@@ -230,12 +231,15 @@ final class Emtheme_css {
 		$col = $this->colors;
 		$fon = $this->fonts;
 		global $content_width;
-
+		$width = $content_width / 10;
 		
 		$css .= "\n@media only screen and (min-width: 1280px) {";
+		$css .= "\n.menu-list { width: {$width}rem; }";
+		
+		$css .= "\n}";
 		
 		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
-		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$content_width}px; margin: auto; }";
+		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
 
 		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
 						
@@ -259,14 +263,14 @@ final class Emtheme_css {
 
 		$css .= "\n.menu-level-top { border-right: solid 1px $col[navbar_border]; }";
 
-		$css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
+		// active page marker
+		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
 		$css .= "\n.theme-nav-arrow { fill: $col[navbar_font]; }";
 		
 
 		
 
-		$css .= "\n}";
 		
 
 		return $css;
@@ -281,12 +285,16 @@ final class Emtheme_css {
 
 		$width = $content_width / 10;
 
+		$css = "\n@media only screen and (min-width: 1280px) {";
+		$css .= "\n.main, .emtheme-footer { width: {$width}rem; }";
+		$css .= "\n}";
+
 		$css .= "\nbody { background-color: $col[background]; }";
 		
-		$css .= "\n.main { width: {$width}rem; margin: 2rem auto auto; font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; line-height: $fon[content_lineheight]; }";
-		$css .= "\n.content, .sidebar-def-tem { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
+		$css .= "\n.main { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; color: $col[main_font]; line-height: $fon[content_lineheight]; }";
+		$css .= "\n.content, .default-template-widget { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
-		$css .= "\n.emtheme-footer { width: {$width}rem; background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-footer { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
 
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";

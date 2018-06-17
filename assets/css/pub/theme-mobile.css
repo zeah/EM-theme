@@ -1,0 +1,37 @@
+
+
+html { 
+	font-size: 62.5%;
+}
+
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.menu-container {
+	display: none;
+}
+
+.emtheme-goup {
+	display: inline-block;
+	position: fixed;
+	right: 60px;
+	bottom: 60px;
+
+	/*background-color: pink;*/
+	border-radius: 25%;
+	/*border: solid 2px black;*/
+	cursor: pointer;
+	user-select: none;
+}
+.emtheme-goup-arrow-svg {
+	height: 5rem;
+	width: 5rem;
+}
+
+.goup-arrow {
+	/*fill: red;*/
+}
