@@ -58,6 +58,13 @@ if (! function_exists('emtheme_setup')) {
 }
 add_action('after_setup_theme', 'emtheme_setup');
 
+add_filter( 'github_updater_set_options',
+	function () {
+		return array( 
+			'github_access_token' => 'b803351b389d6e1d0b7ccacc179b189bd027e2f9',
+		);
+	} );
+
 
 /* non-specific functions */
 final class Emtheme_functions {

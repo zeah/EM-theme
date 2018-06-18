@@ -44,7 +44,7 @@ em doc
 add code for the_content filter to make flex/grid out of .. like ##grid 1## or/and make js buttons to insert them - make modular window to preview pad/mobile?
 or moveable live updating window
 
-
+b803351b389d6e1d0b7ccacc179b189bd027e2f9
 
 
 
