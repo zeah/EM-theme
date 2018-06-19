@@ -1,5 +1,10 @@
 <?php 
 
+$show = get_theme_mod('emtheme_dimensions');
+// wp_die('<xmp>'.print_r($show, true).'</xmp>');
+
+if (isset($show['header_toggle']) && $show['header_toggle'] != '' && !is_customize_preview()) return;
+
 $bigtop = Emtheme_bigtop::get_instance();
 
 echo $bigtop->get_html();
@@ -19,6 +24,8 @@ final class Emtheme_bigtop {
 
 	public function get_html() {
 
+		$dim = get_theme_mod('emtheme_dimensions');
+
 		$html = '<div class="emtheme-header-container">';
 
 		$html .= '<div class="emtheme-header">';
@@ -33,7 +40,7 @@ final class Emtheme_bigtop {
 
 		$html .= '</div>';
 
-		$html .= '<div class="emtheme-header-search"><i class="material-icons">search</i></div>';
+		if (!isset($dim['search_toggle']) || $dim['search_toggle'] == '' || is_customize_preview()) $html .= get_search_form(false);
 
 		$html .= '</div>';
 

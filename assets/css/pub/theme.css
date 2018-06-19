@@ -63,15 +63,32 @@ body {
 	margin-right: auto;
 }
 
-.emtheme-header-search {
+.emtheme-header .emtheme-header-search {
 	align-self: flex-start;
 }
 
+/*.*/
+
 /* 1.2 navbar */
+
+.navbar-background {
+	align-self: stretch;
+
+	display: flex;
+	justify-content: center;
+}
+
+.navbar-container {
+	display: flex;
+	align-items: center;
+	/*margin-right: auto;*/
+	/*justify-items: left;*/
+}
 
 .menu-container {
 	align-self: stretch;
-	margin-bottom: 2rem;
+	margin-right: auto;
+	/*margin-bottom: 2rem;*/
 }
 
 /* if description on links is added through menu customizer */
@@ -96,6 +113,35 @@ body {
 	/*content: '\203A ';*/
 }
 
+.emtheme-header > .emtheme-search-form {
+	align-self: flex-start;
+}
+
+.emtheme-search-form {
+	display: flex;
+	align-items: center;
+}
+
+.emtheme-search-input {
+	background-color: inherit;
+	border: none;
+	width: 15rem;
+
+	margin-left: 2rem;
+	/*font-size: 1.6rem;*/
+	/*color: white;*/
+}
+
+.emtheme-search-input:focus {
+	border: none;
+	outline: none;
+}
+
+.emtheme-search-button {
+	background-color: inherit;
+	border: none;
+	cursor: pointer;
+}
 
 /*.menu-current:after {
 	position: absolute;
@@ -126,6 +172,7 @@ body {
 
 
 .main {
+	margin-top: 2rem;
 	/*margin: 2rem auto auto; */
 	/*font-size: 1.6rem;*/
 	margin-bottom: auto;

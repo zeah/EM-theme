@@ -5,6 +5,7 @@ final class Emtheme_css {
 	private static $instance = null;
 	private $colors;
 	private $fonts;
+	private $dimensions;
 	private $privacy;
 
 	public static function get_instance() {
@@ -19,7 +20,8 @@ final class Emtheme_css {
 		$fon = get_theme_mod('emtheme_font');
 		// $fon = get_option('emtheme_font');
 		
-
+		$dim = get_theme_mod('emtheme_dimensions');
+		// wp_die('<xmp>'.print_r($fon, true).'</xmp>');
 		// checking custom colors and setting defaults
 		
 		// COLORS
@@ -61,7 +63,7 @@ final class Emtheme_css {
 		$colors['header_background_image_opacity'] = isset($col['emtop_bg_image_opacity']) ? esc_html($col['emtop_bg_image_opacity']) : '0.5';
 
 		// navbar font
-		$colors['navbar_font'] = isset($col['nav_font']) ? sanitize_hex_color($col['nav_font']) : '#fff';
+		$colors['navbar_font'] = isset($col['nav_font']) ? sanitize_hex_color($col['nav_font']) : '#ffffff';
 		
 		// navbar bg
 		if (isset($col['nav_bg_top'])) {
@@ -96,7 +98,7 @@ final class Emtheme_css {
 		else $colors['navbar_hover'] = 'background-color: #353';
 
 		// navbar borders
-		$colors['navbar_border'] = isset($col['navbar_border']) ? sanitize_hex_color($col['navbar_border']) : '#666';
+		$colors['navbar_border'] = isset($col['navbar_border']) ? 'solid 1px '.sanitize_hex_color($col['navbar_border']) : 'none';
 
 		// submenu font
 		$colors['submenu_font'] = isset($col['submenu_font']) ? sanitize_hex_color($col['submenu_font']) : '#000';
@@ -163,15 +165,29 @@ final class Emtheme_css {
 		$fonts['title_size'] = isset($fon['title_size']) ? floatval($fon['title_size']) / 10 : '4';
 
 		// navbar font family
-		$fonts['navbar_family'] = (isset($fon['nav']) && $fon['nav'] != '') ? esc_html($fon['nav']) : 'Roboto';
+		$fonts['navbar_family'] = (isset($fon['navbar_family']) && $fon['navbar_family'] != '') ? esc_html($fon['navbar_family']) : 'Roboto';
 
-		// navbar weight
-		$fonts = array_merge($fonts, $this->check_weight((isset($fon['nav_weight']) ? $fon['nav_weight'] : false), 'navbar'));
+		// navbar weight / style
+		$fonts = array_merge($fonts, $this->check_weight((isset($fon['navbar_weight']) ? $fon['navbar_weight'] : false), 'navbar'));
 
 		// navbar font-size
-		$fonts['navbar_size'] = isset($fon['nav_size']) ? floatval($fon['nav_size']) / 10 : '2';
+		$fonts['navbar_size'] = isset($fon['navbar_size']) ? floatval($fon['navbar_size']) / 10 : '2';
 
+		// wp_die('<xmp>'.print_r($fonts, true).'</xmp>');
 		$this->fonts = $fonts;
+
+
+
+		// dimensions
+		$dimension['navbar_padding'] = isset($dim['navbar_padding']) ? floatval($dim['navbar_padding']) / 10 : '0.6';
+		$dimension['navbar_search'] = (isset($dim['search_navbar_toggle']) && $dim['search_navbar_toggle'] != '') ? $dim['search_navbar_toggle'] : false;
+		// $dimension['header_toggle'] = isset($dim['header_toggle'])
+		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+
+		$this->dimensions = $dimension;
+
+
+		/* adding css to front-end*/
 		add_action( 'wp_enqueue_scripts', array($this, 'get_css') );
 	}
 
@@ -195,16 +211,18 @@ final class Emtheme_css {
 	}
 
 	public function get_css() {
+		$dim = get_theme_mod('emtheme_dimensions');
 
-		// $html = '<style>';
-		$html = $this->top();
+		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+
+		$html = '';
+
+		if (!isset($dim['header_toggle']) || $dim['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
 
 		$html .= $this->navbar();
 
 		$html .= $this->page();
 
-		// $html .= '</style>';
-		// return $html;
 		wp_add_inline_style('style', $html);
 	}
 
@@ -215,12 +233,15 @@ final class Emtheme_css {
 
 		$width = $content_width / 10;
 
-		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; }";
+		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; color: $col[header_font];}";
 		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
 		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
-
+		// $css .= "\n.emtheme-header-search { align-self: flex-start; }";
 
 		$css .= "\n.emtheme-header { width: {$width}rem; }";
+		
+		$css .= "\n.emtheme-header .emtheme-search-input { color: $col[header_font]; border-bottom: solid 1px $col[header_font]; font-size: {$fon[navbar_size]}rem; }"; 
+
 		
 
 		return $css;
@@ -230,16 +251,34 @@ final class Emtheme_css {
 
 		$col = $this->colors;
 		$fon = $this->fonts;
+		$dim = $this->dimensions;
 		global $content_width;
 		$width = $content_width / 10;
 		
+		$css = '';
+		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+
+		if ($dim['navbar_search'] || is_customize_preview()) {
+
+			// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
+			$css .= "\n.navbar-container .emtheme-search-input { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border-bottom: 1px solid {$col[navbar_font]}50; }";
+			$css .= "\n.navbar-container .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
+			  
+			// $css .= "\n.emtheme-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }"; 
+			
+			$css .= "\n.navbar-container .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
+		}
+
 		$css .= "\n@media only screen and (min-width: 1280px) {";
-		$css .= "\n.menu-list { width: {$width}rem; }";
+		$css .= "\n.navbar-container { width: {$width}rem; }";
+		// $css .= "\n.menu-list { width: {$width}rem; }";
 		
 		$css .= "\n}";
 		
+		$css .= "\n.navbar-background { $col[navbar_background]; }";
 		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
-		$css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
+		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
+		// $css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
 
 		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
 						
@@ -247,7 +286,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
 		
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
-		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: 0.6rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$dim[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
 		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		
@@ -261,7 +300,7 @@ final class Emtheme_css {
 		
 		$css .= "\n.sub-menu .emtheme-navbar-description { color: $col[submenu_font]; }";
 
-		$css .= "\n.menu-level-top { border-right: solid 1px $col[navbar_border]; }";
+		$css .= "\n.menu-level-top { border-right: $col[navbar_border]; }";
 
 		// active page marker
 		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";

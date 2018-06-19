@@ -171,7 +171,7 @@ $(() => { ((api) => {
 		}
 	));
 
-	api('emtheme_color[navbar_border]', (v) => v.bind((nv) => $('.menu-level-top').css('border-right', 'solid 1px '+nv)));
+	api('emtheme_color[navbar_border]', (v) => v.bind((nv) => $('.menu-level-top').css('border-right', (nv != '' ? 'solid 1px '+nv : 'none'))));
 			
 
 	// navbar font color 
@@ -221,7 +221,21 @@ $(() => { ((api) => {
 	api('emtheme_font[content_lineheight]', (v) => v.bind((nv) => $('.main').css('line-height', nv)));
 
 
+	// dimensions
+	api('emtheme_dimensions[navbar_padding]', (v) => v.bind((nv) => { 
+		$('.menu-link').css('padding', (nv/10)+'rem 1.5rem');
+		$('.menu-has-child > .menu-link').css('padding', (nv/10)+'rem 0 '+(nv/10)+'rem 1.5rem');
+	}));
 
+	// console.log(api.instance('emtheme_dimensions[header_toggle]').get());
+	if (api.instance('emtheme_dimensions[header_toggle]').get()) $('.emtheme-header-container').toggle();
+	api('emtheme_dimensions[header_toggle]', (v => v.bind((nv) => $('.emtheme-header-container').toggle())));
+
+	if (api.instance('emtheme_dimensions[search_toggle]').get()) $('.emtheme-header .emtheme-search-form').toggle();
+	api('emtheme_dimensions[search_toggle]', (v => v.bind((nv) => $('.emtheme-header .emtheme-search-form').toggle())));
+
+	if (!api.instance('emtheme_dimensions[search_navbar_toggle]').get()) $('.navbar-container > .emtheme-search-form').toggle();
+	api('emtheme_dimensions[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-container > .emtheme-search-form').toggle())));
 
 
 	// privacy window 

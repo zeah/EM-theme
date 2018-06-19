@@ -19,9 +19,9 @@ if (! function_exists('emtheme_setup')) {
     	//  add thumbnails to posts/pages
 		add_theme_support('post-thumbnails');
 
-		add_theme_support( 'custom-logo' );
+		add_theme_support('custom-logo');
 
-		add_theme_support( 'custom-background' );
+		add_theme_support('custom-background');
 
 		// add image size to array of images when uploading
         add_image_size('em_main_column_image', 910);
@@ -58,6 +58,11 @@ if (! function_exists('emtheme_setup')) {
 }
 add_action('after_setup_theme', 'emtheme_setup');
 
+
+/**
+ * Adds personal access key with public access to increase GitHub API limit.
+ * For the GitHub Updater Plugin.
+ */
 add_filter( 'github_updater_set_options',
 	function () {
 		return array( 
@@ -66,7 +71,7 @@ add_filter( 'github_updater_set_options',
 	} );
 
 
-/* non-specific functions */
+/*  */
 final class Emtheme_functions {
 	private static $instance = null;
 

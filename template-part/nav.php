@@ -2,7 +2,15 @@
 
 $nav = Emtheme_nav::get_instance();
 
-echo $nav->get_nav();
+echo $nav->get_html();
+
+// echo '<div class="navbar-background">
+// 			<div class="navbar-container">
+// 				<div class="navbar-logo">H</div>
+// 				'.$nav->get_nav().'
+// 				<div class="navbar-search">S</div>
+// 			</div>
+// 	  </div>';
 
 
 /*
@@ -21,13 +29,29 @@ final class Emtheme_nav {
 	private function __construct() {
 	}
 
+	public function get_html() {
 
+		$show = get_theme_mod('emtheme_dimensions');
+		// wp_die('<xmp>'.print_r($show, true).'</xmp>');
+
+		$html = '<div class="navbar-background"><div class="navbar-container">';
+
+		// $html .= '<div class="navbar-logo">H</div>';
+		
+		$html .= $this->get_nav();
+
+		if ((isset($show['search_navbar_toggle']) && $show['search_navbar_toggle']) || is_customize_preview()) $html .= get_search_form(false);
+
+		$html .= '</div></div>';
+
+		return $html;
+	}
 
 	/**
 	*	Currently only header-menu exists
 	*	@return html element container nav menu
 	*/
-	public function get_nav() {
+	private function get_nav() {
 
 		/* getting nav menu */
 		$menu = wp_nav_menu(array(

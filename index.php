@@ -1,5 +1,15 @@
 <?php 
 
+
+// $args = array(
+//      'headers' => array(
+//           'Authorization' => 'Basic ' . base64_encode( 'feeduser_effektivmarkedsføring:$1Hestogdill' )
+//      )
+// );
+// $response = wp_remote_request( 'https://www.finansportalen.no/feed/v3/bank/kredittkort.atom', $args ); 
+
+// wp_die('<xmp>'.print_r($response, true).'</xmp>');
+
 // make it into a grid !
 
 $sidebar = ''; 

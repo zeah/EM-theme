@@ -18,7 +18,8 @@ final class Emtheme_customizer {
 
 		add_action('customize_register', array($this, 'colors'));
 		add_action('customize_register', array($this, 'fonts'));
-		add_action('customize_register', array($this, 'widgets'));
+		// add_action('customize_register', array($this, 'widgets'));
+		add_action('customize_register', array($this, 'dimensions'));
 
 		add_action('customize_register', array($this, 'privacy_popup'));
 		add_action('customize_register', array($this, 'footer_info'));
@@ -158,7 +159,7 @@ final class Emtheme_customizer {
 		$this->add($cust, 'emtheme_color[navbar_border]', 'colors', 'color', 
 							_x('Border for top level', 'Customizer control for border color for navbar top level', 'emtheme'), 
 							'',
-							'#666666', 
+							'', 
 							106, 'sanitize_hex_color');
 		
 
@@ -332,13 +333,83 @@ final class Emtheme_customizer {
 
 	}
 
-	public function widgets($cust) {
+	// public function widgets($cust) {
 
-		$this->add($cust, 'emtheme_widget[leftone]', 'widgets', 'checkbox', 
-							_x('label', 'tes', 'emtheme'), 
-							'',
-							'', 
-							100, 'sanitize_text_field');
+	// 	$this->add($cust, 'emtheme_widget[leftone]', 'widgets', 'checkbox', 
+	// 						_x('label', 'tes', 'emtheme'), 
+	// 						'',
+	// 						'', 
+	// 						100, 'sanitize_text_field');
+		
+	// }
+
+	public function dimensions($cust) {
+		$cust->add_section('theme_dimension_section', array(
+			'title' => 'Dimensions',
+			'capability' => 'edit_theme_options',
+			'priority' => 42
+		));
+
+		$cust->add_setting('emtheme_dimensions[navbar_padding]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 6
+		));
+
+		$cust->add_control('emtheme_dimensions[navbar_padding]', array(
+			'section' => 'theme_dimension_section',
+			'label' => 'Navbar Height',
+			'type' => 'number',
+			'priority' => '10',
+			'input_attrs' => array(
+				'step' => 1,
+				'min' => 0,
+				'max' => 100
+			)
+		));
+
+		$cust->add_setting('emtheme_dimensions[header_toggle]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'	
+		));
+
+		$cust->add_control('emtheme_dimensions[header_toggle]', array(
+			'section' => 'theme_dimension_section',
+			'label' => 'Hide Header',
+			'priority' => '5',
+			'type' => 'checkbox'
+		));
+
+		$cust->add_setting('emtheme_dimensions[search_toggle]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'	
+		));
+
+		$cust->add_control('emtheme_dimensions[search_toggle]', array(
+			'section' => 'theme_dimension_section',
+			'label' => 'Hide Header Search',
+			'priority' => '6',
+			'type' => 'checkbox'
+		));
+
+
+		$cust->add_setting('emtheme_dimensions[search_navbar_toggle]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'	
+		));
+
+		$cust->add_control('emtheme_dimensions[search_navbar_toggle]', array(
+			'section' => 'theme_dimension_section',
+			'label' => 'Show Navbar Search',
+			'priority' => '7',
+			'type' => 'checkbox'
+		));
+
+
 		
 	}
 

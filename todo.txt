@@ -1,3 +1,6 @@
+Holder på med:
+legge til icon i navbar fra customizer
+
 
 dokumentasjon
 search
@@ -11,13 +14,20 @@ templates
 widgets (create more widgets)
 transient api
 custom title meta box
-category template
-tag template
-archive template
+#category template
+#tag template
+#archive template
 404 template
 code comments (comments in the code)
 add icon/title to navbar when header is decactivated (add it as a seperate option?)
 add activate/deactive to privacy customizer
+
+search widget in widget boxes (give them content color instead of navbar color)
+
+customizer:
+widget background and font and box-shadow
+navbar size (padding)
+
 
 meta box med meta:
 og:title
