@@ -1,8 +1,8 @@
 <?php 
 
-$show = get_theme_mod('emtheme_dimensions');
-// wp_die('<xmp>'.print_r($show, true).'</xmp>');
+$show = get_theme_mod('emtheme_layout');
 
+// do nothing if toggled off in customizer
 if (isset($show['header_toggle']) && $show['header_toggle'] != '' && !is_customize_preview()) return;
 
 $bigtop = Emtheme_bigtop::get_instance();

@@ -31,12 +31,19 @@ final class Emtheme_nav {
 
 	public function get_html() {
 
-		$show = get_theme_mod('emtheme_dimensions');
-		// wp_die('<xmp>'.print_r($show, true).'</xmp>');
+		$show = get_theme_mod('emtheme_layout');
 
 		$html = '<div class="navbar-background"><div class="navbar-container">';
 
-		// $html .= '<div class="navbar-logo">H</div>';
+		if (function_exists('the_custom_logo'))
+			if ((isset($show['logo_navbar_toggle']) && $show['logo_navbar_toggle']) || is_customize_preview()) {
+
+				$custom_logo_id = get_theme_mod('custom_logo');
+				$logo = wp_get_attachment_image_src($custom_logo_id , 'full');
+				
+				if (has_custom_logo() && isset($logo[0]) && isset($logo[1])) 
+					$html .= '<a class="navbar-logo" href="'.esc_html(get_site_url()).'" style="flex-basis: '.(intval($logo[1])/10).'rem; background-image: url(\''.esc_url($logo[0]).'\');"></a>';
+			}
 		
 		$html .= $this->get_nav();
 

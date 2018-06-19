@@ -19,7 +19,7 @@ final class Emtheme_customizer {
 		add_action('customize_register', array($this, 'colors'));
 		add_action('customize_register', array($this, 'fonts'));
 		// add_action('customize_register', array($this, 'widgets'));
-		add_action('customize_register', array($this, 'dimensions'));
+		add_action('customize_register', array($this, 'layout'));
 
 		add_action('customize_register', array($this, 'privacy_popup'));
 		add_action('customize_register', array($this, 'footer_info'));
@@ -333,32 +333,27 @@ final class Emtheme_customizer {
 
 	}
 
-	// public function widgets($cust) {
-
-	// 	$this->add($cust, 'emtheme_widget[leftone]', 'widgets', 'checkbox', 
-	// 						_x('label', 'tes', 'emtheme'), 
-	// 						'',
-	// 						'', 
-	// 						100, 'sanitize_text_field');
-		
-	// }
-
-	public function dimensions($cust) {
-		$cust->add_section('theme_dimension_section', array(
-			'title' => 'Dimensions',
+	/**
+	 * Adding the layout panel in customizer
+	 * @param  {$WP_Customizer} $cust sent by wp core
+	 * @return {void}       
+	 */
+	public function layout($cust) {
+		$cust->add_section('theme_layout_section', array(
+			'title' => 'Layout',
 			'capability' => 'edit_theme_options',
 			'priority' => 42
 		));
 
-		$cust->add_setting('emtheme_dimensions[navbar_padding]', array(
+		$cust->add_setting('emtheme_layout[navbar_padding]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field',
 			'default' => 6
 		));
 
-		$cust->add_control('emtheme_dimensions[navbar_padding]', array(
-			'section' => 'theme_dimension_section',
+		$cust->add_control('emtheme_layout[navbar_padding]', array(
+			'section' => 'theme_layout_section',
 			'label' => 'Navbar Height',
 			'type' => 'number',
 			'priority' => '10',
@@ -369,48 +364,59 @@ final class Emtheme_customizer {
 			)
 		));
 
-		$cust->add_setting('emtheme_dimensions[header_toggle]', array(
+		$cust->add_setting('emtheme_layout[header_toggle]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field'	
 		));
 
-		$cust->add_control('emtheme_dimensions[header_toggle]', array(
-			'section' => 'theme_dimension_section',
+		$cust->add_control('emtheme_layout[header_toggle]', array(
+			'section' => 'theme_layout_section',
 			'label' => 'Hide Header',
 			'priority' => '5',
 			'type' => 'checkbox'
 		));
 
-		$cust->add_setting('emtheme_dimensions[search_toggle]', array(
+		$cust->add_setting('emtheme_layout[search_toggle]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field'	
 		));
 
-		$cust->add_control('emtheme_dimensions[search_toggle]', array(
-			'section' => 'theme_dimension_section',
+		$cust->add_control('emtheme_layout[search_toggle]', array(
+			'section' => 'theme_layout_section',
 			'label' => 'Hide Header Search',
 			'priority' => '6',
 			'type' => 'checkbox'
 		));
 
-
-		$cust->add_setting('emtheme_dimensions[search_navbar_toggle]', array(
+		$cust->add_setting('emtheme_layout[search_navbar_toggle]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
 			'sanitize_callback' => 'sanitize_text_field'	
 		));
 
-		$cust->add_control('emtheme_dimensions[search_navbar_toggle]', array(
-			'section' => 'theme_dimension_section',
+		$cust->add_control('emtheme_layout[search_navbar_toggle]', array(
+			'section' => 'theme_layout_section',
 			'label' => 'Show Navbar Search',
 			'priority' => '7',
 			'type' => 'checkbox'
 		));
 
+		$cust->add_setting('emtheme_layout[logo_navbar_toggle]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'	
+		));
 
-		
+		$cust->add_control('emtheme_layout[logo_navbar_toggle]', array(
+			'section' => 'theme_layout_section',
+			'label' => 'Show Logo in Navbar',
+			'description' => 'You need to adjust the actual image\'s dimension to make it fit on the navbar. The navbar will show the actual width, but if the height is greater than the navbar then it will be cropped (and not re-sized.)',
+			'priority' => '8',
+			'type' => 'checkbox'
+		));
+
 	}
 
 	/**

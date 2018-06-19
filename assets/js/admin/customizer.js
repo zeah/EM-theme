@@ -221,21 +221,25 @@ $(() => { ((api) => {
 	api('emtheme_font[content_lineheight]', (v) => v.bind((nv) => $('.main').css('line-height', nv)));
 
 
-	// dimensions
-	api('emtheme_dimensions[navbar_padding]', (v) => v.bind((nv) => { 
+	// layout
+	api('emtheme_layout[navbar_padding]', (v) => v.bind((nv) => { 
 		$('.menu-link').css('padding', (nv/10)+'rem 1.5rem');
 		$('.menu-has-child > .menu-link').css('padding', (nv/10)+'rem 0 '+(nv/10)+'rem 1.5rem');
 	}));
 
-	// console.log(api.instance('emtheme_dimensions[header_toggle]').get());
-	if (api.instance('emtheme_dimensions[header_toggle]').get()) $('.emtheme-header-container').toggle();
-	api('emtheme_dimensions[header_toggle]', (v => v.bind((nv) => $('.emtheme-header-container').toggle())));
+	// console.log(api.instance('emtheme_layout[header_toggle]').get());
+	if (api.instance('emtheme_layout[header_toggle]').get()) $('.emtheme-header-container').toggle();
+	api('emtheme_layout[header_toggle]', (v => v.bind((nv) => $('.emtheme-header-container').toggle())));
 
-	if (api.instance('emtheme_dimensions[search_toggle]').get()) $('.emtheme-header .emtheme-search-form').toggle();
-	api('emtheme_dimensions[search_toggle]', (v => v.bind((nv) => $('.emtheme-header .emtheme-search-form').toggle())));
+	if (api.instance('emtheme_layout[search_toggle]').get()) $('.emtheme-header .emtheme-search-form').toggle();
+	api('emtheme_layout[search_toggle]', (v => v.bind((nv) => $('.emtheme-header .emtheme-search-form').toggle())));
 
-	if (!api.instance('emtheme_dimensions[search_navbar_toggle]').get()) $('.navbar-container > .emtheme-search-form').toggle();
-	api('emtheme_dimensions[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-container > .emtheme-search-form').toggle())));
+	if (!api.instance('emtheme_layout[search_navbar_toggle]').get()) $('.navbar-container > .emtheme-search-form').toggle();
+	api('emtheme_layout[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-container > .emtheme-search-form').toggle())));
+
+
+	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-logo').toggle();
+	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-logo').toggle())));
 
 
 	// privacy window 

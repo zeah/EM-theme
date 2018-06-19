@@ -5,7 +5,7 @@ final class Emtheme_css {
 	private static $instance = null;
 	private $colors;
 	private $fonts;
-	private $dimensions;
+	private $layout;
 	private $privacy;
 
 	public static function get_instance() {
@@ -20,7 +20,7 @@ final class Emtheme_css {
 		$fon = get_theme_mod('emtheme_font');
 		// $fon = get_option('emtheme_font');
 		
-		$dim = get_theme_mod('emtheme_dimensions');
+		$lay = get_theme_mod('emtheme_layout');
 		// wp_die('<xmp>'.print_r($fon, true).'</xmp>');
 		// checking custom colors and setting defaults
 		
@@ -178,13 +178,11 @@ final class Emtheme_css {
 
 
 
-		// dimensions
-		$dimension['navbar_padding'] = isset($dim['navbar_padding']) ? floatval($dim['navbar_padding']) / 10 : '0.6';
-		$dimension['navbar_search'] = (isset($dim['search_navbar_toggle']) && $dim['search_navbar_toggle'] != '') ? $dim['search_navbar_toggle'] : false;
-		// $dimension['header_toggle'] = isset($dim['header_toggle'])
-		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+		// layout
+		$layout['navbar_padding'] = isset($lay['navbar_padding']) ? floatval($lay['navbar_padding']) / 10 : '0.6';
+		$layout['navbar_search'] = (isset($lay['search_navbar_toggle']) && $lay['search_navbar_toggle'] != '') ? $lay['search_navbar_toggle'] : false;
 
-		$this->dimensions = $dimension;
+		$this->layout = $layout;
 
 
 		/* adding css to front-end*/
@@ -211,13 +209,13 @@ final class Emtheme_css {
 	}
 
 	public function get_css() {
-		$dim = get_theme_mod('emtheme_dimensions');
+		$lay = get_theme_mod('emtheme_layout');
 
-		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
 
 		$html = '';
 
-		if (!isset($dim['header_toggle']) || $dim['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
+		
+		if (!isset($lay['header_toggle']) || $lay['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
 
 		$html .= $this->navbar();
 
@@ -230,7 +228,7 @@ final class Emtheme_css {
 		global $content_width;
 		$col = $this->colors;
 		$fon = $this->fonts;
-
+		
 		$width = $content_width / 10;
 
 		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; color: $col[header_font];}";
@@ -251,14 +249,14 @@ final class Emtheme_css {
 
 		$col = $this->colors;
 		$fon = $this->fonts;
-		$dim = $this->dimensions;
+		$lay = $this->layout;
 		global $content_width;
 		$width = $content_width / 10;
 		
 		$css = '';
-		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+		// wp_die('<xmp>'.print_r($lay, true).'</xmp>');
 
-		if ($dim['navbar_search'] || is_customize_preview()) {
+		if ($lay['navbar_search'] || is_customize_preview()) {
 
 			// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
 			$css .= "\n.navbar-container .emtheme-search-input { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border-bottom: 1px solid {$col[navbar_font]}50; }";
@@ -286,7 +284,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
 		
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
-		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$dim[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
 		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		
@@ -308,8 +306,8 @@ final class Emtheme_css {
 		$css .= "\n.theme-nav-arrow { fill: $col[navbar_font]; }";
 		
 
-		
-
+		if (!$lay['logo-navbar-toggle']) $css .= "\n.menu-container { position: relative; right: 1.5rem}";
+			
 		
 
 		return $css;
