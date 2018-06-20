@@ -65,8 +65,15 @@ final class Emtheme_documentation {
 										 <li><a href="#theme-customizer-siteidentity">Site Identity</a></li>
 										 <li><a href="#theme-customizer-color">Color</a></li>
 										 <li><a href="#theme-customizer-font">Font</a></li>
+										 <li><a href="#theme-customizer-layout">Layout</a></li>
 										 <li><a href="#theme-customizer-privacy">Privacy</a></li>
 									  </ul>
+								   </li>
+								   <li>
+								   		<h2><a href="#theme-formatting">Post formatting</a></h2>
+								   		<ul>
+								   			<li></li>
+								   		</ul>
 								   </li>
 								   <li>
 									  <h2><a href="#theme-menu">Menu</a></h2>
@@ -76,11 +83,20 @@ final class Emtheme_documentation {
 									  </ul>
 								   </li>
 								   <li>
-									  <h2><a href="#theme-features">Features</a></h2>
+									  <h2><a href="#theme-features">Misc. Features</a></h2>
 									  <ul>
 										 <li><a href="#theme-features-privacy">Privacy Window</a></li>
 										 <li><a href="#theme-features-goup">Go Up Button</a></li>
+										 <li><a href="#theme-features-sitemap">Sitemap.xml</a></li>
+										 <li><a href="#theme-features-searchpage">Internal SERP</a></li>
+										 <li><a href="#theme-features-notfound">Page not found</a></li>
 									  </ul>
+								   </li>
+								   <li>
+								   	  <h2><a href="">Cache</a></h2>
+								   	  <ul>
+								   	  	<li></li>
+								   	  </ul>
 								   </li>
 								   ';
 
@@ -151,8 +167,28 @@ final class Emtheme_documentation {
 										 		<p>Sets content (including page/post titles), tagline, search, widgets and footer.
 										 		<br>Line-height setting is only for content.</p>
 										 		</li>
+										 		<li><b>Search box (header)</b>
+										 		<p>Uses title font family and navbar font size.</p>
+										 		</li>
+										 		<li><b>Search box (navbar)</b>
+										 		<p>Uses navbar font family and navbar font size.</p>
+										 		</li>
 										 	</ul>
 										 </li>
+
+										 <li id="theme-customizer-layout"><b>Layout</b>
+										 	<p>Show or hide elements and sets dimensions.</p>
+										 	<ul>
+										 	<li><b>Search</b><p>Search feature can be toggled on or off in header and navbar.
+										 	<br>It is also a widget who has the same design as the toggleable search</p></li>
+										 	<li><b>Navbar Height</b><p>Actually sets the top/bottom padding of the navbar.</p></li>
+										 	<li><b>Navbar Logo</b><p>Shows Logo (from Site Identity) on the left most side of the navbar.
+										 	<br>The logo is shown as a background image and will show it\'s actual width, 
+										 	<br>but will have a cropped height to fit on the navbar (it will crop top and bottom.)
+										 	<br>So the image chosen should fit the navbar as it will not be re-sized.</p></li>
+										 	</ul>
+										 </li>
+
 										 <li id="theme-customizer-privacy"><b>Privacy</b>
 										 <p>Shows a fixed element at the bottom of screen.
 										 <br>The editor accepts the same html as a post do. But &lt;br&gt; or &lt;p&gt; tag is needed for new lines.
@@ -164,28 +200,44 @@ final class Emtheme_documentation {
 									  <h2 id="theme-menu">Menu</h2>
 									  <ul>
 										 <li><h3 id="theme-menu-locations">Locations</h3>
-										 <ul>
-										 	<li><b>Head</b>
-										 	<p>If no menu assigned, then theme will create a menu from pages. If "Don\'t add to menu" is selected, 
-										 	then theme will not add it to the generated menu.<br> 
-										 	The menu, both custom and theme generated is sorted by menu order, with lowest value put on the left.</p></li>
-										 </ul>
+										 	<ul>
+										 		<li><b>Head</b>
+										 		<p>If no menu assigned, then theme will create a menu from pages. If "Don\'t add to menu" is selected, 
+										 		then theme will not add it to the generated menu.<br> 
+										 		The menu, both custom and theme generated is sorted by menu order, with lowest value put on the left.</p></li>
+										 	</ul>
 										 </li>
+										 
 										 <li><h3 id="theme-menu-attributes">Attributes</h3><br>Option to show these attributes for editing is "Screen Options" in 
 										 Apperance -> Menu page or cog icon in customize page. 
 										 	<ul>
-										 		<li><b>Link Target</b><p>If set then link will open in a new tab.<br> All menu links will regardless 
-										 		have rel=noopener for security reason.</p></li>
-										 		<li><b>Title Attribute</b><p>Value set will show as link tooltip.</p></li>
-										 		<li><b>CSS classes</b><p>Adds css classes to the a-tag in menu. Which can be styled from customize -> 
-										 		additional css.</p></li>
+										 		<li><b>Link Target</b>
+										 		<p>If set then link will open in a new tab.
+										 		<br> All menu links will regardless 
+										 		have rel=noopener for security reason.</p>
+										 		</li>
+										 		
+										 		<li><b>Title Attribute</b>
+										 		<p>Value set will show as link tooltip.</p>
+										 		</li>
+										 		
+										 		<li><b>CSS classes</b>
+										 		<p>Adds css classes to the a-tag in menu. Which can be styled from customize -> 
+										 		additional css.</p>
+										 		</li>
+										 		
 										 		<li><b>Link Relationship (XFN)</b><p>XFN stands for xhtml friends network and it is meant to represent 
-										 		human relationship using links.<br>
-										 		<a href="https://codex.wordpress.org/Defining_Relationships_with_XFN">Read More</a></p></li>
-										 		<li><b>Description</b><p>Is shown as extra text in the same menu item, but in the upper right corner 
-										 		on hover. (best fit in sub-menus)</p></li>
+										 		human relationship using links.
+										 		<br><a href="https://codex.wordpress.org/Defining_Relationships_with_XFN">Read More</a></p>
+										 		</li>
+										 		
+										 		<li><b>Description</b>
+										 		<p>Is shown as extra text in the same menu item, but in the upper right corner 
+										 		on hover. (best fit in sub-menus)</p>
+										 		</li>
 										 	</ul>
 										 </li>
+
 									  </ul>
 								   </li>
 								   <li>

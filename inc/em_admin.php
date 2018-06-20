@@ -3,6 +3,7 @@
 require_once 'em_documentation.php';
 require_once 'em_settings.php';
 require_once 'em_customizer.php';
+require_once 'em_sitemap.php';
 
 final class Emtheme_admin {
 	/* singleton */
@@ -19,6 +20,7 @@ final class Emtheme_admin {
 		Emtheme_documentation::get_instance();
 		Emtheme_settings::get_instance();
 		Emtheme_customizer::get_instance();
+		Emtheme_sitemap::get_instance();
 
 		$this->admin_hooks();
 	}
@@ -26,7 +28,9 @@ final class Emtheme_admin {
 	private function admin_hooks() {
 		
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_sands'));
-	
+		add_action('admin_init', array($this, 'editor_style'));
+		add_filter('tiny_mce_before_init', array($this, 'add_tinymce_font')); 
+
 	}
 
 	public function enqueue_sands() {
@@ -35,5 +39,23 @@ final class Emtheme_admin {
         // wp_enqueue_script('admin-script', get_theme_file_uri().'/assets/js/admin/theme.js', array('jQuery'), '0.0.1', true);
         wp_enqueue_script('emscript', get_theme_file_uri().'/assets/js/admin/theme.js', array(), '0.0.1', true);
 
+	}
+
+	public function editor_style() {
+        // wp_enqueue_style('theme-editor-style', get_theme_file_uri().'/assets/css/admin/editor.css', array(), '0.0.1');
+	}
+
+	public function add_tinymce_font($options) {
+
+		$fonts = get_theme_mod('emtheme_font');
+
+		$family = isset($fonts['content_family']) ? esc_attr($fonts['content_family']) : 'Roboto';
+		$weight = isset($fonts['content_weight']) ? esc_attr(str_replace('italic', 'i', ':'.$fonts['content_weight'])) : '';
+
+		$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
+
+		$options['content_style'] = 'body { font-family: \''.$family.'\'; }';
+
+		return $options; 
 	}
 }

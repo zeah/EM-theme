@@ -3,6 +3,8 @@
 require_once 'inc/em_css.php';
 require_once 'inc/em_widget.php';
 require_once 'inc/em_admin.php';
+require_once 'inc/em_google_font.php';
+require_once 'inc/em_search.php';
 
 /* */
 
@@ -23,6 +25,8 @@ if (! function_exists('emtheme_setup')) {
 
 		add_theme_support('custom-background');
 
+		add_post_type_support('page', 'excerpt');
+
 		// add image size to array of images when uploading
         add_image_size('em_main_column_image', 910);
         add_image_size('em_content_image', 1220);
@@ -34,6 +38,8 @@ if (! function_exists('emtheme_setup')) {
         Emtheme_widget::get_instance();
 
         Emtheme_admin::get_instance();
+
+        Emtheme_search::get_instance();
 
         // Emtheme_Admin::get_instance();
 
@@ -126,6 +132,9 @@ final class Emtheme_functions {
 		/* register navigation area */
         add_action('init', array($this, 'register_nav'));
 
+        add_action('wp_head', array($this, 'add_google_fonts'));
+        add_action('admin_head', array($this, 'add_google_fonts'));
+
 	}
 
 
@@ -212,4 +221,41 @@ final class Emtheme_functions {
 	    );
 	}
 
+	public function add_google_fonts() {
+
+		$google = Emtheme_google_font::get_instance();
+
+		echo $google->get_link();
+	}
+
 }
+
+// add_filter('tiny_mce_before_init', 'add_tinymce_font'); 
+
+// function add_tinymce_font($options) {
+
+// 	$fonts = get_theme_mod('emtheme_font');
+
+// 	$family = isset($fonts['content_family']) ? esc_attr($fonts['content_family']) : 'Roboto';
+// 	$weight = isset($fonts['content_weight']) ? esc_attr(str_replace('italic', 'i', ':'.$fonts['content_weight'])) : '';
+
+// 	$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
+
+// 	$options['content_style'] = 'body { font-family: \''.$family.'\'; }';
+
+// 	return $options; 
+// }
+// 
+// 
+// add_filter('search_first', 'tesr_fun');
+
+// function tesr_fun($data) {
+// 	global $post;
+
+// 	$types = ['post', 'page']
+// 	if (!in_array($post->post_type, $types)) return $data;
+	
+
+
+// 	return $data.' hi';
+// }

@@ -23,12 +23,18 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	color: #c4c !important;
 }
 
+/**/
+.postarea {
+	max-width: 1240px;
+}
 
+/*.emtheme-radio {*/
+	/*display: block !important;*/
+/*}*/
 
 /* emtheme documention page */
 .emtheme-documentation {
 	margin: 50px 0 0 50px;
-	height: 300vh;
 	width: 50%;
 	font-size: 16px;
 }
@@ -106,6 +112,14 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 #customize-control-emtheme_color-nav_bg_top::before {
 	/*content: 'NAV COLORS\A\ANavbar';*/
 	white-space: pre;
+}
+
+#customize-control-emtheme_font-content_weight::after {
+	display: block;
+	font-size: 10px;
+	/*font-weight: bold;*/
+	margin-top: 10px;
+	/*margin-bottom: 10px;*/
 }
 
 /*#customize-control-emtheme_color-submenu_bg::before {

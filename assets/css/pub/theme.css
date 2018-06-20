@@ -1,13 +1,22 @@
 
 /*
-	(a lot of css is set through inline-css by php reading from customizer settings (inc/em_css.php))
+	A lot of css is set through inline-css by php reading from customizer settings (inc/em_css.php)
+	All colors, fonts, images and most dimensions.
 
 	0.1 html
 	0.2 body
 
 	1.0 header
+		1.1 header
+		1.2 navbar
 	2.0 content
 		2.1 widgets
+		2.2 post content
+		2.3 serp
+	3.0 footer
+	4.0 misc
+		4.1 go up button
+		4.2 privacy window
 
 
 */
@@ -27,8 +36,12 @@ html {
 /* overwrite wordpress body margin css */
 body {
 	margin: 0;
-	min-height: 100vh;
+
+	/* for the foot!
+	top children of body should use 
+	align-self: stretch to have 100% width; */
 	display: flex;
+	min-height: 100vh;
 	flex-direction: column;
 	align-items: center;
 }
@@ -43,74 +56,91 @@ body {
 
 /* 1.1 header */
 
+/* full width container for header */
 .emtheme-header-container {
+
+	/* body has flex and flex-direction: column, 
+	so stretch for full width */
 	align-self: stretch;
 
+	/* centers the header */
 	display: flex; 
 	align-items: center;
 	justify-content: center; 
+	
 	min-height: 8rem;
 	padding: 1rem 0;
 }
 
+/* container for actual header */
 .emtheme-header {
+
+	/* vertical centering of content */
 	display: flex;
 	align-items: center;
 }
 
+/* container for site title and site tagline (description) */
 .emtheme-title-tagline {
+
+	/* margin to logo */
 	margin-left: 2rem;
+
+	/* margin to search box. 
+	sets search box as "aligned right" */
 	margin-right: auto;
 }
 
-.emtheme-header .emtheme-header-search {
-	align-self: flex-start;
-}
-
-/*.*/
 
 /* 1.2 navbar */
 
+/* navbar full width container */
 .navbar-background {
+
+	/* body has flex and flex-direction: column, 
+	so stretch for full width */
 	align-self: stretch;
 
+	/* centers the content of navbar */
 	display: flex;
 	justify-content: center;
 }
 
+/* actual navbar container */
 .navbar-container {
+
+	/* centers content */
 	display: flex;
 	align-items: center;
-
-	/*flex-wrap: wrap;*/
-	/*overflow: hidden;*/
-	/*margin-right: auto;*/
-	/*justify-items: left;*/
 }
 
+/* nav container for ul element of nav items */
 .menu-container {
-	align-self: stretch;
+
+	/*align-self: stretch;*/
+	
+	/* sets navbar search box to "aligned right" */
 	margin-right: auto;
-	/*margin-bottom: 2rem;*/
 }
 
+/* site logo on navbar 
+   logo is shown as background image with full width 
+   but height same as navbar with overflow cropped 
+   at top and bootom*/
 .navbar-logo {
+	/* background image url set from php */
+
 	display: block;
 	height: 100%;
+
+	/* margin to menu */
+	margin-right: 2rem;
+	
+	/* cropping background image */
 	background-position: center;
 	background-repeat: no-repeat;
-	/*flex: 1;*/
-	/*width: 3rem;*/
 }
 
-/*.navbar-logo > a {
-	height: 100%;
-}
-
-.navbar-logo img {
-	height: 100% !important;
-	width: auto !important;
-}*/
 
 /* if description on links is added through menu customizer */
 .emtheme-navbar-description {
@@ -124,59 +154,38 @@ body {
 }
 
 
-/* show the link description on hover */
-.menu-item:hover > .emtheme-navbar-description {
-	/*display: block;*/
-}
-
-/* add arrow to description */
-.emtheme-navbar-description::before {
-	/*content: '\203A ';*/
-}
-
+/* sets search box in header to "aligned top" */
 .emtheme-header > .emtheme-search-form {
 	align-self: flex-start;
 }
 
+
+/* search form container */
 .emtheme-search-form {
 	display: flex;
 	align-items: center;
 }
 
+/* search form input */
 .emtheme-search-input {
 	background-color: inherit;
 	border: none;
 	width: 15rem;
 
 	margin-left: 2rem;
-	/*font-size: 1.6rem;*/
-	/*color: white;*/
 }
-
 .emtheme-search-input:focus {
 	border: none;
 	outline: none;
 }
 
+/* search form button */
 .emtheme-search-button {
 	background-color: inherit;
 	border: none;
 	cursor: pointer;
 }
 
-/*.menu-current:after {
-	position: absolute;
-	content: '';
-	top: 0;
-	bottom: 0;
-	left: 0;
-	 border-top: 15px solid transparent;
- 	 border-bottom: 15px solid transparent;
-  
-  		border-left: 15px solid #ccc;
-}*/
-	/*box-shadow: 0 0 2px black;*/
-/*}*/
 
 /* 2.0 content */
 
@@ -187,19 +196,19 @@ body {
 }
 
 /* 2.2 post content */
+
+/* wp fix? */
 .main p {
 	margin-top: 0;
 } 
 
-
+/* content area */
 .main {
 	margin-top: 2rem;
-	/*margin: 2rem auto auto; */
-	/*font-size: 1.6rem;*/
 	margin-bottom: auto;
-	/*height: 300vh;*/
 }
 
+/* adds widget areas to main */
 .main-sidebar {
 	display: grid;
 
@@ -211,42 +220,39 @@ body {
 	"left content right"
 	". bottom .";
 
-	/*grid-gap: 2rem;*/
-	/*align-items: flex-start;*/
-
-	/*position: sticky;
-	top: 150px;*/
 }
 
+/* post content */
 .content-column {
-
 	grid-area: content;
-	/*flex: 1;*/
 }
 
-
+/* settings of all default template widgets */
 .default-template-widget {
 	padding: 1rem;
 }
 
+/* making widgets sticky */
 .default-template-top-widget,
 .default-template-left-widget,
 .default-template-right-widget {
-	/*grid-area: right;*/
-	/*width: 25rem;*/
-	/*margin-left: 2rem;*/
 	padding: 1rem;
 	padding-top: 0;
 	position: sticky;
 	top: 2rem;
 	align-self: flex-start;
 }
+
+/* centering content in widgets */
 .default-template-top-widget,
 .default-template-bottom-widget {
 	display: flex;
 	justify-content: space-around;
 }
 
+/*
+	grid widget settings and margins
+ */
 
 .default-template-right-widget {
 	grid-area: right;
@@ -261,51 +267,94 @@ body {
 .default-template-top-widget {
 	grid-area: top;
 	margin-bottom: 2rem;
-
-	/*position: sticky;
-	top: 2rem;*/
 }
 
 .default-template-bottom-widget {
 	grid-area: bottom;
-	margin-top: 2rem;	
 }
 
+/* post content */
 .content {
 	box-sizing: border-box;
 	padding: 2rem;
-
-	margin-bottom: 4rem;
+	margin-bottom: 2rem;
 }
 
-.content:last-child {
-	margin-bottom: 0;
-}
-
+/* post content title */
 .content-title-text {
 	margin-top: 0;
 	font-size: 3.4rem;
 }
 
+/* inserted images */
 .alignright {
 	float: right;
+}
+.alignleft {
+	float: left;
+}
+
+
+/* 2.3 serp 
+   made to match google serp */
+.emtheme-search-item {
+	display: block;
+	font-family: arial;
+
+	margin-bottom: 3rem;
+}
+
+/* link */
+.emtheme-search-link {
+	display: block;
+	color: #1a0dab;
+	text-decoration: none;
+	font-family: arial;
+	font-size: 1.8rem;
+}
+
+/* link text */
+.emtheme-search-link-text {
+	font-size: 1.4rem;
+	color: #006621;
+}
+
+/* container for thumbnail and excerpt */
+.emtheme-search-box {
+	display: flex;
+}
+
+/* post image */
+.emtheme-search-thumbnail {
+	margin-right: 1rem;
+}
+
+/* post excerpt, either user set or wp generated */
+.emtheme-search-excerpt {
+	font-size: 1.3rem;
 }
 
 /* 3.0 footer */
 
+/* full width container for footer */
 .emtheme-footer-container {
+
+	/* sets element to full width b/c 
+	body's css settings */
 	align-self: stretch;
 
-	/*position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;*/
+	/* margin to post content */
 	margin-top: 4rem;
+
+	/* centering container content */
 	display: flex;
 	justify-content: center;
 }
 
+/* container for actual footer */
 .emtheme-footer {
+
+	/* positioning content */
 	display: flex;
 	justify-content: space-around;
 
@@ -313,6 +362,8 @@ body {
 	padding: 0 2rem;
 }
 
+/* footer content containers
+   each represents one customizer data */
 .emtheme-footer-social,
 .emtheme-footer-contact,
 .emtheme-footer-aboutus {
@@ -331,9 +382,7 @@ body {
 	right: 60px;
 	bottom: 60px;
 
-	/*background-color: pink;*/
 	border-radius: 25%;
-	/*border: solid 2px black;*/
 	cursor: pointer;
 	user-select: none;
 }
@@ -342,24 +391,18 @@ body {
 	width: 5rem;
 }
 
-.goup-arrow {
-	/*fill: red;*/
-}
 
+/* 4.2 accept cookie window 
+   privacy statement
+*/
 
-/*.emtheme-goup > .material-icons {*/
-	/*font-size: 6rem;*/
-/*}*/
-
-
-
-
-/* 4.2 accept cookie window */
+/* full width container */
 .emtheme-cookie-container {
 	position: fixed;
 	bottom: 60px;
 	width: 100%;
 
+	/* centering content */
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -367,13 +410,14 @@ body {
 	font-size: 1.6rem;
 }
 
-
+/* cookie container */
 .emtheme-cookie {
 	display: inline-flex;
-	padding: 2rem;
-	justify-content: space-between;
 	min-width: 30%;
 	max-width: 60%;
+	padding: 2rem;
+
+	justify-content: space-between;
 	border-radius: 10px;
 	background-color: red;
 	opacity: 0;
@@ -390,20 +434,20 @@ body {
 }
 
 .emtheme-cookie-button {
-	border: none;
 	padding: 0.5rem 2rem;
 
+	align-self: center;
+	
+	border: none;
 	border-radius: 10px;
 	font-size: 2rem;
-	cursor: pointer;
 
-	align-self: center;
+	cursor: pointer;
 	user-select: none;
 }
 
 .emtheme-cookie-button:focus {
 	outline:none;
-	/*border: none;*/
 }
 
 .emtheme-cookie-fade {

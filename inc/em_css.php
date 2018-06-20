@@ -41,7 +41,8 @@ final class Emtheme_css {
 
 			$colors['main_shadow'] = $css;  
 		}
-		else $colors['main_shadow'] = '0 0 2px #888';
+		else $colors['main_shadow'] = 'none';
+		// else $colors['main_shadow'] = '0 0 2px #888';
 
 		// font color in main area
 		$colors['main_font'] = isset($col['main_font']) ? sanitize_hex_color($col['main_font']) : '#000';
@@ -144,19 +145,19 @@ final class Emtheme_css {
 		$fonts = [];
 
 		// content font family
-		$fonts['content_family'] = (isset($fon['standard']) && $fon['standard'] != '') ? esc_html($fon['standard']) : 'Open Sans';
+		$fonts['content_family'] = (isset($fon['content_family']) && $fon['content_family'] != '') ? esc_html($fon['content_family']) : 'Open Sans';
 		
 		// content weight
-		$fonts = array_merge($fonts, $this->check_weight((isset($fon['standard_weight']) ? $fon['standard_weight'] : false), 'content'));
+		$fonts = array_merge($fonts, $this->check_weight((isset($fon['content_weight']) ? $fon['content_weight'] : false), 'content'));
 
 		// content font size
-		$fonts['content_size'] = isset($fon['standard_size']) ? floatval($fon['standard_size']) / 10 : '1.6';
+		$fonts['content_size'] = isset($fon['content_size']) ? floatval($fon['content_size']) / 10 : '1.6';
 
 		// content lineheight
-		$fonts['content_lineheight'] = isset($fon['standard_lineheight']) ? esc_html($fon['standard_lineheight']) : 1.3;
+		$fonts['content_lineheight'] = isset($fon['content_lineheight']) ? esc_html($fon['content_lineheight']) : 1.3;
 
 		// title font family
-		$fonts['title_family'] = (isset($fon['title']) && $fon['title'] != '') ? esc_html($fon['title']) : 'Roboto';
+		$fonts['title_family'] = (isset($fon['title_family']) && $fon['title_family'] != '') ? esc_html($fon['title_family']) : 'Roboto';
 
 		// title weight
 		$fonts = array_merge($fonts, $this->check_weight((isset($fon['title_weight']) ? $fon['title_weight'] : false), 'title'));
@@ -318,7 +319,8 @@ final class Emtheme_css {
 		global $content_width;
 		$fon = $this->fonts;
 		$col = $this->colors;
-
+		// wp_die('<xmp>'.print_r($fon, true).'</xmp>');
+		
 
 		$width = $content_width / 10;
 

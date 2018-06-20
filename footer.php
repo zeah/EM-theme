@@ -65,8 +65,8 @@ final class Emtheme_footer {
 		$html = '<div class="emtheme-footer-container"><div class="emtheme-footer">';
 
 		if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
-		if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post($info['contact']).'</div>';
-		if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post($info['aboutus']).'</div>';	
+		if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+		if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
 
 		$html .= '</div></div>';
 

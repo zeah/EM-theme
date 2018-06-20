@@ -1,5 +1,18 @@
-Holder på med:
-legge til icon i navbar fra customizer
+
+
+flexbox/grid i posts -- SKIP -- 
+
+search.php done
+sitemap
+meta box med seo i page/posts
+404 template
+transient api -> side lagres i transient for 24 timer?
+dokumentasjon
+col shortcode
+
+ny kredittkort plugin
+
+
 
 
 dokumentasjon
@@ -13,13 +26,11 @@ settings
 templates
 widgets (create more widgets)
 transient api
-custom title meta box
 #category template
 #tag template
 #archive template
 404 template
 code comments (comments in the code)
-add icon/title to navbar when header is decactivated (add it as a seperate option?)
 add activate/deactive to privacy customizer
 
 search widget in widget boxes (give them content color instead of navbar color)
@@ -57,8 +68,6 @@ or moveable live updating window
 b803351b389d6e1d0b7ccacc179b189bd027e2f9
 
 
-
-langauge!!
 
 
 legg til advarsel å forandre permalink struktur med å legge til categori - slik at posts har en bedre url strukture

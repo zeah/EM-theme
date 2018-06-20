@@ -70,6 +70,9 @@ final class Emtheme_customizer {
 
 		$css .= '#customize-control-emtheme_color-footer_bg::before { content: \''._x('Footer', 'Customizer title for footer', 'emtheme').'\';}';
 
+		$css .= "\n#customize-control-emtheme_font-content_weight::after { content: 'Sometimes weight needs to be re-selected after switching font-family to be saved properly.'; }";
+		
+
 		return $css;
 	}
 

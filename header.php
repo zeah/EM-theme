@@ -1,18 +1,18 @@
 <?php 
 
 require_once 'inc/em_css.php';
-require_once 'inc/em_google_font.php';
+// require_once 'inc/em_google_font.php';
 
 // $css = Emtheme_css::get_instance();
 
-$google = Emtheme_google_font::get_instance();
+// $google = Emtheme_google_font::get_instance();
 
 echo '<!DOCTYPE html><html lang="'.get_locale().'"><head>';
 echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 echo '<link rel="preconnect" href="https://fonts.googleapis.com/">';
 
 // echo $css->get_css();
-echo $google->get_link();
+// echo $google->get_link();
 echo '<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">';
 
 wp_head();
