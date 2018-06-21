@@ -70,8 +70,10 @@ final class Emtheme_customizer {
 
 		$css .= '#customize-control-emtheme_color-footer_bg::before { content: \''._x('Footer', 'Customizer title for footer', 'emtheme').'\';}';
 
-		$css .= "\n#customize-control-emtheme_font-content_weight::after { content: 'Sometimes weight needs to be re-selected after switching font-family to be saved properly.'; }";
+		// $css .= "\n#customize-control-emtheme_font-content_weight::after { content: 'Sometimes weight needs to be re-selected after switching font-family to be saved properly.'; }";
+		$css .= '#customize-control-emtheme_font-content_weight::after { content: \''._x('Sometimes weight needs to be re-selected after switching font-family to be saved properly.', 'Customizer info for font weight selection.', 'emtheme').'\';}';
 		
+		$css .= '#customize-control-emtheme_color-goup_bg::before { content: \''._x('Go Up Button', 'Customizer title for go up button.', 'emtheme').'\'; }';
 
 		return $css;
 	}
@@ -224,6 +226,21 @@ final class Emtheme_customizer {
 							'',
 							'#ffffff', 
 							81, 'sanitize_hex_color');
+
+
+		// go up
+		$this->add($cust, 'emtheme_color[goup_bg]', 'colors', 'color', 
+							_x('Background', 'Customizer title for go up button font color setting', 'emtheme'), 
+							'',
+							'#cccccc', 
+							130, 'sanitize_hex_color');
+
+
+		$this->add($cust, 'emtheme_color[goup_font]', 'colors', 'color', 
+							_x('Font', 'Customizer title for go up button font color setting', 'emtheme'), 
+							'',
+							'#000000', 
+							131, 'sanitize_hex_color');
 		
 	}
 

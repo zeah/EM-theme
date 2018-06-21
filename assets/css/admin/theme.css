@@ -28,9 +28,11 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	max-width: 1240px;
 }
 
-/*.emtheme-radio {*/
-	/*display: block !important;*/
-/*}*/
+#theme_sitemap_meta input {
+	position: relative;
+	top: 2px;
+}
+
 
 /* emtheme documention page */
 .emtheme-documentation {
@@ -84,6 +86,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	text-transform: capitalize;
 }
 
+#customize-control-emtheme_color-goup_bg::before,
 #customize-control-emtheme_color-footer_bg::before,
 #customize-control-background_color::before,
 #customize-control-emtheme_color-emtop_bg::before,

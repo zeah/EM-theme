@@ -289,9 +289,16 @@ body {
 /* inserted images */
 .alignright {
 	float: right;
+	margin-left: 20px;
 }
+
 .alignleft {
 	float: left;
+	margin-right: 20px;
+}
+
+.aligncenter {
+	margin: auto;
 }
 
 

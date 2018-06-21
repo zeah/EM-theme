@@ -18,20 +18,33 @@ final class Emtheme_sitemap {
 
 		// add meta box on posts
 		add_action( 'add_meta_boxes', array($this, 'add_meta_box'));
+
+		// meta save
 		add_action('save_post', array($this, 'save'));
 
-		// add save function
+		// add_action('publish_post', array($this, 'add_sitemap'));
 
+		add_filter('sitemap_meta', array($this, 'types_sitemap'));
 		// add save sitemap.xml on update on types of posts that has a filter
 
 	}
 
+	public function types_sitemap($data) {
+
+		array_push($data, 'post', 'page');
+
+		return $data;
+	}
+
 	public function add_meta_box() {
+
+		$types = apply_filters('sitemap_meta', []);
+
 		add_meta_box(
 			'theme_sitemap_meta',
 			'Sitemap Options',
 			array($this, 'sitemap_callback'),
-			'post',
+			$types,
 			'side',
 			'low'
 		);
@@ -42,9 +55,14 @@ final class Emtheme_sitemap {
 
 		$meta = $this->get_meta('emtheme_sitemap');
 
-		$html = '<input type="checkbox" name="emtheme_sitemap[ignore]" id="emtheme_sitemap[ignore]"'.($meta['ignore'] ? ' checked' : '').'>
+		// if (!$meta) $meta = [];
+
+		$html = '<h3>Include in sitemap</h3>';
+
+		$html .= '<input type="checkbox" name="emtheme_sitemap[ignore]" id="emtheme_sitemap[ignore]"'.($meta['ignore'] ? ' checked' : '').'>
 				 <label for="emtheme_sitemap[ignore]">Don\'t add to sitemap.</label>';
 
+		$html .= '<h3>Update frequency</h3>';
 		$html .= '<div>
 					<input class="emtheme-radio" type="radio" id="emtheme_sitemap[daily]" name="emtheme_sitemap[update]" value="daily"'.($meta['update'] == 'daily' ? ' checked' : '').'>
 					<label for="emtheme_sitemap[daily]">Daily</label>
@@ -54,7 +72,7 @@ final class Emtheme_sitemap {
 					<label for="emtheme_sitemap[weekly]">Weekly</label>
 				  </div>';
 		
-		$html .= '<div><input class="emtheme-radio" type="radio" id="emtheme_sitemap[monthly]" name="emtheme_sitemap[update]" value="monthly"'.($meta['update'] == 'monthly' ? ' checked' : '').'>
+		$html .= '<div><input class="emtheme-radio" type="radio" id="emtheme_sitemap[monthly]" name="emtheme_sitemap[update]" value="monthly"'.(($meta['update'] == 'monthly' || !$meta['update']) ? ' checked' : '').'>
 					<label for="emtheme_sitemap[monthly]">Monthly</label>
 				  </div>';
 
@@ -75,9 +93,10 @@ final class Emtheme_sitemap {
 		// nonce is checked
 		if (!wp_verify_nonce($_POST['sm_nonce'], 'sm'.basename(__FILE__))) return;
 
-
 		if  (isset($_POST['emtheme_sitemap'])) update_post_meta($post_id, 'emtheme_sitemap', $this->sanitize($_POST['emtheme_sitemap']));
 
+		$this->add_sitemap();
+		// wp_publish_post($post_id);
 	}
 
 	private function get_meta($key) {
@@ -85,7 +104,7 @@ final class Emtheme_sitemap {
 
 		$meta = get_post_meta($post->ID, $key);
 
-		if (!isset($meta[0])) return '';
+		if (!isset($meta[0])) return [];
 
 		return $meta[0];
 	}
@@ -98,6 +117,80 @@ final class Emtheme_sitemap {
 			$d[$key] = $this->sanitize($value);
 
 		return $d;
+	}
+
+
+	public function add_sitemap() {
+
+      	$type = apply_filters('sitemap_meta', []);
+
+        // array_push($type, 'page');
+
+
+        $postsForSitemap = get_posts(array(
+            'numberposts' => -1,
+            'orderby' => 'modified',
+            'post_type'  => $type,
+            'order'    => 'DESC'
+        ));
+
+        $sitemap = '<?xml version="1.0" encoding="UTF-8"?>';
+        $sitemap .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+
+        $site_url = site_url('/');
+
+        foreach($postsForSitemap as $post) {
+            setup_postdata($post);
+
+            // if (strpos(get_page_template_slug($post->ID), 'redirect') !== false) continue;
+
+
+            $meta = get_post_meta($post->ID, 'emtheme_sitemap');
+
+            $meta = (isset($meta[0])) ? $meta[0] : [];
+
+            if ($meta['ignore']) {
+            	wp_reset_postdata();
+            	continue;
+         	}
+
+            $freq = 'monthly';
+
+            if ($meta['update'])
+            switch ($meta['update']) {
+            	case 'daily': $freq = 'daily'; break;
+            	case 'weekly': $freq = 'weekly'; break;
+            }
+
+            // $meta = get_post_meta($post->ID, 'emtheme_sitemap')
+            // if (get_permalink($post->ID) == $site_url) $freq = 'weekly';
+            
+            // $continue = false;
+            // foreach(get_the_category($post) as $cat)
+            //     switch ($cat->name) {
+            //         case 'redirect': case 'nositemap': $continue = true; break;
+            //         case 'sitemap_weekly': $freq = 'weekly'; break;
+            //         case 'sitemap_daily': $freq = 'daily'; break;
+            //     }
+            
+
+            // if ($continue) continue;
+
+            $postdate = explode( " ", $post->post_modified );
+
+            $sitemap .=  '<url><loc>'.get_permalink($post->ID).'</loc><lastmod>'.$postdate[0].'</lastmod><changefreq>'.$freq.'</changefreq></url>';
+            
+            wp_reset_postdata();
+          }
+
+        $sitemap .= '</urlset>';
+
+        $fp = fopen(ABSPATH.'sitemap.xml', 'w');
+
+        fwrite($fp, $sitemap);
+        fclose($fp);
+
+
 	}
 
 }

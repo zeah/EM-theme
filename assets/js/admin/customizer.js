@@ -242,6 +242,13 @@ $(() => { ((api) => {
 	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-logo').toggle())));
 
 
+	// go up button 
+	api('emtheme_color[goup_bg]', (v) => v.bind((nv) => $('.emtheme-goup').css('background-color', nv)));
+	api('emtheme_color[goup_font]', (v) => v.bind((nv) => { 
+		$('.emtheme-goup').css('border', 'solid 2px '+nv);
+		$('.emtheme-goup-arrow').css('fill', nv);
+	}));
+
 	// privacy window 
 	api('theme_privacy[text]', (v) => v.bind((nv) => $('.emtheme-cookie-text').html(nv)));
 

@@ -34,30 +34,41 @@ dynamic_sidebar('default-template-bottom');
 
 $sidebar .= ob_get_clean();
 
+// grid
 $html = '<div class="main main-sidebar">';
 
-$html .= '<div class="content content-column">';
+// content grid element 
+$html .= '<div class="content-column">';
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
 
-		// $html .= '<div class="content">';
+		// post container
+		$html .= '<div class="content">';
+
+		// title container 
 		$html .= '<div class="content-title"><h1 class="content-title-text">'.get_the_title().'</h1></div>';
 
+		// content container 
 		$html .= '<div class="content-post">'.apply_filters('the_content', get_the_content()).'</div>';
-		// $html .= '</div>';
+		
+		$html .= '</div>';
 	}
 }
 $html .= '</div>';
 
+// widget grids
 $html .= $sidebar;
 
+// end of grid container
 $html .= '</div>';
 
 get_header();
 
+// site header
 get_template_part('template-part/bigtop');
 
+// navbar
 get_template_part('template-part/nav');
 
 echo $html;

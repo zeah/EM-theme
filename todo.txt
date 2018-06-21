@@ -1,14 +1,21 @@
 
 
-flexbox/grid i posts -- SKIP -- 
+flexbox/grid i posts -- SKIP -- or not skip
 
 search.php done
-sitemap
-meta box med seo i page/posts
+sitemap done
+
+meta box med seo i page/posts se nede
 404 template
+col shortcode
+
+mobile og ie css
+
+
 transient api -> side lagres i transient for 24 timer?
 dokumentasjon
-col shortcode
+
+legge til tittel i navbar til høyre for logo
 
 ny kredittkort plugin
 
@@ -24,7 +31,7 @@ settings
 	maintenance mode
 
 templates
-widgets (create more widgets)
+widgets (create more widgets) skip
 transient api
 #category template
 #tag template

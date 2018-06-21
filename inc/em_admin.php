@@ -4,6 +4,7 @@ require_once 'em_documentation.php';
 require_once 'em_settings.php';
 require_once 'em_customizer.php';
 require_once 'em_sitemap.php';
+require_once 'em_seo.php';
 
 final class Emtheme_admin {
 	/* singleton */
@@ -21,6 +22,7 @@ final class Emtheme_admin {
 		Emtheme_settings::get_instance();
 		Emtheme_customizer::get_instance();
 		Emtheme_sitemap::get_instance();
+		Emtheme_seo::get_instance();
 
 		$this->admin_hooks();
 	}
@@ -51,10 +53,12 @@ final class Emtheme_admin {
 
 		$family = isset($fonts['content_family']) ? esc_attr($fonts['content_family']) : 'Roboto';
 		$weight = isset($fonts['content_weight']) ? esc_attr(str_replace('italic', 'i', ':'.$fonts['content_weight'])) : '';
+		$size = isset($fonts['content_size']) ? floatval($fonts['content_size']) : '16';
+		$lineheight = isset($fonts['content_lineheight']) ? floatval($fonts['content_lineheight']) : 1.3;
 
 		$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
 
-		$options['content_style'] = 'body { font-family: \''.$family.'\'; }';
+		$options['content_style'] = 'body { font-family: \''.$family.'\'; font-size: '.$size.'px; line-height: '.$lineheight.'}';
 
 		return $options; 
 	}

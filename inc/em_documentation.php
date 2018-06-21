@@ -70,9 +70,9 @@ final class Emtheme_documentation {
 									  </ul>
 								   </li>
 								   <li>
-								   		<h2><a href="#theme-formatting">Post formatting</a></h2>
+								   		<h2><a href="#theme-editor">Post Editor</a></h2>
 								   		<ul>
-								   			<li></li>
+								   			<li><a href="#theme-editor-style">Style</a></li>
 								   		</ul>
 								   </li>
 								   <li>
@@ -100,8 +100,8 @@ final class Emtheme_documentation {
 								   </li>
 								   ';
 
-		$data['theme']['info'] = _x('<li>
-								 	<h2 id="theme-templates">Theme Templates</h2>
+		$data['theme']['info'] = _x('<li id="theme-templates">
+								 	<h2>Theme Templates</h2>
 								 	<ul>
 								 		<li id="theme-template-default">Default
 								 		<ul>
@@ -109,8 +109,8 @@ final class Emtheme_documentation {
 								 		</ul></li>
 								 	</ul>
 								  </li>
-								  <li>
-									  <h2 id="theme-customizer">Theme Customizer</h2>
+								  <li id="theme-customizer">
+									  <h2>Theme Customizer</h2>
 									  <ul>
 										 <li id="theme-customizer-siteidentity"><b>Site Identity</b>
 										 	<ul>
@@ -196,10 +196,21 @@ final class Emtheme_documentation {
 										 <br>The cookie named "cookieAccept" is used to track the button click.</p></li>
 									  </ul>
 								   </li>
-								   <li>
-									  <h2 id="theme-menu">Menu</h2>
+
+								   <li id="theme-editor">
+								   		<h2>Post editor</h2>
+								   		<ul>
+								   			<li id="theme-editor-style"><b>Style</b>
+								   			<p>The editor uses font-family and font-size set by content font and content size in customizer.</p>
+								   			</li>
+								   		</ul>
+								   	</li>
+
+
+								   <li id="theme-menu">
+									  <h2>Menu</h2>
 									  <ul>
-										 <li><h3 id="theme-menu-locations">Locations</h3>
+										 <li id="theme-menu-locations"><h3>Locations</h3>
 										 	<ul>
 										 		<li><b>Head</b>
 										 		<p>If no menu assigned, then theme will create a menu from pages. If "Don\'t add to menu" is selected, 
@@ -208,7 +219,7 @@ final class Emtheme_documentation {
 										 	</ul>
 										 </li>
 										 
-										 <li><h3 id="theme-menu-attributes">Attributes</h3><br>Option to show these attributes for editing is "Screen Options" in 
+										 <li id="theme-menu-attributes"><h3>Attributes</h3><br>Option to show these attributes for editing is "Screen Options" in 
 										 Apperance -> Menu page or cog icon in customize page. 
 										 	<ul>
 										 		<li><b>Link Target</b>
@@ -240,8 +251,8 @@ final class Emtheme_documentation {
 
 									  </ul>
 								   </li>
-								   <li>
-									  <h2 id="theme-features">Features</h2>
+								   <li id="theme-features">
+									  <h2>Features</h2>
 									  <ul>
 										 <li id="theme-features-privacy"><b>Privacy Window</b><p>Visitors will get an element centered at bottom of 
 										 screen with customizable text and colors. When visitor clicks the button (default text: "OK") they will not 
@@ -249,6 +260,17 @@ final class Emtheme_documentation {
 										 
 										 <li id="theme-features-goup"><b>Go Up Button</b><p>Is shown in bottom right corner if user has scrolled more 
 										 than 100px from the top. Colors can be set from customizer.</p></li>
+									  
+
+										 <li id="theme-features-sitemap"><b>Sitemap.xml</b>
+										 <p>When posts and pages <b>with</b> the "Sitemap Options" meta box are updated, then the theme will generate/update a sitemap for web crawlers.
+										 <br>Which you can see at your-url/sitemap.xml </p>
+										 </li>
+
+										 <li id="theme-features-searchpage"><b>Internal</b>
+										 <p>Searches titles and content and returns a SERP page that looks like google\'s.</p>
+										 </li>
+
 									  </ul>
 								   </li>	
 
