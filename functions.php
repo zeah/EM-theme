@@ -5,6 +5,7 @@ require_once 'inc/em_widget.php';
 require_once 'inc/em_admin.php';
 require_once 'inc/em_google_font.php';
 require_once 'inc/em_search.php';
+require_once 'inc/em_seo.php';
 
 /* */
 
@@ -40,6 +41,8 @@ if (! function_exists('emtheme_setup')) {
         Emtheme_admin::get_instance();
 
         Emtheme_search::get_instance();
+
+		Emtheme_seo::get_instance();
 
         // Emtheme_Admin::get_instance();
 
@@ -176,6 +179,7 @@ final class Emtheme_functions {
 
         /* adding css files to front-end - desktop sizes vs others */
         wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '0.0.1', '(min-width: 1280px)');
+        // wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '0.0.1', '(min-width: 1280px)');
         wp_enqueue_style('mobile-style', get_theme_file_uri().'/assets/css/pub/theme-mobile.css', array(), '0.0.1', '(max-width: 1279px)');
 
 	}

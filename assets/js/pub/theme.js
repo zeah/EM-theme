@@ -79,11 +79,48 @@ jQuery(function() {
 
 	}
 
-	// setTimeout(function(){
-	// 	var nav = document.querySelector('.menu-list');
-	// 	nav.style.opacity = 1;
-	// }, 0);
 
+	var addMobileMenu = function() {
+		var $ = jQuery;
+
+		var container = document.querySelector('.navbar-background');
+		var menu = document.querySelector('.navbar-container');
+
+		var icon = H();
+
+		var arr = H({class: 'emtheme-mobile-arrow'});
+
+		arr.innerHTML = '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24"><path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+
+		icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path style="fill: white;" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+
+		icon.addEventListener('click', function() {
+			// jQuery(menu).toggle();
+			jQuery(menu).toggleClass('navbar-container-show');
+		});
+
+		container.appendChild(icon);
+
+		var arrow = jQuery('.theme-nav-arrow-container');
+
+		arrow.remove();
+
+		jQuery('.menu-has-child').each(function() {
+
+			var a = jQuery(arr).clone();
+
+			a.on('click', function() {
+
+				a.prev().toggle();			
+			});
+
+			this.append(a[0]);
+		});
+
+	}
+
+
+	addMobileMenu();
 	addCookieAccept();
 	addGoUp();
 });

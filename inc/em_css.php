@@ -257,45 +257,47 @@ final class Emtheme_css {
 		$css = '';
 		// wp_die('<xmp>'.print_r($lay, true).'</xmp>');
 
-		if ($lay['navbar_search'] || is_customize_preview()) {
+		// if ($lay['navbar_search'] || is_customize_preview()) {
 
-			// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
-			$css .= "\n.navbar-container .emtheme-search-input { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border-bottom: 1px solid {$col[navbar_font]}50; }";
-			$css .= "\n.navbar-container .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
-			  
-			// $css .= "\n.emtheme-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }"; 
-			
-			$css .= "\n.navbar-container .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
-		}
+		// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
+		$css .= "\n.navbar-background .emtheme-title-text { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[title_family]; margin-right: auto; margin-left: 2rem; }";
+		$css .= "\n.navbar-container .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
+		$css .= "\n.navbar-container .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
+		  
+		// $css .= "\n.emtheme-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }"; 
+		$css .= "\n.navbar-container .emtheme-search-button { background-color: inherit; border: none; }";
+		$css .= "\n.navbar-container .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
+		// }
 
 		$css .= "\n@media only screen and (min-width: 1280px) {";
 		$css .= "\n.navbar-container { width: {$width}rem; }";
 		// $css .= "\n.menu-list { width: {$width}rem; }";
+		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
+		
+		$css .= "\n.sub-menu { position: absolute; }";
+		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
+		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
+		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		
 		$css .= "\n}";
 		
-		$css .= "\n.navbar-background { $col[navbar_background]; }";
+		$css .= "\n.navbar-background, .navbar-container { $col[navbar_background]; }";
 		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
 		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
 		// $css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
 
-		$css .= "\n.sub-menu { display: none; position: absolute; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
+		$css .= "\n.sub-menu { display: none; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
 						
 		
-		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
 		
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
 		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
-		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
-		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
-		
 
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
 
 		$css .= "\n.menu-level-second { color: $col[submenu_font]; border-bottom: solid 1px $col[submenu_border]; }";
 		$css .= "\n.menu-item:last-child > .menu-level-second { border-bottom: none; }";
 		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
-		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
 		
 		$css .= "\n.sub-menu .emtheme-navbar-description { color: $col[submenu_font]; }";
 

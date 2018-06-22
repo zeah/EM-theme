@@ -34,6 +34,36 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 }
 
 
+.emtheme-seo-container {
+	display: flex;
+	justify-content: space-around;
+	font-size: 16px;
+}
+
+.emtheme-seo-container > div > div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	margin: 5px 0;
+}
+
+.emtheme-seo-container input[type="text"] {
+	margin-left: 10px;
+}
+
+.emtheme-seo-container input[type="checkbox"] {
+	/*float: right;*/
+
+	position: relative;
+	top: 6px;
+}
+
+.emtheme-seo-crawlers {
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
 /* emtheme documention page */
 .emtheme-documentation {
 	margin: 50px 0 0 50px;

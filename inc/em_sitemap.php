@@ -55,8 +55,6 @@ final class Emtheme_sitemap {
 
 		$meta = $this->get_meta('emtheme_sitemap');
 
-		// if (!$meta) $meta = [];
-
 		$html = '<h3>Include in sitemap</h3>';
 
 		$html .= '<input type="checkbox" name="emtheme_sitemap[ignore]" id="emtheme_sitemap[ignore]"'.($meta['ignore'] ? ' checked' : '').'>
@@ -120,12 +118,13 @@ final class Emtheme_sitemap {
 	}
 
 
+	/**
+	 * adds sitemap when specificed post type gets updated.
+	 * (post type will have the "sitemap options" meta box)
+	 */
 	public function add_sitemap() {
 
       	$type = apply_filters('sitemap_meta', []);
-
-        // array_push($type, 'page');
-
 
         $postsForSitemap = get_posts(array(
             'numberposts' => -1,
@@ -141,9 +140,6 @@ final class Emtheme_sitemap {
 
         foreach($postsForSitemap as $post) {
             setup_postdata($post);
-
-            // if (strpos(get_page_template_slug($post->ID), 'redirect') !== false) continue;
-
 
             $meta = get_post_meta($post->ID, 'emtheme_sitemap');
 
@@ -161,20 +157,6 @@ final class Emtheme_sitemap {
             	case 'daily': $freq = 'daily'; break;
             	case 'weekly': $freq = 'weekly'; break;
             }
-
-            // $meta = get_post_meta($post->ID, 'emtheme_sitemap')
-            // if (get_permalink($post->ID) == $site_url) $freq = 'weekly';
-            
-            // $continue = false;
-            // foreach(get_the_category($post) as $cat)
-            //     switch ($cat->name) {
-            //         case 'redirect': case 'nositemap': $continue = true; break;
-            //         case 'sitemap_weekly': $freq = 'weekly'; break;
-            //         case 'sitemap_daily': $freq = 'daily'; break;
-            //     }
-            
-
-            // if ($continue) continue;
 
             $postdate = explode( " ", $post->post_modified );
 

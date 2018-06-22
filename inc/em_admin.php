@@ -4,7 +4,7 @@ require_once 'em_documentation.php';
 require_once 'em_settings.php';
 require_once 'em_customizer.php';
 require_once 'em_sitemap.php';
-require_once 'em_seo.php';
+// require_once 'em_seo.php';
 
 final class Emtheme_admin {
 	/* singleton */
@@ -22,7 +22,7 @@ final class Emtheme_admin {
 		Emtheme_settings::get_instance();
 		Emtheme_customizer::get_instance();
 		Emtheme_sitemap::get_instance();
-		Emtheme_seo::get_instance();
+		// Emtheme_seo::get_instance();
 
 		$this->admin_hooks();
 	}
@@ -30,8 +30,7 @@ final class Emtheme_admin {
 	private function admin_hooks() {
 		
 		add_action('admin_enqueue_scripts', array($this, 'enqueue_sands'));
-		add_action('admin_init', array($this, 'editor_style'));
-		add_filter('tiny_mce_before_init', array($this, 'add_tinymce_font')); 
+		add_filter('tiny_mce_before_init', array($this, 'add_to_tinymce')); 
 
 	}
 
@@ -43,11 +42,11 @@ final class Emtheme_admin {
 
 	}
 
-	public function editor_style() {
-        // wp_enqueue_style('theme-editor-style', get_theme_file_uri().'/assets/css/admin/editor.css', array(), '0.0.1');
-	}
-
-	public function add_tinymce_font($options) {
+	/**
+	 * adding stylesheet, inline style and google fonts link to tinymce iframe
+	 * @param {void} $options goes through a wp filter
+	 */
+	public function add_to_tinymce($options) {
 
 		$fonts = get_theme_mod('emtheme_font');
 

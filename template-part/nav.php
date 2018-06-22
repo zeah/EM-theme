@@ -33,9 +33,26 @@ final class Emtheme_nav {
 
 		$show = get_theme_mod('emtheme_layout');
 
-		$html = '<div class="navbar-background"><div class="navbar-container">';
+		$html = '<div class="navbar-background">';
 
-		if (function_exists('the_custom_logo'))
+		if (wp_is_mobile()) {
+
+			if (function_exists('the_custom_logo')) {
+				$logo = get_theme_mod('custom_logo');
+				$logo = wp_get_attachment_image_src($logo, 'full');
+
+
+				$html .= '<img src="'.esc_attr($logo[0]).'" width="auto" height="46px">';
+
+				$html .= '<span class="emtheme-title-text">'.esc_html(get_bloginfo('name')).'</span>';
+				// $html .= get_custom_logo();
+			}
+
+		}
+
+		$html .= '<div class="navbar-container">';
+
+		if (function_exists('the_custom_logo') && !wp_is_mobile())
 			if ((isset($show['logo_navbar_toggle']) && $show['logo_navbar_toggle']) || is_customize_preview()) {
 
 				$custom_logo_id = get_theme_mod('custom_logo');
@@ -47,7 +64,7 @@ final class Emtheme_nav {
 		
 		$html .= $this->get_nav();
 
-		if ((isset($show['search_navbar_toggle']) && $show['search_navbar_toggle']) || is_customize_preview()) $html .= get_search_form(false);
+		if ((isset($show['search_navbar_toggle']) && $show['search_navbar_toggle']) || is_customize_preview() || wp_is_mobile()) $html .= get_search_form(false);
 
 		$html .= '</div></div>';
 
@@ -175,7 +192,7 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 
 					// adds visual to parent nav items
 					// ($has_child) ? '<i class="material-icons nav-arrow">arrow_drop_down</i>' : '', // add icon if true
-					($has_child) ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+					($has_child) ? '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 										<path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
 									</svg>' : '', // add icon if true
 

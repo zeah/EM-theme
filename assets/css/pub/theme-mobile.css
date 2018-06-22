@@ -11,9 +11,88 @@ body {
 	flex-direction: column;
 }
 
+
+.navbar-background {
+	position: relative;
+	display: flex;
+
+	/*justify-content: space-between;*/
+	align-items: center;
+}
+
+/*.navbar-background::after {*/
+	/*content: 'hi';*/
+	/*color: white;*/
+	/*display: none;*/
+/*}*/
+
+.navbar-container {
+	display: none;
+	position: absolute;
+	top: 46px;
+	z-index: 99;
+
+	width: 100vw;
+}
+
+.navbar-container-show {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
 .menu-container {
+	z-index: 99;
+	position: static;
+	
+}
+
+.emtheme-search-form {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+}
+
+.emtheme-search-input {
+	margin-left: 7px;
+}
+.emtheme-search-input:focus {
+	outline: none;
+	/*border-bottom: solid 2px white;*/
+}
+
+.emtheme-search-button {
+	margin-right: 7px;
+}
+
+
+.menu-list {
+	flex-direction: column;
+	z-index: 99;
+}
+
+.menu-has-child {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.menu-has-child > a {
+	flex: 1;
+}
+
+.sub-menu {
+	order: 3;
+	width: 100vw;
+}
+
+/*.menu-container::before {
+	content: 'E';
 	display: none;
 }
+
+.menu-container {
+	display: none;
+}*/
 
 .emtheme-goup {
 	display: inline-block;

@@ -2,14 +2,16 @@
 
 flexbox/grid i posts -- SKIP -- or not skip
 
-search.php done
+search.php (need if no results found)
 sitemap done
 
-meta box med seo i page/posts se nede
+meta box med seo i page/posts se nede DONE
 404 template
 col shortcode
 
-mobile og ie css
+mobile (nav done) og ie css
+
+google adservice tagmanager
 
 
 transient api -> side lagres i transient for 24 timer?
@@ -53,8 +55,10 @@ og:image
 og:site_name
 og:description
 (finne en side som kan teste og-meta)
+
 meta description
 custom title
+
 robots:
 nofollow
 noindex
