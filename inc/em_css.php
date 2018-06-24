@@ -260,29 +260,32 @@ final class Emtheme_css {
 		// if ($lay['navbar_search'] || is_customize_preview()) {
 
 		// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
-		$css .= "\n.navbar-background .emtheme-title-text { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[title_family]; margin-right: auto; margin-left: 2rem; }";
-		$css .= "\n.navbar-container .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
-		$css .= "\n.navbar-container .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
+		$css .= "\n.navbar-background { $col[navbar_background]; }";
+		
+		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[navbar_family]; margin-right: auto; }";
+		$css .= "\n.navbar-menu { $col[navbar_background]; }";
+		$css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
+		$css .= "\n.navbar-search .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
 		  
 		// $css .= "\n.emtheme-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }"; 
-		$css .= "\n.navbar-container .emtheme-search-button { background-color: inherit; border: none; }";
-		$css .= "\n.navbar-container .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
+		$css .= "\n.navbar-search .emtheme-search-button { background-color: inherit; border: none; position: relative; top: 5px; }";
+		$css .= "\n.navbar-search .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
 		// }
 
+		// DESKTOP 
 		$css .= "\n@media only screen and (min-width: 1280px) {";
-		$css .= "\n.navbar-container { width: {$width}rem; }";
-		// $css .= "\n.menu-list { width: {$width}rem; }";
-		$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
-		
-		$css .= "\n.sub-menu { position: absolute; }";
-		$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
-		$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
-		$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
-		
+			$css .= "\n.navbar-container { width: {$width}rem; }";
+			// $css .= "\n.menu-list { width: {$width}rem; }";
+			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
+			$css .= "\n.sub-menu { position: absolute; }";
+			$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
+			$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
+			$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		$css .= "\n}";
 		
-		$css .= "\n.navbar-background, .navbar-container { $col[navbar_background]; }";
-		$css .= "\n.menu-container { $col[navbar_background]; color: $col[navbar_font]; user-select: none;}";
+		// $css .= "\n.navbar-background, .navbar-container { $col[navbar_background]; }";
+		// 
+		$css .= "\n.menu-container { color: $col[navbar_font]; user-select: none;}";
 		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
 		// $css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
 
@@ -309,7 +312,7 @@ final class Emtheme_css {
 		$css .= "\n.theme-nav-arrow { fill: $col[navbar_font]; }";
 		
 
-		if (!$lay['logo-navbar-toggle']) $css .= "\n.menu-container { position: relative; right: 1.5rem}";
+		// if (!$lay['logo-navbar-toggle']) $css .= "\n.menu-container { position: relative; right: 1.5rem}";
 			
 		
 

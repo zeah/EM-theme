@@ -1,5 +1,5 @@
 jQuery(function() {
-	// var $ = jQuery;
+	var $ = jQuery;
 
 	var H = function(o = {}) {
 		var e = document.createElement(o.el || 'div');
@@ -80,30 +80,31 @@ jQuery(function() {
 	}
 
 
-	var addMobileMenu = function() {
-		var $ = jQuery;
+	var setMobileMenu = function() {
 
-		var container = document.querySelector('.navbar-background');
-		var menu = document.querySelector('.navbar-container');
+		var container = document.querySelector('.navbar-container');
+		var menu = document.querySelector('.navbar-menu');
 
-		var icon = H();
+		$('.navbar-identity, .navbar-search').show();
+
+
+		var icon = H({class: 'emtheme-mobile-icon'});
 
 		var arr = H({class: 'emtheme-mobile-arrow'});
 
-		arr.innerHTML = '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24"><path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+		arr.innerHTML = '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
 
 		icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path style="fill: white;" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
 
 		icon.addEventListener('click', function() {
-			// jQuery(menu).toggle();
-			jQuery(menu).toggleClass('navbar-container-show');
+			jQuery(menu).toggleClass('navbar-menu-show');
 		});
 
 		container.appendChild(icon);
 
 		var arrow = jQuery('.theme-nav-arrow-container');
 
-		arrow.remove();
+		arrow.hide();
 
 		jQuery('.menu-has-child').each(function() {
 
@@ -116,11 +117,39 @@ jQuery(function() {
 
 			this.append(a[0]);
 		});
+	}
+
+	var setDesktopMenu = function() {
+		var $ = jQuery;
+
+		$('.emtheme-mobile-arrow, .emtheme-mobile-icon').remove();
+
+		$('.theme-nav-arrow-container').show();
+		$('.desktop-hidden').hide();
+
 
 	}
 
+	// if (jQuery(window).width() < 1280)
+	 
+	var desktop = (jQuery(window).width() > 1280);
 
-	addMobileMenu();
+	if (!desktop) setMobileMenu();
+
+	jQuery(window).resize(function() { 
+		
+		if ($(window).width() > 1280 && !desktop) {
+			desktop = true;
+			setDesktopMenu();
+		}
+
+		else {
+			desktop = false;
+			setMobileMenu();
+		}
+
+
+	});
 	addCookieAccept();
 	addGoUp();
 });

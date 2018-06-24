@@ -72,7 +72,8 @@ final class Emtheme_documentation {
 								   <li>
 								   		<h2><a href="#theme-editor">Post Editor</a></h2>
 								   		<ul>
-								   			<li><a href="#theme-editor-style">Style</a></li>
+								   			<li><a href="#theme-editor-style">Editor apperance</a></li>
+								   			<li><a href="#theme-editor-seo">SEO meta</a></li>
 								   		</ul>
 								   </li>
 								   <li>
@@ -200,8 +201,63 @@ final class Emtheme_documentation {
 								   <li id="theme-editor">
 								   		<h2>Post editor</h2>
 								   		<ul>
-								   			<li id="theme-editor-style"><b>Style</b>
+								   			<li id="theme-editor-style"><b>Editor apperance</b>
 								   			<p>The editor uses font-family and font-size set by content font and content size in customizer.</p>
+								   			</li>
+								   		
+								   			<li id="theme-editor-seo"><b>SEO meta</b>
+								   			<p>All but title meta tag is only for singular pages.
+								   			<br>Pages with more than one post/page will only have title tag set to site name.</p> 
+								   			<ul>
+								   			<li><b>SERP apperance</b>
+								   			<p><b>Custom title</b>
+								   			<br>Sets title tag in header, which is shown on the search results pages of search engines and internal search results.
+								   			<br>If no custom title is set, then post title will be used. If page is not a singular post, then site name will be shown.
+								   			</p>
+								   			<p><b>Meta description</b>
+								   			<br>Sets page description, which is shown on search engine SERP and internal SERP. 
+								   			<br>If not set, then the search engine will generate their own description and on internal SERP the post excerpt will be shown.</p>
+								   			</li>
+								   			
+								   			<li><b>Web crawlers</b>
+								   			<p>These settings works as a guide for web crawlers.</p>
+								   			<p><b>Canonical</b>
+								   			<br>If the page is of duplicate content, then add the link to the original page.
+								   			<br>If the page is of original content, then do nothing.
+								   			<br>If no value given, then canonical tag will link to the page\'s permalink url.</p>
+								   			<p><b>Nofollow</b>
+								   			<br>If checked, then web crawlers will not access the links.</p>
+								   			<p><b>Noindex</b>
+								   			<br>If checked, then search engines will not list the page on its SERP.</p>
+								   			<p><b>Noimageindex</b>
+								   			<br>If checked, then search engines will not list the images found on page on its image SERP.</p>
+								   			<p><b>Noarchive</b>
+								   			<br>If checked, then search engines will not an archive of the page.</p>
+
+								   			</li>
+								   			
+								   			<li><b>Social media link apperance</b>
+								   			<p>Meta tags added to pages that are singular. (pages that do no contain multiple posts.)
+								   			<br>Meta types listed in ( ) only have default values.</p>
+								   			<p><b>Title</b>
+								   			<br>Will use first available of: Social title -> custom title -> page title -> site name.</p>
+								   			<p><b>Description</b>
+								   			<br>Will only use data from social media description field.</p>
+								   			<p><b>(Site name)</b>
+								   			<br>Will be auto-generated with site name from customizer.</p>
+								   			<p><b>(Image)</b>
+								   			<br>Will use thumbnail from post or if not availble then site logo from customizer.</p>
+								   			<p><b>(Type)</b>
+								   			<br>Is set to "website"</p>
+								   			<p><b>(Url)</b>
+								   			<br>Is set to the permalink of post.</p>
+
+								   			</li>
+								   			
+								   			<li id="theme-editor-struc"><b>Structured Data</b>
+
+								   			</li>
+								   			</ul>
 								   			</li>
 								   		</ul>
 								   	</li>

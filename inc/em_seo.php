@@ -89,7 +89,8 @@ final class Emtheme_seo {
 		$html .= '<div>Title <input type="text" name="emtheme_seo[soc_title]" value="'.esc_attr($this->get_meta('soc_title')).'"></div>';
 		// $html .= '<div>Image</div><input type="text" name="emtheme_seo[soc_image]" value="'.esc_attr($this->get_meta('soc_image')).'">';
 		// $html .= '<div>Site name <input type="text" name="emtheme_seo[soc_sitename]" value="'.esc_attr($this->get_meta('soc_sitename')).'"></div>';
-		// $html .= '<div>Description <input type="text" name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></div>';
+		$html .= '<div>Description <input type="text" name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></div>';
+		// $html .= '<div>Description <textarea name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></textarea></div>';
 		$html .= '</div>';
 		
 		$html .= '</div>';
@@ -151,35 +152,69 @@ final class Emtheme_seo {
 		global $post;
 
 		// only set meta if the page is showing only one post/page
-		if (!is_singular()) return;
+		if (!is_singular())  {
+			if (get_bloginfo('name')) echo '<title>'.esc_html(get_bloginfo('name')).'</title>';
+			return;
+		}
 		
+		// getting meta
 		$meta = get_post_meta($post->ID, 'emtheme_seo');
 
-		if (!isset($meta[0])) return;
+		if (!isset($meta[0])) $meta = [];
+		else $meta = $meta[0];
 
-		$meta = $meta[0];
+
+		// to be echoed
+		$html = '';
 
 		// title and meta description
-		if (isset($meta['custom_title'])) echo '<title>'.esc_html($meta['custom_title']).'</title>';
-	
-		if (isset($meta['meta_description'])) echo '<meta name="description" content="'.esc_html($meta['meta_description']).'">';
+		if (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<title>'.esc_html($meta['custom_title']).'</title>';
+		else $html .= '<title>'.esc_html(get_bloginfo('name')).'</title>';
+
+		if (isset($meta['meta_description']) && $meta['meta_description'] != '') $html .= '<meta name="description" content="'.esc_html($meta['meta_description']).'">';
 	
 
 		// OG meta
+
+		// image
 		$thumbnail = get_the_post_thumbnail_url($post);
+		if ($thumbnail) $html .= '<meta name="og:image" content="'.esc_attr($thumbnail).'">';
 
-		if ($thumbnail) echo '<meta name="og:image" content="'.esc_attr($thumbnail).'">';
+		// if no thumbnail set, then use site logo
+		elseif (function_exists('the_custom_logo')) {
+			$logo = get_theme_mod('custom_logo');
+			$logo = wp_get_attachment_image_src($logo, 'full');
 
-		if (isset($meta['soc_title'])) echo '<meta name="og:title" content="'.esc_attr($meta['soc_title']).'">';
+			if (isset($logo[0])) $html .= '<meta name="og:image" content="'.esc_attr($logo[0]).'">';
+		}
 
-		echo '<meta property="og:type" content="website">';
+		// title
+		if (isset($meta['soc_title']) && $meta['soc_title'] != '') $html .= '<meta name="og:title" content="'.esc_attr($meta['soc_title']).'">';
+		
+		// if social title not set, use custom title or page title
+		elseif (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<meta name="og:title" content="'.esc_attr($meta['custom_title']).'">';
+		
+		// if custom or page title not set, then use site name
+		else $html .= '<title>'.esc_html(get_bloginfo('name')).'</title>';
 
-		echo '<meta property="og:url" content="'.esc_attr(get_permalink($post)).'">';
+		// type
+		$html .= '<meta property="og:type" content="website">';
 
+		// url
+		$html .= '<meta property="og:url" content="'.esc_attr(get_permalink($post)).'">';
+
+		// site name
+		$html .= '<meta property="og:site_name" content="'.esc_attr(get_bloginfo('name')).'">';
+
+		// description
+		if (isset($meta['soc_description']) && $meta['soc_description'] != '') $html .= '<meta property="og:description" content="'.esc_attr($meta['soc_description']).'">';
 
 		// robots
-		if (isset($meta['canonical']) && $meta['canonical'] != '') echo '<meta name="canonical" content="'.esc_attr($meta['canonical']).'">';
 		
+		// web crawlers
+		if (isset($meta['canonical']) && $meta['canonical'] != '') $html .= '<link rel="canonical" href="'.esc_attr($meta['canonical']).'">';
+		else $html .= '<link rel="canonical" href="'.esc_attr(get_permalink($post)).'">';
+
 		$content = [];
 
 		if (isset($meta['nofollow'])) array_push($content, 'nofollow');
@@ -187,8 +222,9 @@ final class Emtheme_seo {
 		if (isset($meta['noimageindex'])) array_push($content, 'noimageindex');
 		if (isset($meta['noarchive'])) array_push($content, 'nofollow');
 
-		if (sizeof($content) > 0 ) echo '<meta name="robots" content="'.implode(' ', $content).'">';
+		if (sizeof($content) > 0 ) $html .= '<meta name="robots" content="'.implode(' ', $content).'">';
 
+		echo $html;
 	}
 
 }

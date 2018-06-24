@@ -44,19 +44,24 @@ final class Emtheme_search {
 	function add_to_serp($data) {
 		global $post;
 
+		$meta = get_post_meta($post->ID, 'emtheme_seo');
+
+		if (!isset($meta[0])) $meta = [];
+		else $meta = $meta[0];
+
 		$temp = [];
 
 		/* post url */
 		$temp['link'] = get_permalink();
 		
 		/* post title */
-		$temp['title'] = $post->post_title;
+		$temp['title'] = $meta['custom_title'] ? $meta['custom_title'] : $post->post_title;
 		
 		/* post thumbnail */
-		$temp['thumbnail'] = get_the_post_thumbnail($post, array(120, 80));
+		$temp['thumbnail'] = get_the_post_thumbnail($post);
 		
 		/* post excerpt, either user set or wp generated */
-		$temp['excerpt'] = get_the_excerpt();
+		$temp['excerpt'] = $meta['meta_description'] ? $meta['meta_description'] : get_the_excerpt();
 
 		/* custom html */
 		$temp['html'] = false;

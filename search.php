@@ -36,6 +36,7 @@ $html .= $html_first . $html_second;
 
 /**
  * converst data from filters to html
+ * one post at a time 
  * @param  Array $data from wp filters
  * @return String       html converted from data
  */
@@ -44,7 +45,13 @@ function emtheme_search_serp($data) {
 	if  (!isset($data[0])) return '';
 
 	/* getting access to current post */
-	global $post;
+	// global $post;
+
+	// $title = get_post_meta($post->ID, 'emtheme_seo');
+
+	// if (isset($title[0])) {
+	// if (isset($title[0]['custom_title']) && $title[0]['custom_title'] != '') $data[0]['title'] = $title[0]['custom_title'];
+	// }
 
 	/* html list item */
 	$html = '<li class="emtheme-search-item">';

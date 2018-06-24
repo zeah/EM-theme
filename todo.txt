@@ -11,6 +11,18 @@ col shortcode
 
 mobile (nav done) og ie css
 
+navbar
+ 
+  [toggle     ] [always, toggle]
+[[[logo, title] [menu  , search]]]
+|||           | | flex
+||| flex 	  | margin-right auto
+|| $content_width or 'full on mobile' and flex
+| background-color and full width
+ 
+toggle => display = block/none/always in mobile
+
+
 google adservice tagmanager
 
 

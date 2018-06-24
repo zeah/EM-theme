@@ -31,42 +31,86 @@ final class Emtheme_nav {
 
 	public function get_html() {
 
+		// settings from customizer
 		$show = get_theme_mod('emtheme_layout');
 
+		// to avoid array errors later
+		if (!is_array($show)) $show = [];
+
+		$search = $show['search_navbar_toogle'] || wp_is_mobile();
+
+		$logo = $show['logo_navbar_toogle'] || wp_is_mobile();
+
+
+		// container with background
 		$html = '<div class="navbar-background">';
 
-		if (wp_is_mobile()) {
-
-			if (function_exists('the_custom_logo')) {
-				$logo = get_theme_mod('custom_logo');
-				$logo = wp_get_attachment_image_src($logo, 'full');
-
-
-				$html .= '<img src="'.esc_attr($logo[0]).'" width="auto" height="46px">';
-
-				$html .= '<span class="emtheme-title-text">'.esc_html(get_bloginfo('name')).'</span>';
-				// $html .= get_custom_logo();
-			}
-
-		}
-
+		// container with $content_width
 		$html .= '<div class="navbar-container">';
 
-		if (function_exists('the_custom_logo') && !wp_is_mobile())
-			if ((isset($show['logo_navbar_toggle']) && $show['logo_navbar_toggle']) || is_customize_preview()) {
+		// container for logo and title 
+		// $html .= '<div class="navbar-identity'.(!$logo ? ' desktop-hidden' : '').'">';
+		$html .= '<div class="navbar-identity'.($logo ? ' desktop-hidden' : '').'"'.(!$logo ? ' style="display: none;"' : '').'>';
 
-				$custom_logo_id = get_theme_mod('custom_logo');
-				$logo = wp_get_attachment_image_src($custom_logo_id , 'full');
-				
-				if (has_custom_logo() && isset($logo[0]) && isset($logo[1])) 
-					$html .= '<a class="navbar-logo" href="'.esc_html(get_site_url()).'" style="flex-basis: '.(intval($logo[1])/10).'rem; background-image: url(\''.esc_url($logo[0]).'\');"></a>';
-			}
-		
+		// logo from customizer
+		if (function_exists('get_custom_logo'))
+			$html .= '<div class="navbar-logo">'.get_custom_logo().'</div>';
+
+		// site title
+		$html .= '<div class="navbar-title">'.esc_html(get_bloginfo('name')).'</div>';
+
+		$html .= '</div>';
+
+		// container for menu and search
+		$html .= '<div class="navbar-menu">';
+
+		// $html .= '<div class=""></div>';
+
+		// the menu
 		$html .= $this->get_nav();
 
-		if ((isset($show['search_navbar_toggle']) && $show['search_navbar_toggle']) || is_customize_preview() || wp_is_mobile()) $html .= get_search_form(false);
+		// search template
+		$html .= '<div class="navbar-search'.($search ? ' desktop-hidden' : '').'"'.(!$search ? ' style="display: none;"' : '').'>'.get_search_form(false).'</div>';
 
-		$html .= '</div></div>';
+		// end of container for menu and search
+		$html .= '</div>';
+
+
+		// end of navbar-background and navbar-container
+		$html .= '</div></div>'; 
+
+		// if (wp_is_mobile()) {
+
+		// 	if (function_exists('the_custom_logo')) {
+		// 		$logo = get_theme_mod('custom_logo');
+		// 		$logo = wp_get_attachment_image_src($logo, 'full');
+
+
+		// 		$html .= '<img src="'.esc_attr($logo[0]).'" width="auto" height="46px">';
+
+		// 		$html .= '<span class="emtheme-title-text">'.esc_html(get_bloginfo('name')).'</span>';
+		// 		// $html .= get_custom_logo();
+		// 	}
+
+		// }
+
+		// $html .= '<div class="navbar-container">';
+
+		// if (function_exists('the_custom_logo') && !wp_is_mobile())
+		// 	if ((isset($show['logo_navbar_toggle']) && $show['logo_navbar_toggle']) || is_customize_preview()) {
+
+		// 		$custom_logo_id = get_theme_mod('custom_logo');
+		// 		$logo = wp_get_attachment_image_src($custom_logo_id , 'full');
+				
+		// 		if (has_custom_logo() && isset($logo[0]) && isset($logo[1])) 
+		// 			$html .= '<a class="navbar-logo" href="'.esc_html(get_site_url()).'" style="flex-basis: '.(intval($logo[1])/10).'rem; background-image: url(\''.esc_url($logo[0]).'\');"></a>';
+		// 	}
+		
+		// $html .= $this->get_nav();
+
+		// if ((isset($show['search_navbar_toggle']) && $show['search_navbar_toggle']) || is_customize_preview() || wp_is_mobile()) $html .= get_search_form(false);
+
+		// $html .= '</div></div>';
 
 		return $html;
 	}

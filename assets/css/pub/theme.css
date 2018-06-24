@@ -114,6 +114,24 @@ body {
 	align-items: center;
 }
 
+.navbar-identity {
+	display: flex;
+	align-items: center;
+}
+
+.navbar-title {
+	white-space: nowrap;
+}
+
+.navbar-menu {
+	flex: 1;
+	display: flex;
+}
+
+.desktop-hidden {
+	display: none;
+}
+
 /* nav container for ul element of nav items */
 .menu-container {
 
@@ -334,6 +352,12 @@ body {
 /* post image */
 .emtheme-search-thumbnail {
 	margin-right: 1rem;
+}
+
+.emtheme-search-thumbnail > img {
+	height: 5rem;
+	width: auto;
+	display: block;
 }
 
 /* post excerpt, either user set or wp generated */
