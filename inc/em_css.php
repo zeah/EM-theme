@@ -64,7 +64,7 @@ final class Emtheme_css {
 		$colors['header_background_image_opacity'] = isset($col['emtop_bg_image_opacity']) ? esc_html($col['emtop_bg_image_opacity']) : '0.5';
 
 		// navbar font
-		$colors['navbar_font'] = isset($col['nav_font']) ? sanitize_hex_color($col['nav_font']) : '#ffffff';
+		$colors['navbar_font'] = isset($col['navbar_font']) ? sanitize_hex_color($col['navbar_font']) : '#ffffff';
 		
 		// navbar bg
 		if (isset($col['nav_bg_top'])) {

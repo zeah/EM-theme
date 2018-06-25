@@ -16,7 +16,7 @@ body {
 	align-self: stretch;
 	/*position: relative;*/
 	/*display: flex;*/
-
+	/*height: 4.4rem;*/
 	/*align-items: center;*/
 }
 
@@ -37,6 +37,8 @@ body {
 
 .custom-logo {
 	display: block;
+	height: 4.2rem;
+	width: auto;
 }
 
 .navbar-container {
@@ -120,6 +122,23 @@ body {
 .emtheme-navbar-description {
 	position: absolute;
 	right: 10px;
+	top: 10px;
+	font-size: 1.6rem;
+}
+
+
+.content {
+	/*box-sizing: border-box;*/
+	padding: 1rem;
+	margin: 1rem 0;
+}
+
+
+.alignright,
+.alignleft,
+.aligncenter {
+	display: block;
+	margin: auto;
 }
 
 /*.menu-container::before {
@@ -134,8 +153,8 @@ body {
 .emtheme-goup {
 	display: inline-block;
 	position: fixed;
-	right: 60px;
-	bottom: 60px;
+	right: 20px;
+	bottom: 20px;
 
 	/*background-color: pink;*/
 	border-radius: 25%;

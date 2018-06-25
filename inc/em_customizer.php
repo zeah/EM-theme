@@ -75,6 +75,8 @@ final class Emtheme_customizer {
 		
 		$css .= '#customize-control-emtheme_color-goup_bg::before { content: \''._x('Go Up Button', 'Customizer title for go up button.', 'emtheme').'\'; }';
 
+		$css .= '#customize-control-theme_notfound-text::before { content: \''._x('Page Not Found', 'Customizer title for page not found element', 'emtheme').'\'; }';
+
 		return $css;
 	}
 
@@ -530,7 +532,16 @@ final class Emtheme_customizer {
 							_x('Is shown as the right-most column.', 'description of about us footer element', 'emtheme'), 
 							'', 
 							162, 'wp_kses_post');
+
+
+		/**/
+		$this->add($cust, 'theme_notfound[text]', 'title_tagline', 'textarea', 
+							_x('404 page', 'page not found element', 'emtheme'), 
+							_x('Is shown when page does not exist', 'description of page not found element', 'emtheme'), 
+							'', 
+							170, 'wp_kses_post');
 		
+		$cust->get_setting('theme_notfound[text]')->default = 'This page does not exist.<br><a href="'.esc_url(home_url()).'">Please visit our front page</a>';
 	}
 
 

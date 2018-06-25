@@ -137,7 +137,6 @@ jQuery(function() {
 	if (!desktop) setMobileMenu();
 
 	jQuery(window).resize(function() { 
-		
 		if ($(window).width() > 1280 && !desktop) {
 			desktop = true;
 			setDesktopMenu();

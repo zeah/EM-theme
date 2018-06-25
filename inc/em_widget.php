@@ -67,5 +67,16 @@ final class Emtheme_widget {
 			'after_title'   => '</h2>'
 		));
 
+
+		register_sidebar(array(
+			'name'			=> _x('404 Left Bar Widget', 'widget name', 'emtheme'),
+			'id'			=> '404-left-bar',
+			'description'	=> _x('Widget bar on left side of the 404 page.', '','emtheme'),
+			'before_widget' => '<div class="404-sidebar">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>'
+		));
+
 	}
 }

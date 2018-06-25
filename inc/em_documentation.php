@@ -323,11 +323,18 @@ final class Emtheme_documentation {
 										 <br>Which you can see at your-url/sitemap.xml </p>
 										 </li>
 
-										 <li id="theme-features-searchpage"><b>Internal</b>
+										 <li id="theme-features-searchpage"><b>Internal Search Results Page</b>
 										 <p>Searches titles and content and returns a SERP page that looks like google\'s.</p>
 										 </li>
 
+										 <li id="theme-features-notfound"><b>Page Not Found</b>
+										 <p>The page not found (404 error) has two elements. One content and a widget bar on the left side.
+										 <br>The content area is set from customizer -> site identity and the setting accepts all html which a post does.</p>
+										 </li>
+
 									  </ul>
+								   </li>
+
 								   </li>	
 
 								   ', 'documentation body' ,'emtheme');

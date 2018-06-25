@@ -21,6 +21,16 @@
 // 	set_transient('xmlfromfor', $array, 60*60*24);
 // }
 
+// $temper = [];
+
+
+// foreach(get_transient('xmlfromfor')['entry'] as $kort) {
+// 	if ($kort['title'] == 'Gold kredittkort' || $kort['title'] == 'Vivo kredittkort' || $kort['title'] == 'Business kredittkort') continue;
+// 	array_push($temper, $kort['title'].' # '.$kort['leverandor_tekst']);
+// }
+
+// wp_die('<xmp>'.print_r($temper, true).'</xmp>');
+// wp_die('<xmp>'.print_r(get_transient('xmlfromfor'), true).'</xmp>');
 
 // make it into a grid !
 

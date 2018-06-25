@@ -485,3 +485,20 @@ body {
 	opacity: 0 !important;
 	transition: opacity 1s;
 }
+
+/* 4.3 404 page */
+
+.page-404 {
+	display: flex;
+	justify-content: space-between;
+
+	margin-top: 5rem;
+}
+
+.column-404 {
+	flex: 1;
+
+	display: flex;
+	justify-content: center;
+	/*align-content: center;*/
+}

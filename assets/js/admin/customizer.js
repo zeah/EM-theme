@@ -6,7 +6,7 @@ $(() => { ((api) => {
 	let top = api.instance('emtheme_color[nav_bg_top]').get(); 
 	let middle = api.instance('emtheme_color[nav_bg_middle]').get(); 
 	let bottom = api.instance('emtheme_color[nav_bg_bottom]').get();
-	let menuc = $('.menu-container');
+	let menuc = $('.navbar-menu');
 
 
 	let fixWeight = (o) => {

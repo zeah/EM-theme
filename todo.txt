@@ -1,3 +1,7 @@
+google adservice tagmanager
+404 template DONE
+col shortcode
+mobile (nav done) og ie css
 
 
 flexbox/grid i posts -- SKIP -- or not skip
@@ -6,12 +10,9 @@ search.php (need if no results found)
 sitemap done
 
 meta box med seo i page/posts se nede DONE
-404 template
-col shortcode
 
-mobile (nav done) og ie css
 
-navbar
+navbar DONE
  
   [toggle     ] [always, toggle]
 [[[logo, title] [menu  , search]]]
@@ -23,7 +24,6 @@ navbar
 toggle => display = block/none/always in mobile
 
 
-google adservice tagmanager
 
 
 transient api -> side lagres i transient for 24 timer?
@@ -61,7 +61,7 @@ widget background and font and box-shadow
 navbar size (padding)
 
 
-meta box med meta:
+meta box med meta: DONE
 og:title
 og:image
 og:site_name
@@ -124,3 +124,47 @@ html lang="'.get_locale().'" legg til customizer for lang så man ka engelsk wor
 add to customizer -> menu ability to make navbar sticky or show when scrolled up
 
 bruke meta box title og excerpt til internal search results
+
+
+
+
+
+
+
+
+body > div.emtheme-header-container {
+	
+}
+
+.emtheme-header-container {
+	margin-top: 5rem;
+	padding: 0;
+	align-self: auto;
+}
+
+.emtheme-identity {
+	flex: 1;
+}
+
+.emtheme-title-tagline {
+	display: none;
+}
+
+.custom-logo {
+	width: 100%;
+	height: auto;
+}
+
+body > div.navbar-background {
+	align-self: auto;
+}
+
+.main {
+	margin: 0;
+}
+
+.default-template-right-widget { 
+	margin-left: 0;
+	padding-top: 3rem;
+	align-self: auto;
+}
