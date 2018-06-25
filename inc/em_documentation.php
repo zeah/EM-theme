@@ -202,7 +202,12 @@ final class Emtheme_documentation {
 								   		<h2>Post editor</h2>
 								   		<ul>
 								   			<li id="theme-editor-style"><b>Editor apperance</b>
-								   			<p>The editor uses font-family and font-size set by content font and content size in customizer.</p>
+								   			<p>The editor uses font-family and font-size set by content font and content size in customizer.
+								   			<br>It also contains the css added through "additional css" from customizer.
+								   			<br>(If you add ".gray { border: solid 1px gray; }" with the additional css setting and then add
+								   			an element like "&lt;div class="gray"&gt;This element has a gray border.&lt;/div&gt;" then you will see the gray border
+								   			in the editor itself.)
+								   			<br><b>Be careful with only adding unique class names to the css.</b></p>
 								   			</li>
 								   		
 								   			<li id="theme-editor-seo"><b>SEO meta</b>

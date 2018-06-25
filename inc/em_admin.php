@@ -57,7 +57,7 @@ final class Emtheme_admin {
 
 		$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
 
-		$options['content_style'] = 'body { font-family: \''.$family.'\'; font-size: '.$size.'px; line-height: '.$lineheight.'}';
+		$options['content_style'] = 'body { font-family: \''.$family.'\'; font-size: '.$size.'px; line-height: '.$lineheight.'}'.preg_replace('/\s+/', ' ', wp_get_custom_css());
 
 		return $options; 
 	}

@@ -1,5 +1,6 @@
 <?php 
 
+
 $show = get_theme_mod('emtheme_layout');
 
 // do nothing if toggled off in customizer

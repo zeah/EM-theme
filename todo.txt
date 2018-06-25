@@ -1,9 +1,11 @@
 google adservice tagmanager
-404 template DONE
 col shortcode
 mobile (nav done) og ie css
+navbar active page
 
 
+
+404 template DONE
 flexbox/grid i posts -- SKIP -- or not skip
 
 search.php (need if no results found)
