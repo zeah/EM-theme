@@ -24,8 +24,7 @@ final class Emtheme_bigtop {
 
 	public function get_html() {
 
-		$dim = get_theme_mod('emtheme_dimensions');
-		// wp_die('<xmp>'.print_r($dim, true).'</xmp>');
+		$dim = get_theme_mod('emtheme_layout');
 
 		$html = '<div class="emtheme-header-container">';
 
@@ -40,6 +39,7 @@ final class Emtheme_bigtop {
 		if (get_bloginfo('description')) $html .= '<div class="emtheme-header-tagline">'.esc_html(get_bloginfo('description')).'</div>';
 
 		$html .= '</div>';
+
 
 		if (!isset($dim['search_toggle']) || is_customize_preview()) $html .= get_search_form(false);
 

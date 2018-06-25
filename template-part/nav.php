@@ -68,7 +68,7 @@ final class Emtheme_nav {
 
 		// the menu
 		$html .= $this->get_nav();
-
+		
 		// search template
 		$html .= '<div class="navbar-search'.(!$show['search_navbar_toogle'] ? ' desktop-hidden' : '').'"'.(!$search ? ' style="display: none;"' : '').'>'.get_search_form(false).'</div>';
 

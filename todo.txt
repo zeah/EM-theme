@@ -131,23 +131,28 @@ bruke meta box title og excerpt til internal search results
 
 
 
-
-body > div.emtheme-header-container {
-	
-}
-
 .emtheme-header-container {
 	margin-top: 5rem;
 	padding: 0;
 	align-self: auto;
+	
+	border: solid 4px #fff;
+	border-bottom: none;
 }
 
 .emtheme-identity {
 	flex: 1;
 }
 
+#bitnami-banner,
+.emtheme-search-form,
 .emtheme-title-tagline {
 	display: none;
+}
+
+.content {
+	height: 100%;
+	margin: 0;
 }
 
 .custom-logo {
@@ -155,16 +160,67 @@ body > div.emtheme-header-container {
 	height: auto;
 }
 
-body > div.navbar-background {
+.navbar-background {
 	align-self: auto;
+	border-left: solid 4px #fff;
+	border-right: solid 4px #fff;
 }
 
 .main {
 	margin: 0;
+	border: solid 4px #fff;
+	border-top: none;
+}
+
+.flex-box {
+	display: flex;
+}
+
+.content-title-text {
+	background-color: rgba(181, 221, 242, 0.6);
+	padding: 1rem;
+	padding-left: 2rem;
+	margin: 0 2rem;
 }
 
 .default-template-right-widget { 
 	margin-left: 0;
-	padding-top: 3rem;
+	padding: 0 2rem;
 	align-self: auto;
+	border-left: 1px solid #60ADEB;
+}
+
+.border-gray {
+	border: solid 1px #ccc;
+	margin: 2rem;
+	padding: 2rem
+}
+
+h2 {
+	margin: 0;
+	color: #33f;
+}
+
+
+@media only screen and (max-width: 1279px){
+	
+	.emtheme-header-container {
+		display: none;
+	}
+	
+	.flex-box {
+		display: block;
+	}
+	
+	.custom-logo {
+		height: 4.2rem;
+		width: auto;
+	}
+	
+	.default-template-right-widget {
+		border-left: none;
+		display: flex;
+		justify-content: center;
+	}
+	
 }
