@@ -2,7 +2,10 @@ google adservice tagmanager
 col shortcode
 mobile (nav done) og ie css
 navbar active page
+privacy mobil
 
+BUG: kun på mobile device -- blir lagt til mobil menu icon når man scroller
+TEST om check if emtheme-mobile-icon exists then do nothing funker
 
 
 404 template DONE

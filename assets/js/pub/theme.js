@@ -82,6 +82,8 @@ jQuery(function() {
 
 	var setMobileMenu = function() {
 
+		if ($('.emtheme-mobile-icon')) return;
+
 		var container = document.querySelector('.navbar-container');
 		var menu = document.querySelector('.navbar-menu');
 
