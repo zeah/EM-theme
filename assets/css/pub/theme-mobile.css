@@ -11,12 +11,17 @@ body {
 	flex-direction: column;
 }
 
+.emtheme-header-container {
+	display: none;
+}
+
+
 
 .navbar-background {
 	align-self: stretch;
 	/*position: relative;*/
 	/*display: flex;*/
-	/*height: 4.4rem;*/
+	height: 4.4rem;
 	/*align-items: center;*/
 }
 
@@ -37,18 +42,21 @@ body {
 
 .custom-logo {
 	display: block;
-	height: 4.2rem;
-	width: auto;
+	height: 4.4rem !important;
+	width: auto !important;
 }
 
-.navbar-container {
-	/*display: flex;*/
+
+.mobile-menu-svg {
+	height: 4rem;
+	width: 4rem	;
 }
+
 
 .navbar-menu {
 	display: none;
 	position: absolute;
-	top: 46px;
+	top: 4.4rem;
 	z-index: 99;
 
 	width: 100vw;

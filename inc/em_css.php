@@ -16,12 +16,16 @@ final class Emtheme_css {
 
 	private function __construct() {
 		$col = get_theme_mod('emtheme_color');
+		if (!is_array($col)) $col = [];
 		// $col = get_option('emtheme_color');
+
 		$fon = get_theme_mod('emtheme_font');
+		if (!is_array($fon)) $fon = [];
 		// $fon = get_option('emtheme_font');
 		
 		$lay = get_theme_mod('emtheme_layout');
-		// wp_die('<xmp>'.print_r($fon, true).'</xmp>');
+		if (!is_array($lay)) $lay = [];
+
 		// checking custom colors and setting defaults
 		
 		// COLORS
@@ -178,10 +182,11 @@ final class Emtheme_css {
 		$this->fonts = $fonts;
 
 
-
+		// wp_die('<xmp>'.print_r($lay, true).'</xmp>');
 		// layout
 		$layout['navbar_padding'] = isset($lay['navbar_padding']) ? floatval($lay['navbar_padding']) / 10 : '0.6';
 		$layout['navbar_search'] = (isset($lay['search_navbar_toggle']) && $lay['search_navbar_toggle'] != '') ? $lay['search_navbar_toggle'] : false;
+		$layout['goup_toggle'] = $lay['goup_toggle'] ? true : false;
 
 		$this->layout = $layout;
 
@@ -309,8 +314,10 @@ final class Emtheme_css {
 		// active page marker
 		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
-		$css .= "\n.theme-nav-arrow { fill: $col[navbar_font]; }";
+		$css .= "\n.nav-arrow, .mobile-icon { fill: $col[navbar_font]; }";
 		
+
+		if ($lay['goup_toggle']) $css .= "\n.emtheme-goup { display: none !important; }";
 
 		// if (!$lay['logo-navbar-toggle']) $css .= "\n.menu-container { position: relative; right: 1.5rem}";
 			

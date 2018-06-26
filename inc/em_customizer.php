@@ -439,6 +439,20 @@ final class Emtheme_customizer {
 			'type' => 'checkbox'
 		));
 
+		$cust->add_setting('emtheme_layout[goup_toggle]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field'	
+		));
+
+		$cust->add_control('emtheme_layout[goup_toggle]', array(
+			'section' => 'theme_layout_section',
+			'label' => 'Hide Go Up Button',
+			'description' => 'The Go Up button shows up in the lower right corner when the navbar is scrolled out of sight.',
+			'priority' => '20',
+			'type' => 'checkbox'
+		));
+
 	}
 
 	/**

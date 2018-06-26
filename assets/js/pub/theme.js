@@ -82,7 +82,7 @@ jQuery(function() {
 
 	var setMobileMenu = function() {
 
-		if ($('.emtheme-mobile-icon')) return;
+		if ($('.mobile-icon-container').length) return;
 
 		var container = document.querySelector('.navbar-container');
 		var menu = document.querySelector('.navbar-menu');
@@ -90,13 +90,13 @@ jQuery(function() {
 		$('.navbar-identity, .navbar-search').show();
 
 
-		var icon = H({class: 'emtheme-mobile-icon'});
+		var icon = H({class: 'mobile-icon-container'});
 
-		var arr = H({class: 'emtheme-mobile-arrow'});
+		var arr = H({class: 'mobile-arrow-container'});
 
-		arr.innerHTML = '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+		arr.innerHTML = '<svg class="nav-arrow-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path class="nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
 
-		icon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path style="fill: white;" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
+		icon.innerHTML = '<svg class="mobile-menu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="mobile-icon" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
 
 		icon.addEventListener('click', function() {
 			jQuery(menu).toggleClass('navbar-menu-show');
@@ -104,7 +104,7 @@ jQuery(function() {
 
 		container.appendChild(icon);
 
-		var arrow = jQuery('.theme-nav-arrow-container');
+		var arrow = jQuery('.nav-arrow-container');
 
 		arrow.hide();
 
@@ -124,9 +124,9 @@ jQuery(function() {
 	var setDesktopMenu = function() {
 		var $ = jQuery;
 
-		$('.emtheme-mobile-arrow, .emtheme-mobile-icon').remove();
+		$('.mobile-arrow-container, .mobile-icon-container').remove();
 
-		$('.theme-nav-arrow-container').show();
+		$('.nav-arrow-container').show();
 		$('.desktop-hidden').hide();
 
 
@@ -139,15 +139,34 @@ jQuery(function() {
 	if (!desktop) setMobileMenu();
 
 	jQuery(window).resize(function() { 
-		if ($(window).width() > 1280 && !desktop) {
-			desktop = true;
-			setDesktopMenu();
+
+
+		if (!desktop) {
+
+			if ($(window).width() > 1279) {
+				desktop = true;
+				setDesktopMenu();
+			}
+
+		}
+		else {
+			if ($(window).width() < 1280) {
+				desktop = false;
+				setMobileMenu();
+			}
+
 		}
 
-		else {
-			desktop = false;
-			setMobileMenu();
-		}
+
+		// if ($(window).width() > 1280 && !desktop) {
+		// 	desktop = true;
+		// 	setDesktopMenu();
+		// }
+
+		// else {
+		// 	desktop = false;
+		// 	setMobileMenu();
+		// }
 
 
 	});

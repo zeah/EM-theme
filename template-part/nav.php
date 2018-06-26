@@ -236,8 +236,8 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 
 					// adds visual to parent nav items
 					// ($has_child) ? '<i class="material-icons nav-arrow">arrow_drop_down</i>' : '', // add icon if true
-					($has_child) ? '<svg class="theme-nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-										<path class="theme-nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
+					($has_child) ? '<svg class="nav-arrow-container" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+										<path class="nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
 									</svg>' : '', // add icon if true
 
 					// user created descriptions. shows up when hover on same nav item.

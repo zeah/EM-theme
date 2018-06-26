@@ -187,6 +187,13 @@ final class Emtheme_documentation {
 										 	<br>The logo is shown as a background image and will show it\'s actual width, 
 										 	<br>but will have a cropped height to fit on the navbar (it will crop top and bottom.)
 										 	<br>So the image chosen should fit the navbar as it will not be re-sized.</p></li>
+
+										 	<li><b>Go Up Button</b>
+										 	<p>Hides the Go Up Button that appears in the lower right corner when the navbar 
+										 	<br>has been scrolled out of sight.</p>
+										 	</li>
+
+
 										 	</ul>
 										 </li>
 
@@ -195,6 +202,7 @@ final class Emtheme_documentation {
 										 <br>The editor accepts the same html as a post do. But &lt;br&gt; or &lt;p&gt; tag is needed for new lines.
 										 <br>When button is clicked, it will not show up again for the user on their following vists for the next 120 days.
 										 <br>The cookie named "cookieAccept" is used to track the button click.</p></li>
+									  
 									  </ul>
 								   </li>
 
