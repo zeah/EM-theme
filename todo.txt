@@ -3,10 +3,23 @@ col shortcode
 mobile (nav done) og ie css
 navbar active page
 privacy mobil
+add link to front page on header title
+fiks em_css med å fjerne all isset()
+set a differnt color on nav menu on mobile than linear-gradient
+
+
+
+
+
+
+
+
+
+
 
 BUG: kun på mobile device -- blir lagt til mobil menu icon når man scroller
 TEST om check if emtheme-mobile-icon exists then do nothing funker
-
+fikset? ja
 
 404 template DONE
 flexbox/grid i posts -- SKIP -- or not skip

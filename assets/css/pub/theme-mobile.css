@@ -34,6 +34,8 @@ body {
 	display: flex;
 	align-items: center;
 	margin-right: auto;
+
+	width: 80%;
 }
 
 .navbar-logo {
@@ -52,6 +54,12 @@ body {
 	width: 4rem	;
 }
 
+
+.navbar-title {
+	white-space: nowrap;
+	overflow: hidden;
+	/*max-width: 10%;*/
+}
 
 .navbar-menu {
 	display: none;

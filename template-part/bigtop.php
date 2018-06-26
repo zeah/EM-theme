@@ -27,6 +27,8 @@ final class Emtheme_bigtop {
 
 		$dim = get_theme_mod('emtheme_layout');
 
+		if (!is_array($dim)) $dim = [];
+
 		$html = '<div class="emtheme-header-container">';
 
 		$html .= '<div class="emtheme-header">';
@@ -41,8 +43,7 @@ final class Emtheme_bigtop {
 
 		$html .= '</div>';
 
-
-		if (!isset($dim['search_toggle']) || is_customize_preview()) $html .= get_search_form(false);
+		if ($dim['search_toggle'] == '' || is_customize_preview()) $html .= get_search_form(false);
 
 		$html .= '</div>';
 

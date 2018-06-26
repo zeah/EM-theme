@@ -33,22 +33,36 @@ html {
 
 /* 0.2 body */
 
-/* overwrite wordpress body margin css */
 body {
+	/* overwrite wordpress body margin css */
 	margin: 0;
 
-	/* for the foot!
-	top children of body should use 
-	align-self: stretch to have 100% width; */
 	display: flex;
 	min-height: 100vh;
+	justify-content: center;
+}
+
+/* container for everything on page 
+   used with additional css to set the page's position */
+.page-container {
+	
+	/* 	width of page
+		set to zero for force everything to center 
+		if children has align-self: stretch they 
+		will have 100% width of window */
+	flex: 1;
+
+	/* 	page content 
+		makes default setting to be center window */
+	display: flex;
 	flex-direction: column;
 	align-items: center;
+
 }
 
 /* 1.0 header */
 
-/* fixing wordpress custom logo */
+/* fixing wordpress custom logo/inline image */
 .custom-logo,
 .custom-logo-link {
 	display: block;
@@ -56,19 +70,21 @@ body {
 
 /* 1.1 header */
 
-/* full width container for header */
+/* 	full width container for header 
+	to set background-color
+	and margin/paddings */
 .emtheme-header-container {
 
-	/* body has flex and flex-direction: column, 
-	so stretch for full width */
+	/* 100% window width */
 	align-self: stretch;
 
-	/* centers the header */
+	/* centers the header content */
 	display: flex; 
 	align-items: center;
 	justify-content: center; 
 	
-	min-height: 8rem;
+
+	min-height: 8rem; /* TODO: test */
 	padding: 1rem 0;
 }
 
