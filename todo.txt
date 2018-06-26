@@ -2,12 +2,14 @@ google adservice tagmanager
 col shortcode
 mobile (nav done) og ie css
 navbar active page
-privacy mobil
+privacy mobil css
 add link to front page on header title
 fiks em_css med å fjerne all isset()
 set a differnt color on nav menu on mobile than linear-gradient
+header background image
 
-
+later:
+structured data seo og auto
 
 
 
