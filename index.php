@@ -85,6 +85,6 @@ get_template_part('template-part/nav');
 
 echo $html;
 
-get_footer();
-
 echo '</div>';
+
+get_footer();

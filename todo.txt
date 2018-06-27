@@ -1,16 +1,19 @@
+privacy mobil css DONE
+add link to front page on header title DONE
+navbar active page DONE
+header background image DONE
+
 google adservice tagmanager
 col shortcode
-mobile (nav done) og ie css
-navbar active page
-privacy mobil css
-add link to front page on header title
-fiks em_css med å fjerne all isset()
 set a differnt color on nav menu on mobile than linear-gradient
-header background image
+mobile (nav done) og ie css
+add copyright
+sidebar widgets on mobile
+fiks em_css med å fjerne all isset()
 
 later:
 structured data seo og auto
-
+change background header image position ui into arrows with custom wp customizer class or css OR change from radio buttons to 2 ranges with %
 
 
 
@@ -221,26 +224,3 @@ h2 {
 	color: #33f;
 }
 
-
-@media only screen and (max-width: 1279px){
-	
-	.emtheme-header-container {
-		display: none;
-	}
-	
-	.flex-box {
-		display: block;
-	}
-	
-	.custom-logo {
-		height: 4.2rem;
-		width: auto;
-	}
-	
-	.default-template-right-widget {
-		border-left: none;
-		display: flex;
-		justify-content: center;
-	}
-	
-}

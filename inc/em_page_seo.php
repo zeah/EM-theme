@@ -1,7 +1,7 @@
 <?php 
 
 
-final class Emtheme_seo {
+final class Emtheme_page_seo {
 	/* singleton */
 	private static $instance = null;
 

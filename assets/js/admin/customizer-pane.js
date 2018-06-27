@@ -74,4 +74,16 @@
 	
 	api('emtheme_font[content_family]', (v) => v.bind((nv) => $('#customize-control-emtheme_font-content_weight select').html(opt(v, 'content'))));
 
+
+
+	
+	/* header image background opacity range number */
+	$opacity = $('<span>', {'class': 'bg-head-op-nr'});
+
+	$opacity.html($('#customize-control-theme_background-header_opacity > input')[0].value*100+'%');
+
+	$('#customize-control-theme_background-header_opacity').append($opacity);
+
+	$('#customize-control-theme_background-header_opacity > input').on('input', (e) => $opacity.html(Math.floor(e.target.value*100)+'%'));
+
 }); })(wp.customize, jQuery);

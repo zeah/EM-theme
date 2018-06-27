@@ -71,6 +71,7 @@ final class Emtheme_css {
 		$colors['navbar_font'] = isset($col['navbar_font']) ? sanitize_hex_color($col['navbar_font']) : '#ffffff';
 		
 		// navbar bg
+		// creating linear-gradient if set
 		if (isset($col['nav_bg_top'])) {
 			$colors['navbar_background'] = 'background-color: '.sanitize_hex_color($col['nav_bg_top']);
 		
@@ -87,6 +88,7 @@ final class Emtheme_css {
 		else $colors['navbar_background'] = 'background-color: #000';
 		
 		// navbar hover
+		// creating linear-gradient if set
 		if (isset($col['nav_bg_hover_top'])) {
 			$colors['navbar_hover'] = 'background-color: '.sanitize_hex_color($col['nav_bg_hover_top']);
 		
@@ -105,6 +107,7 @@ final class Emtheme_css {
 		// navbar borders
 		$colors['navbar_border'] = isset($col['navbar_border']) ? 'solid 1px '.sanitize_hex_color($col['navbar_border']) : 'none';
 
+
 		// submenu font
 		$colors['submenu_font'] = isset($col['submenu_font']) ? sanitize_hex_color($col['submenu_font']) : '#000';
 		
@@ -114,7 +117,15 @@ final class Emtheme_css {
 		// submenu hover
 		$colors['submenu_hover'] = isset($col['submenu_hover']) ? sanitize_hex_color($col['submenu_hover']) : '#ddd';
 
+		// submenu border
 		$colors['submenu_border'] = isset($col['submenu_border']) ? sanitize_hex_color($col['submenu_border']) : '#bbb';
+
+
+		// active page marker
+		$colors['active'] = $col['navbar_active'] ? sanitize_hex_color($col['navbar_active']).'90' : '#33663390';
+
+
+		/* FOOTER */
 		
 		// footer background
 		$colors['footer_bg'] = isset($col['footer_bg']) ? sanitize_hex_color($col['footer_bg']) : '#000';
@@ -122,7 +133,10 @@ final class Emtheme_css {
 		// footer font color
 		$colors['footer_font'] = isset($col['footer_font']) ? sanitize_hex_color($col['footer_font']) : '#fff';
 
-		// go up button 
+
+		/* GO UP BUTTON */
+
+		// go up background 
 		$colors['goup_bg'] = isset($col['goup_bg']) ? sanitize_hex_color($col['goup_bg']) : '#ccc';
 
 		// go up font color
@@ -235,9 +249,41 @@ final class Emtheme_css {
 		$col = $this->colors;
 		$fon = $this->fonts;
 		
+		$bg = get_theme_mod('theme_background');
+
+		if (!is_array($bg)) $bg = [];
+		// wp_die('<xmp>'.print_r($bg, true).'</xmp>');
+		
 		$width = $content_width / 10;
 
-		$css = ".emtheme-header-container { display: flex; align-items: center; min-height: 10rem; background-color: $col[header_background]; color: $col[header_font];}";
+		$css = ".emtheme-header-container { background-color: $col[header_background]; color: $col[header_font]; z-index: 2;}";
+
+		if ($bg['header']) {
+		
+			$url = $bg['header'];
+			$size = $bg['header_size'];
+			$pos = $bg['header_position'];
+			$repeat = $bg['header_repeat'];
+
+			// wp_die('<xmp>'.print_r($bg, true).'</xmp>');
+			
+
+			$css .= "\n.emtheme-header-container::after { 
+				content: ''; 
+				position: absolute; 
+				top: 0; left: 0; right: 0; bottom: 0; 
+				z-index: -1; 
+				background-image: url('".esc_attr($url)."');
+				background-size: $bg[header_size];
+				background-position: $bg[header_position];
+				background-repeat: $bg[header_repeat];
+				opacity: ".($bg['header_opacity'] ? floatval($bg['header_opacity']) : '0.5')."
+			}";
+		}
+
+		// $css = ".emtheme-header-container { display: flex; position: relative; align-items: center; min-height: 10rem; background-color: $col[header_background]; color: $col[header_font];}";
+		$css .= "\n.title-link { color: $col[header_font]; }";
+		
 		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
 		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
 		// $css .= "\n.emtheme-header-search { align-self: flex-start; }";
@@ -312,6 +358,8 @@ final class Emtheme_css {
 		$css .= "\n.menu-level-top { border-right: $col[navbar_border]; }";
 
 		// active page marker
+		$css .= "\n.menu-current { background-color: $col[active]; } ";
+		
 		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
 		$css .= "\n.nav-arrow, .mobile-icon { fill: $col[navbar_font]; }";

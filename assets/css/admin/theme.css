@@ -23,6 +23,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	color: #c4c !important;
 }
 
+
 /**/
 .postarea {
 	max-width: 1240px;
@@ -131,6 +132,8 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	text-transform: capitalize;
 }
 
+#customize-control-background_image::before,
+#customize-control-theme_background-header::before,
 #customize-control-theme_notfound-text::before,
 #customize-control-emtheme_color-goup_bg::before,
 #customize-control-emtheme_color-footer_bg::before,
@@ -150,16 +153,12 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	margin-bottom: 10px;
 }
 
-/*#customize-control-theme_footer-active::before {
-	content: 'Footer Info';
-}*/
 
 #customize-control-theme_footer-active label {
 	font-weight: bold;
 }
 
 #customize-control-emtheme_color-nav_bg_top::before {
-	/*content: 'NAV COLORS\A\ANavbar';*/
 	white-space: pre;
 }
 
@@ -169,6 +168,126 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	/*font-weight: bold;*/
 	margin-top: 10px;
 	/*margin-bottom: 10px;*/
+}
+
+#customize-control-theme_background-header_opacity {
+	/*position: relative;*/
+	display: flex !important;
+	flex-wrap: wrap;
+
+	align-items: center;
+
+}
+#customize-control-theme_background-header_pos_y > input,
+#customize-control-theme_background-header_pos_x > input,
+#customize-control-theme_background-header_opacity > input {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    /*width: 100%;  Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+
+    border: solid 2px #333;
+    border-radius: 30px;
+    padding: 0;
+    flex: 1;
+    order: 3;
+}
+
+#customize-control-theme_background-header_pos_y > input::hover,
+#customize-control-theme_background-header_pos_x > input::hover,
+#customize-control-theme_background-header_opacity > input:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+#customize-control-theme_background-header_pos_y > input::-webkit-slider-thumb,
+#customize-control-theme_background-header_pos_x > input::-webkit-slider-thumb,
+#customize-control-theme_background-header_opacity > input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 22px; /* Set a specific slider handle width */
+    height: 22px; /* Slider handle height */
+    border: solid 2px #333;
+    border-radius: 50%;
+    background: #2a2; 
+    /*background: #4CAF50;  Green background */
+    cursor: pointer; /* Cursor on hover */
+    z-index: 10;
+}
+
+#customize-control-theme_background-header_pos_y > input::-moz-range-thumb,
+#customize-control-theme_background-header_pos_x > input::-moz-range-thumb,
+#customize-control-theme_background-header_opacity > input::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    z-index: 10;
+}
+
+
+#customize-control-theme_background-header_pos_y > label,
+#customize-control-theme_background-header_pos_x > label,
+#customize-control-theme_background-header_opacity > label {
+	width: 100%;
+}
+
+.bg-head-op-nr {
+	/*position: relative;*/
+	/*bottom: 25px;*/
+	left: 10px;
+	font-family: "Black Han Sans";
+	font-size: 14px;
+	user-select: none;
+	z-index: 5;
+
+	order: 2;
+	width: 50px;
+
+	text-align: center;
+}
+
+
+/* repeating */
+#customize-control-theme_background-header_position,
+#customize-control-theme_background-header_size,
+#customize-control-theme_background-header_repeat {
+	display: grid !important;
+
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 10px;
+}
+
+#customize-control-theme_background-header_position input,
+#customize-control-theme_background-header_size input,
+#customize-control-theme_background-header_repeat input {
+	margin-left: 0;
+}
+
+#customize-control-theme_background-header_position > .customize-control-title,
+#customize-control-theme_background-header_size > .customize-control-title,
+#customize-control-theme_background-header_repeat > .customize-control-title {
+	/*width: 100%;*/
+	grid-column: 1 / span 3;
+}
+
+#customize-control-theme_background-header_position > .customize-inside-control-row,
+#customize-control-theme_background-header_size > .customize-inside-control-row,
+#customize-control-theme_background-header_repeat > .customize-inside-control-row {
+	
+	box-sizing: border-box;
+	margin: 0;
+	white-space: nowrap;
+	background-color: #ccc;
+	border-radius: 30px;
+	border: solid 1px #333;
+	padding: 2.5px 5px;
+	font-size: 12px;
 }
 
 /*#customize-control-emtheme_color-submenu_bg::before {

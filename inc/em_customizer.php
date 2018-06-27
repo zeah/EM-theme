@@ -22,7 +22,8 @@ final class Emtheme_customizer {
 		add_action('customize_register', array($this, 'layout'));
 
 		add_action('customize_register', array($this, 'privacy_popup'));
-		add_action('customize_register', array($this, 'footer_info'));
+		add_action('customize_register', array($this, 'site_identity'));
+		add_action('customize_register', array($this, 'background_image'));
 
 		add_action('customize_preview_init', array($this, 'customizer_sands'), 9999);
 		add_action('customize_controls_enqueue_scripts', array($this, 'customizer_pane_sands'));
@@ -76,6 +77,10 @@ final class Emtheme_customizer {
 		$css .= '#customize-control-emtheme_color-goup_bg::before { content: \''._x('Go Up Button', 'Customizer title for go up button.', 'emtheme').'\'; }';
 
 		$css .= '#customize-control-theme_notfound-text::before { content: \''._x('Page Not Found', 'Customizer title for page not found element', 'emtheme').'\'; }';
+
+		$css .= '#customize-control-theme_background-header::before { content: \''._x('Header Background Image', '', 'emtheme').'\'; }';
+
+		$css .= '#customize-control-background_image::before { content: \''._x('Page Background Image', '', 'emtheme').'\'; }';
 
 		return $css;
 	}
@@ -172,7 +177,7 @@ final class Emtheme_customizer {
 
 		$this->add($cust, 'emtheme_color[navbar_active]', 'colors', 'color', 
 							_x('Active page marker', 'Customizer control for active page marker on navbar', 'emtheme'), 
-							'',
+							_x('Has 90% opacity', 'Description for navbar active page marker customizer', 'emtheme'),
 							'#363', 
 							107, 'sanitize_hex_color');
 		
@@ -517,7 +522,67 @@ final class Emtheme_customizer {
 	/**
 	 * Adds customizer tools in "Site Identity" on customizer page.
 	 */
-	public function footer_info($cust) {
+	public function site_identity($cust) {
+
+		// $cust->add_setting('theme_layout[header_image]', array(
+		// 	'type' => 'theme_mod',
+		// 	'transport' => 'postMessage',
+		// 	'sanitize_callback' => 'esc_url_raw'
+		// ));
+
+		// $cust->add_control(
+		// 	new WP_Customize_Background_Image_Control(
+		// 		$cust,
+		// 		'theme_layout[header_image]',
+		// 		array(
+		// 			'label' => 'header background image',
+		// 			'section'  => 'background_image'
+		// 		)
+		// 	));
+		// 	
+		// 	
+		// $cust->add_control( 
+		// new WP_Customize_Background_Image_Control( 
+		// 	$cust, 
+		// 	'demo_background_image_control', 
+		// 	array(
+		//     'label'      		=> __('Text', 'textdomain'),
+		//     'description' 		=> __( 'Description', 'textdomain' ),
+		//     'section'    		=> 'background_image',
+		//     'settings'   		=> 'theme_layout[header_image]',
+		//     // 'active_callback' 	=> 'is_front_page',               	// Contextually show/hide customizer controls based on the customizer’s preview context
+		//     								// Conditional Tags: https://codex.wordpress.org/Conditional_Tags  
+		//     'priority' 			=> 10,
+		//     'input_attrs'  		=> array(
+		// 					        'value' 		=> __( 'Example Text', 'textdomain' ),
+		// 					        'placeholder' 	=> __( 'plceholder text', 'textdomain' ),
+		// 					        'class' 		=> 'my-custom-css-class',
+		// 					    	'style' 		=> 'border: 1px solid #900',
+		// 					    ),
+		//     // 'capability' 		=> 'edit_posts',
+		// ) ) );
+		// 
+		// 
+// 		$cust->add_control( 
+// 			new WP_Customize_Background_Image_Control($cust, 
+// 		'demo_upload_control', 
+// 		array(
+// 	    'label'      		=> __('Text', 'textdomain'),
+// 	    'description' 		=> __( 'Description', 'textdomain' ),
+// 	    'section'    		=> 'background_image',
+// 	    'settings'   		=> 'theme_layout[header_image]',
+// 	    'active_callback' 	=> 'is_front_page',               	// Contextually show/hide customizer controls based on the customizer’s preview context
+// 	    								// Conditional Tags: https://codex.wordpress.org/Conditional_Tags  
+// 	    'priority' 			=> 10,
+// 	    'input_attrs'  		=> array(
+// 						        'value' 		=> __( 'Example Text', 'textdomain' ),
+// 						        'placeholder' 	=> __( 'plceholder text', 'textdomain' ),
+// 						        'class' 		=> 'my-custom-css-class',
+// 						    	'style' 		=> 'border: 1px solid #900',
+// 						    ),
+// 	    'capability' 		=> 'edit_posts',
+// )));
+
 
 		/* Checkbox for deactivating info footer html element */
 		$this->add($cust, 'theme_footer[active]', 'title_tagline', 'checkbox', 
@@ -558,6 +623,136 @@ final class Emtheme_customizer {
 		$cust->get_setting('theme_notfound[text]')->default = 'This page does not exist.<br><a href="'.esc_url(home_url()).'">Please visit our front page</a>';
 	}
 
+	/**
+	 */
+	public function background_image($cust) {
+
+		$cust->add_setting('theme_background[header]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'esc_url_raw'
+		));
+
+		$cust->add_control(
+			new WP_Customize_Image_Control(
+				$cust,
+				'theme_background[header]',
+				array(
+					'label' => 'Image',
+					'section' => 'background_image',
+					'capability' => 'edit_posts',
+					'priority' => 10
+
+				)
+			)
+		);
+
+
+		$cust->add_setting('theme_background[header_opacity]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 0.5
+		));
+
+		$cust->add_control('theme_background[header_opacity]', array(
+			'type' => 'range',
+			'label' => 'Opacity',
+			'section' => 'background_image',
+			'capability' => 'edit_posts',
+			'priority' => 12,
+			'input_attrs' => array(
+				'min' => 0,
+				'max' => 1,
+				'step' => 0.01
+			)
+
+		));
+
+
+
+		// background repeat
+		$cust->add_setting('theme_background[header_repeat]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 'round'
+		));
+
+		$cust->add_control('theme_background[header_repeat]', array(
+			'type' => 'radio',
+			'label' => 'Repeat',
+			'section' => 'background_image',
+			'capability' => 'edit_posts',
+			'priority' => 12,
+			'choices' => array(
+				'space' => __('Space', 'emtheme'),
+				'round' => __('Round', 'emtheme'),
+				'repeat' => __('Repeat', 'emtheme'),
+				'no-repeat' => __('No Repeat', 'emtheme'),
+				'repeat-x' => __('X-Repeat', 'emtheme'),
+				'repeat-y' => __('Y-Repeat', 'emtheme'),
+
+			)
+		));
+
+
+
+
+		$cust->add_setting('theme_background[header_position]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 'left center'
+		));
+
+
+		$cust->add_control('theme_background[header_position]', array(
+			'type' => 'radio',
+			'label' => 'Position',
+			'section' => 'background_image',
+			'capability' => 'edit_posts',
+			'priority' => 13,
+			'choices' => array(
+				'left top' => 'Left Top',
+				'center top' => 'Top',
+				'right top' => 'Right Top',
+
+				'left center' => 'Left Center',
+				'center center' => 'Center',
+				'right center' => 'Right Center',
+				
+				'left bottom' => 'Left Bottom',
+				'center bottom' => 'Bottom',
+				'right bottom' => 'Right Bottom',
+
+			)
+		));
+
+
+
+		$cust->add_setting('theme_background[header_size]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => 'auto'
+		));
+
+
+		$cust->add_control('theme_background[header_size]', array(
+			'type' => 'radio',
+			'label' => 'Size',
+			'section' => 'background_image',
+			'capability' => 'edit_posts',
+			'priority' => 14,
+			'choices' => array(
+				'auto' => 'Original',
+				'cover' => 'Cover',
+				'contain' => 'Contain',
+			)
+		));
+
+	}
 
 	/**
 	 * Helper function for registering customizer control
@@ -600,7 +795,8 @@ final class Emtheme_customizer {
 				'label' => $label,
 				'description' => $description,
 				'priority' => $priority,
-				'section' => $section
+				'section' => $section,
+				'capability' => 'edit_posts'
 			));
 		}
 
@@ -613,7 +809,8 @@ final class Emtheme_customizer {
 					'label' => $label,
 					'description' => $description,
 					'priority' => $priority,
-					'section' => $section
+					'section' => $section,
+					'capability' => 'edit_posts'
 				)
 			));
 		}

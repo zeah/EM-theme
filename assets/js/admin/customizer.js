@@ -137,6 +137,9 @@ $(() => { ((api) => {
 		}
 	}
 
+	api('emtheme_color[navbar_active]', (v) => v.bind((nv) => $('.menu-current').css('background-color', nv+'90')));
+
+
 	api('emtheme_color[main_background]', (v) => v.bind((nv) => $('.content, .default-template-widget').css('background-color', nv)));
 	api('emtheme_color[emtop_bg]', (v) => v.bind((nv) => $('.emtheme-header-container').css('background-color', nv)));
 	api('emtheme_color[emtop_font]', (v) => v.bind((nv) => $('.emtheme-header-container').css('color', nv)));
@@ -240,6 +243,78 @@ $(() => { ((api) => {
 
 	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-logo').toggle();
 	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-logo').toggle())));
+
+
+	// header background image
+	let hbg = {
+
+		// url, opacity, repeat, position, size
+		data: {
+			controls: ['header', 'header_opacity', 'header_repeat', 'header_position', 'header_size']
+
+		},
+
+		init: () => {
+			let data = hbg.data;
+			let c = hbg.c;
+
+			for (let i of data.controls) {
+				let t = api.instance(c(i));
+				
+				if (t) {
+					data[i] = t.get();
+					api(c(i), (v) => v.bind((nv) => hbg.update(i, nv)));					
+				}
+			}
+
+			console.dir(data);
+		},
+
+		c: (o) => o ? 'theme_background['+o+']' : false,
+
+		update: (i, nv) => {
+			if (!(i || nv)) return;
+
+			let data = hbg.data;
+
+			data[i] = nv;
+
+
+			let $out = $('<style>', {'class': 'theme-header-bg-style'});
+
+			$out.html('.emtheme-header-container::after { content: ""; position: absolute; top: 0; bottom: 0; right: 0; left: 0; z-index: -1; background-image: url(\''+data.header+'\'); opacity: '+data.header_opacity+'; background-position: '+data.header_position+'; background-repeat: '+data.header_repeat+'; background-size: '+data.header_size+'; }');
+
+			$('.theme-header-bg-style').remove();
+			$('head').append($out);
+		}
+
+	}
+
+	hbg.init();
+
+	// api('theme_background[header]', (value) => value.bind((newval) => {
+	// 	if (!newval) 	newval = 'none';
+	// 	else 			newval = 'url("'+newval+'")';
+
+	// 	let opacity = api.instance('theme_background[header_opacity]').get();
+
+	// 	// console.log('hi '+opacity);
+	// 	$('.emtheme-bg-op').remove();
+	// 	$('head').append('<style class="emtheme-bg-op"> .emtheme-header-container:after { content: ""; background-image: '+newval+'; opacity: '+opacity+'; top: 0; left: 0; bottom: 0; right: 0; position: absolute; z-index: -2;} </style>');
+	// }));
+
+	// api('theme_background[header_opacity]', (value) => value.bind((newval) => {
+
+	// 	let url = api.instance('theme_background[header]').get();
+	// 	if (!url) return;
+
+	// 	url = 'url("'+url+'")';
+
+
+	// 	$('.emtheme-bg-op').remove();
+	// 	$('head').append('<style class="emtheme-bg-op"> .emtheme-header-container:after { content: ""; background: '+url+'; opacity: '+newval+'; top: 0; left: 0; bottom: 0; right: 0; position: absolute; z-index: -2;} </style>');
+	// }));
+
 
 
 	// go up button 

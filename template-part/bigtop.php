@@ -35,13 +35,13 @@ final class Emtheme_bigtop {
 
 		if (function_exists('the_custom_logo')) $html .= '<div class="emtheme-identity">'.get_custom_logo().'</div>';
 
-		$html .= '<div class="emtheme-title-tagline">';
+		$html .= '<a class="title-link" href="'.esc_url(get_site_url()).'"><span class="emtheme-title-tagline">';
 
-		if (get_bloginfo('name')) $html .= '<div class="emtheme-header-title">'.esc_html(get_bloginfo('name')).'</div>';
+		if (get_bloginfo('name')) $html .= '<span class="emtheme-header-title">'.esc_html(get_bloginfo('name')).'</span>';
 
-		if (get_bloginfo('description')) $html .= '<div class="emtheme-header-tagline">'.esc_html(get_bloginfo('description')).'</div>';
+		if (get_bloginfo('description')) $html .= '<span class="emtheme-header-tagline">'.esc_html(get_bloginfo('description')).'</span>';
 
-		$html .= '</div>';
+		$html .= '</span></a>';
 
 		if ($dim['search_toggle'] == '' || is_customize_preview()) $html .= get_search_form(false);
 

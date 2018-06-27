@@ -67,6 +67,7 @@ final class Emtheme_documentation {
 										 <li><a href="#theme-customizer-font">Font</a></li>
 										 <li><a href="#theme-customizer-layout">Layout</a></li>
 										 <li><a href="#theme-customizer-privacy">Privacy</a></li>
+										 <li><a href="#theme-customizer-bg">Background Images</a></li>
 									  </ul>
 								   </li>
 								   <li>
@@ -203,6 +204,15 @@ final class Emtheme_documentation {
 										 <br>When button is clicked, it will not show up again for the user on their following vists for the next 120 days.
 										 <br>The cookie named "cookieAccept" is used to track the button click.</p></li>
 									  
+										 <li id="theme-customizer-bg"><b>Background Images</b>
+										 <ul>
+										 	<li><b>Background Image</b>
+										 	<p>Sets an image for the body tag.</li>
+										 	<li><b>Header Background Image</b>
+										 	<p>Sets an image for the width of the header.</p></li>
+										 </ul>
+										 </li>
+
 									  </ul>
 								   </li>
 

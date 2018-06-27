@@ -38,14 +38,19 @@ body {
 	margin: 0;
 
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
 	min-height: 100vh;
-	justify-content: center;
+	/*justify-content: center;*/
 }
 
 /* container for everything on page 
    used with additional css to set the page's position */
 .page-container {
-	
+	align-self: stretch;
+
 	/* 	width of page
 		set to zero for force everything to center 
 		if children has align-self: stretch they 
@@ -75,6 +80,8 @@ body {
 	and margin/paddings */
 .emtheme-header-container {
 
+	position: relative;
+
 	/* 100% window width */
 	align-self: stretch;
 
@@ -88,6 +95,8 @@ body {
 	padding: 1rem 0;
 }
 
+
+
 /* container for actual header */
 .emtheme-header {
 
@@ -96,9 +105,15 @@ body {
 	align-items: center;
 }
 
+.title-link {
+	text-decoration: none;
+	margin-right: auto;
+}
+
 /* container for site title and site tagline (description) */
 .emtheme-title-tagline {
-
+	display: flex;
+	flex-direction: column;
 	/* margin to logo */
 	margin-left: 2rem;
 
