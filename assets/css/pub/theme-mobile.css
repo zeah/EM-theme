@@ -8,6 +8,7 @@ body {
 	margin: 0;
 
 	display: flex;
+	flex-direction: column;
 }
 
 
@@ -154,11 +155,14 @@ body {
 }
 
 .content {
-	/*box-sizing: border-box;*/
 	padding: 1rem;
 	margin: 1rem 0;
 }
 
+
+.emtheme-footer {
+	padding: 2rem;
+}
 
 .alignright,
 .alignleft,
@@ -166,15 +170,6 @@ body {
 	display: block;
 	margin: auto;
 }
-
-/*.menu-container::before {
-	content: 'E';
-	display: none;
-}
-
-.menu-container {
-	display: none;
-}*/
 
 .emtheme-goup {
 	display: inline-block;

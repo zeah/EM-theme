@@ -350,6 +350,26 @@ body {
 	margin: auto;
 }
 
+.content-flex {
+	display: flex;
+	margin: 2rem 0;
+}
+
+.content-flex-left {
+	order: 1;
+	margin-right: 2rem;
+}
+
+.content-flex-center {
+	flex: 1;
+	order: 2;
+}
+
+.content-flex-right {
+	order: 3;
+	margin-left: 2rem;
+}
+
 
 /* 2.3 serp 
    made to match google serp */

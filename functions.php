@@ -6,6 +6,8 @@ require_once 'inc/em_admin.php';
 require_once 'inc/em_google_font.php';
 require_once 'inc/em_search.php';
 require_once 'inc/em_page_seo.php';
+require_once 'inc/em_filter.php';
+
 
 /* */
 
@@ -43,6 +45,8 @@ if (! function_exists('emtheme_setup')) {
         Emtheme_search::get_instance();
 
 		Emtheme_page_seo::get_instance();
+
+		Emtheme_filter::get_instance();
 
         // Emtheme_Admin::get_instance();
 

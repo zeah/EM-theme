@@ -3,18 +3,21 @@ add link to front page on header title DONE
 navbar active page DONE
 header background image DONE
 
-google adservice tagmanager
-col shortcode
+google adservice tagmanager DONE (må teste)
+
+col shortcode DONE (er filter nå)
 set a differnt color on nav menu on mobile than linear-gradient
 mobile (nav done) og ie css
 add copyright
 sidebar widgets on mobile
+add struc data for business in settings
+
 fiks em_css med å fjerne all isset()
 
 later:
 structured data seo og auto
 change background header image position ui into arrows with custom wp customizer class or css OR change from radio buttons to 2 ranges with %
-
+sticky cols
 
 
 

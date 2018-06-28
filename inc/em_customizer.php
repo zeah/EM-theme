@@ -638,8 +638,9 @@ final class Emtheme_customizer {
 				$cust,
 				'theme_background[header]',
 				array(
-					'label' => 'Image',
+					'label' => __('Image'),
 					'section' => 'background_image',
+					'description' => __('Background image for header area.<br>It will lay below logo, title, tagline and search box and above header background-color.'),
 					'capability' => 'edit_posts',
 					'priority' => 10
 

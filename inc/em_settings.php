@@ -45,7 +45,7 @@ final class Emtheme_settings {
 
 		add_settings_section('theme-google-settings', 'Google Scripts', array($this, 'google_settings'), 'settings-seo');
 		add_settings_field('theme-google-tagmanager', 'Tagmanager', array($this, 'google_tagmanager'), 'settings-seo', 'theme-google-settings');
-		add_settings_field('theme-google-adwords', 'Adwords', array($this, 'google_adwords'), 'settings-seo', 'theme-google-settings');
+		add_settings_field('theme-google-adwords', 'Analytics', array($this, 'google_adwords'), 'settings-seo', 'theme-google-settings');
 
 	}
 
@@ -86,9 +86,6 @@ final class Emtheme_settings {
 
 		if (!is_array($tag)) $tag = [];
 
-		// if (!$tag['tagmanager']) return;
-
-		// $tag = $tag['tagmanager'];
 
 		if ($tag['tagmanager']) {
 			$script = sprintf("\n<!-- Google Tag Manager -->
@@ -107,6 +104,15 @@ final class Emtheme_settings {
 					", esc_js($tag['tagmanager']));
 
 			echo $script;
+		}
+
+		if ($tag['adwords']) {
+			$adwords = sprintf("<script async src='https://www.googletagmanager.com/gtag/js?id=%1\$s'></script>
+		    <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} 
+		    gtag('js', new Date()); gtag('config', '%1\$s');</script>",
+			esc_js($tag['adwords']));
+
+			echo $adwords;
 		}
 	}
 }
