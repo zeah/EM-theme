@@ -12,3 +12,4 @@ wp_head();
 
 
 echo '</head><body '; body_class(); echo '>';
+echo '<div class="page-container">';

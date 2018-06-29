@@ -587,4 +587,58 @@ body {
 .emtheme-cc {
 	font-family: Verdana;
 	font-size: 1rem;
+	margin: 0.5rem 0;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	
+	html {
+		min-height: 100%;
+	}
+
+	body {
+		display: block;
+		position: relative;
+	}
+
+	.main-sidebar {
+		display: -ms-grid;
+		-ms-grid-columns: auto 1fr auto;
+		-ms-grid-rows: auto 1fr auto;
+	}
+
+	.default-template-top-widget {
+		-ms-grid-row: 1;
+		-ms-grid-column: 2;
+	}
+
+	.default-template-bottom-widget {
+		-ms-grid-row: 3;
+		-ms-grid-column: 2;
+	}
+
+	.default-template-right-widget {
+		-ms-grid-row: 2;
+		-ms-grid-column: 3;
+
+	}
+
+	.default-template-left-widget {
+		-ms-grid-row: 2;
+		-ms-grid-column: 1;
+
+	}
+
+	.content-column {
+		-ms-grid-row: 2;
+		-ms-grid-column: 2;
+	}
+
+	.emtheme-footer-container {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+	}
+
 }

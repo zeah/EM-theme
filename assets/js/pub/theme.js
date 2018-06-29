@@ -5,7 +5,7 @@ jQuery(function() {
 		var e = document.createElement(o.el || 'div');
 
 
-		for (let obj in o) 
+		for (var obj in o) 
 			switch (obj) {
 				case 'class':	
 					if (Array.isArray(o.class))

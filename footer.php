@@ -8,6 +8,7 @@ $footer = Emtheme_footer::get_instance();
 echo $footer->privacy();
 
 echo $footer->info();
+echo '</div>';
 
 final class Emtheme_footer {
 	/* singleton */

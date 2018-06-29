@@ -14,6 +14,9 @@ sidebar widgets on mobile
 add struc data for business in settings
 mobile (nav done) og ie css
 
+?page=theme-settings-em
+linker er bugget pga esc_sql
+
 fiks em_css med å fjerne all isset()
 
 later:
@@ -157,7 +160,12 @@ bruke meta box title og excerpt til internal search results
 
 
 
-
+.default-template-right-widget {
+    margin-left: 0;
+    padding: 2rem 2rem 2rem 2rem;
+    align-self: auto;
+    border-left: 1px solid rgba(181,221,242,.6);
+}
 
 .emtheme-header-container {
 	margin-top: 5rem;
@@ -211,17 +219,11 @@ bruke meta box title og excerpt til internal search results
 	margin: 0 2rem;
 }
 
-.default-template-right-widget { 
-	margin-left: 0;
-	padding: 0 2rem;
-	align-self: auto;
-	border-left: 1px solid #60ADEB;
-}
-
 .border-gray {
 	border: solid 1px #ccc;
 	margin: 2rem;
-	padding: 2rem
+	padding: 2rem;
+	flex: 1;
 }
 
 h2 {
@@ -229,3 +231,27 @@ h2 {
 	color: #33f;
 }
 
+
+
+@media only screen and (max-width: 1079px){
+	
+	.emtheme-header-container {
+		display: none;
+	}
+	
+	.flex-box {
+		display: block;
+	}
+	
+	.custom-logo {
+		height: 4.2rem;
+		width: auto;
+	}
+	
+	.default-template-right-widget {
+		border-left: none;
+		display: flex;
+		justify-content: center;
+	}
+	
+}
