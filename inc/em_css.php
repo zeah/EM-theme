@@ -74,7 +74,8 @@ final class Emtheme_css {
 		// creating linear-gradient if set
 		if (isset($col['nav_bg_top'])) {
 			$colors['navbar_background'] = 'background-color: '.sanitize_hex_color($col['nav_bg_top']);
-		
+			$colors['navbar_background_mobile'] = sanitize_hex_color($col['nav_bg_top']);
+
 			if (isset($col['nav_bg_middle']) && $col['nav_bg_middle'] != '' && isset($col['nav_bg_bottom']) && $col['nav_bg_bottom'] != '') 
 				$colors['navbar_background'] = "background: linear-gradient(to top, $col[nav_bg_bottom] 0%, $col[nav_bg_middle] 50%, $col[nav_bg_top] 100%)";
 
@@ -85,8 +86,11 @@ final class Emtheme_css {
 				$colors['navbar_background'] = "background: linear-gradient(to top, $col[nav_bg_bottom] 0%, $col[nav_bg_top] 100%)";
 
 		}
-		else $colors['navbar_background'] = 'background-color: #000';
-		
+		else {  
+			$colors['navbar_background'] = 'background-color: #000';
+			$colors['navbar_background_mobile'] = '#000';
+		}
+
 		// navbar hover
 		// creating linear-gradient if set
 		if (isset($col['nav_bg_hover_top'])) {
@@ -297,6 +301,10 @@ final class Emtheme_css {
 		return $css;
 	}
 
+	/**
+	 * inline css for navbar
+	 * @return {void} echoes to webpage
+	 */
 	private function navbar() {
 
 		$col = $this->colors;
@@ -306,71 +314,96 @@ final class Emtheme_css {
 		$width = $content_width / 10;
 		
 		$css = '';
-		// wp_die('<xmp>'.print_r($lay, true).'</xmp>');
 
-		// if ($lay['navbar_search'] || is_customize_preview()) {
-
-		// $css .= "\n.emtheme-sea { color: $col[navbar_font]; }";
-		$css .= "\n.navbar-background { $col[navbar_background]; }";
-		
-		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[navbar_family]; margin-right: auto; }";
-		$css .= "\n.navbar-menu { $col[navbar_background]; }";
-		$css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
-		$css .= "\n.navbar-search .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
-		  
-		// $css .= "\n.emtheme-search-input::-webkit-search-cancel-button { -webkit-appearance: none; }"; 
-		$css .= "\n.navbar-search .emtheme-search-button { background-color: inherit; border: none; position: relative; top: 5px; }";
-		$css .= "\n.navbar-search .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
-		// }
 
 		// DESKTOP 
 		$css .= "\n@media only screen and (min-width: 1280px) {";
+
+			// content width (1260px)
 			$css .= "\n.navbar-container { width: {$width}rem; }";
-			// $css .= "\n.menu-list { width: {$width}rem; }";
+			
+			// hover color on links in submenu 
 			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
-			$css .= "\n.sub-menu { position: absolute; }";
-			$css .= "\n.menu-has-child:hover > .sub-menu { display: block; }";
+			
+			// top level hover color
 			$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
+			
+			// hover color on links in navbar (hover shouldn't be used on mobile)
 			$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
+		
 		$css .= "\n}";
 		
-		// $css .= "\n.navbar-background, .navbar-container { $col[navbar_background]; }";
-		// 
-		$css .= "\n.menu-container { color: $col[navbar_font]; user-select: none;}";
-		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
-		// $css .= "\n.menu-list { display: flex; position: relative; right: 1.5rem; padding: 0; margin: 0; width: {$width}rem; margin: auto; }";
+		// MOBILE
+		$css .= "\n@media only screen and (max-width: 1279px) {";
 
+		// solid color background for top level menu on mobile
+		$css .= "\n.navbar-menu { background-color: $col[navbar_background_mobile]; }";
+		
+		$css .= "\n}";
+
+		// DESKTOP AND MOBILE 
+		
+		// full width (or .page-content width) with background color
+		$css .= "\n.navbar-background { $col[navbar_background]; }";
+		
+		// if toggled: show site title on navbar with navbar styling
+		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[navbar_family]; }";
+
+		// if toggled or on mobile: show search form on navbar or above top level menu (mobile) with navbar styling
+		$css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
+
+		// visual hightlight when search form has focus
+		$css .= "\n.navbar-search .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 
+		  
+		// search icon color on navbar 
+		$css .= "\n.navbar-search .emtheme-search-button > .material-icons { color: $col[navbar_font]; }";
+
+		// navbar font color
+		$css .= "\n.menu-container { color: $col[navbar_font]; user-select: none;}";
+
+		// border for top level menu
+		$css .= "\n.menu-level-top { border-right: $col[navbar_border]; }";
+		
+		// the UL container for menu
+		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
+
+		// submenu
 		$css .= "\n.sub-menu { display: none; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";
 						
-		
-		
+		// LI navbar element containing the link		
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
+
+		// navbar link - contains the dimensions 
 		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 
+		// removes right padding for menu items with submenu (down-arrow is added in its place)
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
 
+		// submenu link font color and border
 		$css .= "\n.menu-level-second { color: $col[submenu_font]; border-bottom: solid 1px $col[submenu_border]; }";
-		$css .= "\n.menu-item:last-child > .menu-level-second { border-bottom: none; }";
-		$css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
 		
+		// border fix for last submenu item
+		$css .= "\n.menu-item:last-child > .menu-level-second { border-bottom: none; }";
+		
+		// removes bottom margin
+		// $css .= "\n.menu-item > .menu-level-second { margin-bottom: 0; }";
+		
+		// custom set element within LI navbar element (from menu customizer)
 		$css .= "\n.sub-menu .emtheme-navbar-description { color: $col[submenu_font]; }";
-
-		$css .= "\n.menu-level-top { border-right: $col[navbar_border]; }";
 
 		// active page marker
 		$css .= "\n.menu-current { background-color: $col[active]; } ";
 		
 		// $css .= "\n.menu-list > li > .menu-current::before { display: block; position: absolute; bottom:0; top: 0; right: 0; left: 0; content: ''; border-bottom: solid 4px #2a2; border-top: solid 4px #2a2; }";
 		
+		// color for JS added arrows for submenu and hamburger icon
 		$css .= "\n.nav-arrow, .mobile-icon { fill: $col[navbar_font]; }";
 		
-
+		// hides the go up button if toggled in customizer
 		if ($lay['goup_toggle']) $css .= "\n.emtheme-goup { display: none !important; }";
 
 		// if (!$lay['logo-navbar-toggle']) $css .= "\n.menu-container { position: relative; right: 1.5rem}";
 			
-		
-
 		return $css;
 	}
 

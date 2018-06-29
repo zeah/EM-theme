@@ -48,28 +48,50 @@ final class Emtheme_footer {
 	public function info() {
 		$info = get_theme_mod('theme_footer');
 
+		if (!is_array($info)) $info = [];
+
 		// if in customizer page, then only "display: none" the container element if footer is disabled. 
 		if (is_customize_preview()) {
-			$html = '<div class="emtheme-footer-container"'.($info['active'] ? ' style="display: none"' : '').'><div class="emtheme-footer">';
+			$html .= '<div class="emtheme-footer-container"'.($info['active'] ? ' style="display: none"' : '').'><div class="emtheme-footer">';
 
-			if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
-			if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
-			if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
+			if ($info['social']) $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+			// if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+			
+			if ($info['contact']) $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+			// if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+
+			if ($info['aboutus']) $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
 
 			return $html;
 		}
 
 		// don't output anything in front-end if footer is disabled.
-		if (isset($info['active']) && $info['active']) return;
+		// if ($info['active']) return;
 
-		$html = '<div class="emtheme-footer-container"><div class="emtheme-footer">';
+		$html = '<div class="emtheme-footer-container">';
+		
+		$cr = get_option('theme_em_stuff');
 
-		if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
-		if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
-		if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
+		$cr = $cr ? $cr : 'All rights reserved <a href="https://www.effektivmarkedsforing.no">Effektiv Markedsføring</a> © 2018 -';
 
-		$html .= '</div></div>';
+		$cr .= ' '.date('Y');
 
+		$html .= '<div class="emtheme-cc">'.wp_kses_post($cr).'</div>';
+
+		if (!$info['active']) {
+			$html .= '<div class="emtheme-footer">';
+
+			if ($info['social']) $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+			// if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+			if ($info['contact']) $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+			// if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+			if ($info['aboutus']) $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
+			// if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
+
+			$html .= '</div>';
+		}
+
+		$html .= '</div>';
 		return $html;
 	}
 

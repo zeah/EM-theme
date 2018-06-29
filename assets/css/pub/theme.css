@@ -1,4 +1,5 @@
 
+
 /*
 	A lot of css is set through inline-css by php reading from customizer settings (inc/em_css.php)
 	All colors, fonts, images and most dimensions.
@@ -9,6 +10,7 @@
 	1.0 header
 		1.1 header
 		1.2 navbar
+		1.3 search form
 	2.0 content
 		2.1 widgets
 		2.2 post content
@@ -67,12 +69,6 @@ body {
 
 /* 1.0 header */
 
-/* fixing wordpress custom logo/inline image */
-.custom-logo,
-.custom-logo-link {
-	display: block;
-}
-
 /* 1.1 header */
 
 /* 	full width container for header 
@@ -82,7 +78,6 @@ body {
 
 	position: relative;
 
-	/* 100% window width */
 	align-self: stretch;
 
 	/* centers the header content */
@@ -95,8 +90,6 @@ body {
 	padding: 1rem 0;
 }
 
-
-
 /* container for actual header */
 .emtheme-header {
 
@@ -107,13 +100,22 @@ body {
 
 .title-link {
 	text-decoration: none;
+
+	/* "floating" search form in header */
 	margin-right: auto;
+}
+
+/* fixing wordpress custom logo/inline image */
+.custom-logo,
+.custom-logo-link {
+	display: block;
 }
 
 /* container for site title and site tagline (description) */
 .emtheme-title-tagline {
 	display: flex;
 	flex-direction: column;
+
 	/* margin to logo */
 	margin-left: 2rem;
 
@@ -145,29 +147,26 @@ body {
 	align-items: center;
 }
 
+/* container for logo */
 .navbar-identity {
 	display: flex;
 	align-items: center;
 }
 
+/* anchor container for title, tagline */
 .navbar-title {
 	white-space: nowrap;
+	margin-right: auto;
 }
 
+/* container for the menu */
 .navbar-menu {
 	flex: 1;
 	display: flex;
 }
 
-.desktop-hidden {
-	display: none;
-}
-
 /* nav container for ul element of nav items */
 .menu-container {
-
-	/*align-self: stretch;*/
-	
 	/* sets navbar search box to "aligned right" */
 	margin-right: auto;
 }
@@ -190,18 +189,33 @@ body {
 	background-repeat: no-repeat;
 }
 
+/* moving submenu outside navbar */
+.sub-menu {
+	position: absolute;
+}
+
+/* showing submenu on hover */
+.menu-has-child:hover > .sub-menu { 
+	display: block; 
+}
+
 
 /* if description on links is added through menu customizer */
 .emtheme-navbar-description {
-	position: absolute;
 	display: block;
+	
+	position: absolute;
 	top: 2px;
 	right: 2px;
+	
 	font-family: verdana;
 	font-size: 1.2rem;
+	
 	z-index: 99;
 }
 
+
+/* 1.3 search form */
 
 /* sets search box in header to "aligned top" */
 .emtheme-header > .emtheme-search-form {
@@ -233,6 +247,14 @@ body {
 	background-color: inherit;
 	border: none;
 	cursor: pointer;
+}
+
+
+.navbar-search .emtheme-search-button { 
+	background-color: inherit; 
+	border: none; 
+	position: relative; 
+	top: 5px; 
 }
 
 
@@ -430,7 +452,9 @@ body {
 
 	/* centering container content */
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	/*justify-content: center;*/
+	align-items: center;
 }
 
 /* container for actual footer */
@@ -552,4 +576,15 @@ body {
 	display: flex;
 	justify-content: center;
 	/*align-content: center;*/
+}
+
+
+/* stuff to be hidden by js on desktop */
+.desktop-hidden {
+	display: none;
+}
+
+.emtheme-cc {
+	font-family: Verdana;
+	font-size: 1rem;
 }

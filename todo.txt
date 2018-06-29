@@ -6,11 +6,13 @@ header background image DONE
 google adservice tagmanager DONE (må teste)
 
 col shortcode DONE (er filter nå)
-set a differnt color on nav menu on mobile than linear-gradient
-mobile (nav done) og ie css
-add copyright
+
+set a differnt color on nav menu on mobile than linear-gradient DONE
+add copyright DONE
+
 sidebar widgets on mobile
 add struc data for business in settings
+mobile (nav done) og ie css
 
 fiks em_css med å fjerne all isset()
 

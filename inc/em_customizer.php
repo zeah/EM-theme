@@ -126,7 +126,7 @@ final class Emtheme_customizer {
 		/* navbar bg top/solid color */
 		$this->add($cust, 'emtheme_color[nav_bg_top]', 'colors', 'color', 
 									_x('Background: Top/Solid', 'Title for customizer: navbar background color, either top color in linear-gradient or full color if only one set.', 'emtheme'), 
-									'', 
+									__('And top level mobile menu background.'), 
 									'#000000', 
 									100, 'sanitize_hex_color');
 

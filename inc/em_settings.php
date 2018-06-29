@@ -27,7 +27,8 @@ final class Emtheme_settings {
 
 	public function add_menu() {
 		// add_menu_page('EMSettings', 'Settings', 'manage_options', 'em-settings-page', array($this, 'settings_callback'), 'none', 262);
-		add_submenu_page('options-general.php', 'SEO', 'SEO', 'manage_options', 'settings-seo', array($this, 'seo_settings_callback'));
+		add_submenu_page('options-general.php', 'SEO', 'SEO', 'manage_options', 'theme-settings-seo', array($this, 'seo_settings_callback'));
+		add_submenu_page('', 'EM', 'EM', 'manage_options', 'theme-settings-em', array($this, 'em_settings_callback'));
 	}
 
 	public function sanitize($data) {
@@ -43,16 +44,22 @@ final class Emtheme_settings {
 	public function register_settings() {
 		register_setting('theme-google-options', 'theme_google_scripts', ['sanitize_callback' => array($this, 'sanitize')]);
 
-		add_settings_section('theme-google-settings', 'Google Scripts', array($this, 'google_settings'), 'settings-seo');
-		add_settings_field('theme-google-tagmanager', 'Tagmanager', array($this, 'google_tagmanager'), 'settings-seo', 'theme-google-settings');
-		add_settings_field('theme-google-adwords', 'Analytics', array($this, 'google_adwords'), 'settings-seo', 'theme-google-settings');
+		add_settings_section('theme-google-settings', 'Google Scripts', array($this, 'google_settings'), 'theme-settings-seo');
+		add_settings_field('theme-google-tagmanager', 'Tagmanager', array($this, 'google_tagmanager'), 'theme-settings-seo', 'theme-google-settings');
+		add_settings_field('theme-google-adwords', 'Analytics', array($this, 'google_adwords'), 'theme-settings-seo', 'theme-google-settings');
+
+		register_setting('theme-em-options', 'theme_em_stuff', ['sanitize_callback' => 'esc_sql']);
+
+		add_settings_section('theme-em-settings', 'Theme stuff', array($this, 'em_settings'), 'theme-settings-em');
+		add_settings_field('theme-em-tagmanager', 'Copyright', array($this, 'em_copyright'), 'theme-settings-em', 'theme-em-settings');
+
 
 	}
 
 	public function seo_settings_callback() {
 		echo '<form action="options.php" method="POST">';
 		settings_fields('theme-google-options');
-		do_settings_sections('settings-seo');
+		do_settings_sections('theme-settings-seo');
 		submit_button('save');
 		echo '</form>';
 	}
@@ -114,5 +121,24 @@ final class Emtheme_settings {
 
 			echo $adwords;
 		}
+	}
+
+
+	public function em_settings_callback() {
+		echo '<form action="options.php" method="POST">';
+		settings_fields('theme-em-options');
+		do_settings_sections('theme-settings-em');
+		submit_button('save');
+		echo '</form>';
+	}
+
+	public function em_settings() {
+		echo '<b>Default value:</b> All rights reserved &lt;a href="https://www.effektivmarkedsforing.no"&gt;Effektiv Markedsføring&lt;/a&gt; © 2018 -';
+	}
+
+	public function em_copyright() {
+		$data = get_option('theme_em_stuff');
+
+		echo '<input name="theme_em_stuff" type="text" value="'.esc_attr($data).'">';
 	}
 }
