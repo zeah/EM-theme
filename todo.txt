@@ -10,12 +10,14 @@ col shortcode DONE (er filter nå)
 set a differnt color on nav menu on mobile than linear-gradient DONE
 add copyright DONE
 
-sidebar widgets on mobile
-add struc data for business in settings
-mobile (nav done) og ie css
+sidebar widgets on mobile (need to figure out where to put them)
+add struc data for business in settings // legg til template til contact footer i customizer
+mobile (nav done) og ie css done - test på tnbb
+
+legg til struc data i menyen
 
 ?page=theme-settings-em
-linker er bugget pga esc_sql
+linker er bugget pga esc_sql  - bruk kisses
 
 fiks em_css med å fjerne all isset()
 
@@ -23,7 +25,7 @@ later:
 structured data seo og auto
 change background header image position ui into arrows with custom wp customizer class or css OR change from radio buttons to 2 ranges with %
 sticky cols
-
+transient
 
 
 

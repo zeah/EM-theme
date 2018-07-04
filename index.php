@@ -75,7 +75,7 @@ $html .= '</div>';
 
 get_header();
 
-// echo '<div class="page-container">';
+echo '<div class="content-container">';
 
 // site header
 get_template_part('template-part/bigtop');
@@ -85,6 +85,6 @@ get_template_part('template-part/nav');
 
 echo $html;
 
-// echo '</div>';
+echo '</div>';
 
 get_footer();
