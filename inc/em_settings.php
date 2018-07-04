@@ -12,10 +12,10 @@ final class Emtheme_settings {
 	}
 
 	private function __construct() {
-		$this->admin_hooks();
+		$this->hooks();
 	}
 
-	private function admin_hooks() {
+	private function hooks() {
 		// if (!is_admin()) return;
 
 		add_action('admin_menu', array($this, 'add_menu'));
@@ -28,6 +28,7 @@ final class Emtheme_settings {
 	public function add_menu() {
 		// add_menu_page('EMSettings', 'Settings', 'manage_options', 'em-settings-page', array($this, 'settings_callback'), 'none', 262);
 		add_submenu_page('options-general.php', 'SEO', 'SEO', 'manage_options', 'theme-settings-seo', array($this, 'seo_settings_callback'));
+		add_submenu_page('options-general.php', 'Structured Data', 'Structured Data', 'manage_options', 'theme-settings-struc', array($this, 'struc_settings_callback'));
 		add_submenu_page('', 'EM', 'EM', 'manage_options', 'theme-settings-em', array($this, 'em_settings_callback'));
 	}
 
@@ -48,11 +49,15 @@ final class Emtheme_settings {
 		add_settings_field('theme-google-tagmanager', 'Tagmanager', array($this, 'google_tagmanager'), 'theme-settings-seo', 'theme-google-settings');
 		add_settings_field('theme-google-adwords', 'Analytics', array($this, 'google_adwords'), 'theme-settings-seo', 'theme-google-settings');
 
-		register_setting('theme-em-options', 'theme_em_stuff', ['sanitize_callback' => 'esc_sql']);
+		register_setting('theme-em-options', 'theme_em_stuff', ['sanitize_callback' => 'wp_kses_post']);
 
 		add_settings_section('theme-em-settings', 'Theme stuff', array($this, 'em_settings'), 'theme-settings-em');
 		add_settings_field('theme-em-tagmanager', 'Copyright', array($this, 'em_copyright'), 'theme-settings-em', 'theme-em-settings');
 
+
+		register_setting('theme-struc-options', 'theme_struc_data', ['sanitize_callback' => 'sanitize_text_field']);
+		add_settings_section('theme-struc-settings', 'Structured data', array($this, 'struc_settings'), 'theme-settings-struc');
+		add_settings_field('theme-struc-business', 'business', array($this, 'struc_business'), 'theme-settings-struc', 'theme-struc-settings');
 
 	}
 
@@ -121,6 +126,17 @@ final class Emtheme_settings {
 
 			echo $adwords;
 		}
+
+
+		$struc = get_option('theme_struc_data');
+
+		if ($struc && is_front_page()) {
+			$struc = json_encode(json_decode($struc), JSON_PRETTY_PRINT);
+			$script = '<script type="application/ld+json">'.str_replace('\\', '', $struc).'</script>';
+
+			// only print if it is json
+			if ($struc && $struc != 'null') echo $script;
+		}
 	}
 
 
@@ -140,5 +156,40 @@ final class Emtheme_settings {
 		$data = get_option('theme_em_stuff');
 
 		echo '<input name="theme_em_stuff" type="text" value="'.esc_attr($data).'">';
+	}
+
+
+	public function struc_settings_callback() {
+		echo '<form action="options.php" method="POST">';
+		settings_fields('theme-struc-options');
+		do_settings_sections('theme-settings-struc');
+		submit_button('save');
+		echo '</form>';
+	}
+
+	public function struc_settings() {
+		echo 'Structured data for front page.<br><b>No HTML tags allowed and must be valid json.</b><br>Example of allowed value:<pre>{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "url": "http://www.example.com",
+    "name": "Unlimited Ball Bearings Corp.",
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-401-555-1212",
+        "contactType": "Customer service"
+    }
+}</pre>';
+	}
+
+	public function struc_business() {
+		$data = get_option('theme_struc_data');
+		$d = json_encode(json_decode($data), JSON_PRETTY_PRINT);
+
+		$d = str_replace('\\', '', $d);
+
+		if ($d == 'null')
+			$d = 'ERROR IN CODE '.$data;
+
+		echo '<textarea style="width: 400px; height: 400px;" name="theme_struc_data">'.$d.'</textarea>';
 	}
 }

@@ -290,6 +290,38 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	font-size: 12px;
 }
 
+/*.theme-struc-editor .wp-editor-tools,
+.theme-struc-editor .mce-top-part,
+.theme-struc-editor .mce-statusbar {
+	display: none !important;
+}
+
+.theme-struc-editor .wp-editor-container {
+	width: 600px;
+}*/
 /*#customize-control-emtheme_color-submenu_bg::before {
 	content: 'Sub-menu';
+}*/
+
+/*.theme-soc-struc {
+	text-decoration: underline;
+	color: #22a;
+	cursor: pointer;
+}
+
+.theme-soc-struc-modal {
+	position: fixed;
+	width: 400px;
+	height: 400px;
+
+	padding: 10px;
+
+	background-color: white;
+	border: solid 2px #aaa;
+	border-radius: 5px;
+
+	top: 20%;
+	left: 20%;
+
+	z-index: 999000;
 }*/

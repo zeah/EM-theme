@@ -86,4 +86,30 @@
 
 	$('#customize-control-theme_background-header_opacity > input').on('input', (e) => $opacity.html(Math.floor(e.target.value*100)+'%'));
 
+
+
+
+
+
+
+
+	// struc data templapte modal
+	// $('.theme-soc-struc').click(() => {
+	// 	console.log('heya');
+
+	// 	if ($('.theme-soc-struc-modal').length) { 
+	// 		$('.theme-soc-struc-modal').remove(); 
+	// 		return;
+	// 	}
+
+	// 	let $el = $('<div>', {'class': 'theme-soc-struc-modal'});
+
+	// 	$el.append('<h2 class="theme-soc-struc-modal-title">Structured data template for contact</h2>');
+
+	// 	$('body').append($el);
+
+
+	// });
+
+
 }); })(wp.customize, jQuery);

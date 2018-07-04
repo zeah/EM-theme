@@ -60,7 +60,7 @@ if (have_posts()) {
 		$html .= '<div class="content-title"><h1 class="content-title-text">'.get_the_title().'</h1></div>';
 
 		// content container 
-		$html .= '<div class="content-post">'.apply_filters('the_content', get_the_content()).'</div>';
+		$html .= '<div class="content-post">'.wp_kses_post(apply_filters('the_content', get_the_content())).'</div>';
 		
 		$html .= '</div>';
 	}

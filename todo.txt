@@ -10,14 +10,13 @@ col shortcode DONE (er filter nå)
 set a differnt color on nav menu on mobile than linear-gradient DONE
 add copyright DONE
 
+add struc data for business in settings  DONE
+
 sidebar widgets on mobile (need to figure out where to put them)
-add struc data for business in settings // legg til template til contact footer i customizer
+
 mobile (nav done) og ie css done - test på tnbb
 
-legg til struc data i menyen
-
-?page=theme-settings-em
-linker er bugget pga esc_sql  - bruk kisses
+legg til struc data i nav menyen
 
 fiks em_css med å fjerne all isset()
 
