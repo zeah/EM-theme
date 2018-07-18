@@ -85,6 +85,12 @@ final class Emtheme_documentation {
 									  </ul>
 								   </li>
 								   <li>
+								   	<h2><a href="#theme-struc">Structured Data</a></h2>
+								   	<ul>
+								   		<li><a href="#theme-struc-frontpage">Front page only</a></li>
+								   	</ul>
+								   </li>
+								   <li>
 									  <h2><a href="#theme-features">Misc. Features</a></h2>
 									  <ul>
 										 <li><a href="#theme-features-privacy">Privacy Window</a></li>
@@ -330,6 +336,21 @@ final class Emtheme_documentation {
 
 									  </ul>
 								   </li>
+
+								   <li id="theme-struc">
+								   		<h2>Structured Data</h2>
+							   			<br><a target="_blank" rel=noopener href="https://search.google.com/structured-data/testing-tool">Testing Tool</a>
+							   			<br><a target="_blank" rel=noopener href="https://schema.org/docs/documents.html">Official Documentation</a>
+							   			<br><a target="_blank" rel=noopener href="https://schema.org/docs/full.html">Full list of types of structured data</a>
+								   		<ul>
+								   			<li id="theme-struc-frontpage"><b>Front page only</b>
+								   			<br><a target="_blank" rel=noopener href="'.get_site_url().'/wp-admin/options-general.php?page=theme-settings-struc">Settings link</a>
+								   			<p>Write the structured data in the testing tool and when it returns no errors then copy it over to the settings in theme.
+								   			<br>Do not add the script tags to the settings. The value of the setting must be valid json and only valid json.</p>
+								   			</li>
+								   		</ul>
+								   </li>
+
 								   <li id="theme-features">
 									  <h2>Features</h2>
 									  <ul>

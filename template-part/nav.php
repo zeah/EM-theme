@@ -37,8 +37,9 @@ final class Emtheme_nav {
 		// to avoid array errors later
 		if (!is_array($show)) $show = [];
 
-		$search = $show['search_navbar_toogle'] || wp_is_mobile();
 
+		// show if toggled or is mobile
+		$search = $show['search_navbar_toggle'] || wp_is_mobile();
 		$logo = $show['logo_navbar_toogle'] || wp_is_mobile();
 
 
@@ -50,7 +51,7 @@ final class Emtheme_nav {
 
 		// container for logo and title 
 		// $html .= '<div class="navbar-identity'.(!$logo ? ' desktop-hidden' : '').'">';
-		$html .= '<div class="navbar-identity'.(!$show['logo_navbar_toggle'] ? ' desktop-hidden' : '').'"'.(!$logo ? ' style="display: none;"' : '').'>';
+		$html .= '<div class="navbar-identity'.(!$show['logo_navbar_toggle'] ? ' desktop-hidden' : '').'"'.($logo ? '' : ' style="display: none;"').'>';
 
 		// logo from customizer
 		if (function_exists('get_custom_logo'))
@@ -70,8 +71,9 @@ final class Emtheme_nav {
 		$html .= $this->get_nav();
 		
 		// search template
-		$html .= '<div class="navbar-search'.(!$show['search_navbar_toogle'] ? ' desktop-hidden' : '').'"'.(!$search ? ' style="display: none;"' : '').'>'.get_search_form(false).'</div>';
-
+		$html .= '<div class="navbar-search'.(!$show['search_navbar_toggle'] ? ' desktop-hidden' : '').'"'.(!$search ? ' style="display: none;"' : '').'>'.get_search_form(false).'</div>';
+		// wp_die('<xmp>'.print_r($show, true).'</xmp>');
+		
 		// end of container for menu and search
 		$html .= '</div>';
 

@@ -11,12 +11,14 @@ set a differnt color on nav menu on mobile than linear-gradient DONE
 add copyright DONE
 
 add struc data for business in settings  DONE
-
-sidebar widgets on mobile (need to figure out where to put them)
+add <nav> to search form DONE
 
 mobile (nav done) og ie css done - test på tnbb
 
+legge til struc data til seo meta box
+sidebar widgets on mobile (need to figure out where to put them)
 legg til struc data i nav menyen
+tabindex
 
 fiks em_css med å fjerne all isset()
 

@@ -81,8 +81,9 @@ final class Emtheme_search {
 	 */
 	public function get() {
 
+
 		/* form container */
-		$html = '<form class="emtheme-search-form" action="'.get_site_url().'" method="get" role="search">';
+		$html = '<nav class="emtheme-search-form"><form action="'.get_site_url().'" method="get" role="search">';
 		
 		/* input text field */
 		$html .= '<input class="emtheme-search-input" type="search" name="s">';
@@ -90,7 +91,7 @@ final class Emtheme_search {
 		/* search button */
 		$html .= '<button class="emtheme-search-button" type="submit"><i class="material-icons">search</i></button>';
 		
-		$html .= '</form>';
+		$html .= '</form></nav>';
 
 
 		return $html;

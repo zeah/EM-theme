@@ -57,7 +57,7 @@ final class Emtheme_settings {
 
 		register_setting('theme-struc-options', 'theme_struc_data', ['sanitize_callback' => 'sanitize_text_field']);
 		add_settings_section('theme-struc-settings', 'Structured data', array($this, 'struc_settings'), 'theme-settings-struc');
-		add_settings_field('theme-struc-business', 'business', array($this, 'struc_business'), 'theme-settings-struc', 'theme-struc-settings');
+		add_settings_field('theme-struc-business', 'Structured Data for front page', array($this, 'struc_business'), 'theme-settings-struc', 'theme-struc-settings');
 
 	}
 
@@ -183,12 +183,14 @@ final class Emtheme_settings {
 
 	public function struc_business() {
 		$data = get_option('theme_struc_data');
-		$d = json_encode(json_decode($data), JSON_PRETTY_PRINT);
 
-		$d = str_replace('\\', '', $d);
+		if ($data == '') $d = '';
+		else { 
+			$d = json_encode(json_decode($data), JSON_PRETTY_PRINT);
+			$d = str_replace('\\', '', $d);
 
-		if ($d == 'null')
-			$d = 'ERROR IN CODE '.$data;
+			if ($d == 'null') $d = 'ERROR IN CODE '.$data; 
+		}
 
 		echo '<textarea style="width: 400px; height: 400px;" name="theme_struc_data">'.$d.'</textarea>';
 	}

@@ -45,33 +45,34 @@ dynamic_sidebar('default-template-bottom');
 $sidebar .= ob_get_clean();
 
 // grid
-$html = '<div class="main main-sidebar">';
+$html = '<main class="main main-sidebar">';
 
 // content grid element 
-$html .= '<div class="content-column">';
+$html .= '<section class="content-column">';
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
 
 		// post container
-		$html .= '<div class="content">';
+		$html .= '<article class="content">';
 
 		// title container 
-		$html .= '<div class="content-title"><h1 class="content-title-text">'.get_the_title().'</h1></div>';
+		$html .= '<h1 class="content-title content-title-text">'.esc_html(get_the_title()).'</h1>';
+		// $html .= '<header class="content-title"><h1 class="content-title-text">'.get_the_title().'</h1></header>';
 
 		// content container 
 		$html .= '<div class="content-post">'.wp_kses_post(apply_filters('the_content', get_the_content())).'</div>';
 		
-		$html .= '</div>';
+		$html .= '</article>';
 	}
 }
-$html .= '</div>';
+$html .= '</section>';
 
 // widget grids
 $html .= $sidebar;
 
 // end of grid container
-$html .= '</div>';
+$html .= '</main>';
 
 get_header();
 
