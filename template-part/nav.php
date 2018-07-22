@@ -58,7 +58,7 @@ final class Emtheme_nav {
 			$html .= '<div class="navbar-logo">'.get_custom_logo().'</div>';
 
 		// site title
-		$html .= '<div class="navbar-title">'.esc_html(get_bloginfo('name')).'</div>';
+		$html .= '<a href="'.get_site_url().'" class="navbar-title">'.esc_html(get_bloginfo('name')).'</a>';
 
 		$html .= '</div>';
 

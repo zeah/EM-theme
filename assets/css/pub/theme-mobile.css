@@ -1,74 +1,102 @@
 
+/*
+
+	0.1 html
+	0.2 body
+	0.3 page-container
+	0.4 content-container
+
+	1.0 header
+	2.0 navbar
+	3.0 content
+		3.1 serp
+	4.0 footer
+	5.0 widget
+	6.0 misc
+*/
 
 html { 
+
+	/* default size */
 	font-size: 62.5%;
 }
 
 body {
+
+	/* wp fix */
 	margin: 0;
-
-	display: flex;
-	flex-direction: column;
 }
 
 
+/**/
 .page-container {
-	
+
+	/* footer fix */	
 	min-height: 100vh;
+
+
 	display: flex;
 	flex-direction: column;
+	align-items: stretch;
 }
 
+.content-container {
+	margin-bottom: auto;
+}
+
+
+/* 1.0 header */
 .emtheme-header-container {
 	display: none;
 }
 
 
+/* 2.0 navbar */
 
+/* background color */
 .navbar-background {
-	align-self: stretch;
-	/*position: relative;*/
-	/*display: flex;*/
 	height: 4.4rem;
-	/*align-items: center;*/
 }
 
+/* width */
 .navbar-container {
 	display: flex;
 	position: relative;
 }
 
+/* logo, site title */
 .navbar-identity {
 	display: flex;
 	align-items: center;
 	margin-right: auto;
 
-	width: 80%;
+	/*width: 80%;*/
+	padding-right: 2rem;
+
 }
 
+/* container for logo */
 .navbar-logo {
 	margin-right: 1rem;
 }
 
+/* logo element */
 .custom-logo {
 	display: block;
 	height: 4.4rem !important;
 	width: auto !important;
 }
 
-
-.mobile-menu-svg {
-	height: 4rem;
-	width: 4rem	;
-}
-
-
+/* site title */
 .navbar-title {
 	white-space: nowrap;
 	overflow: hidden;
-	/*max-width: 10%;*/
+
+	text-decoration: none;
 }
 
+
+/* container for nav and search form elements */
 .navbar-menu {
 	display: none;
 	position: absolute;
@@ -78,23 +106,22 @@ body {
 	width: 100vw;
 }
 
+/* onclick class */
 .navbar-menu-show {
 	display: flex;
+
+	/* sets search form above nav menu */
 	flex-direction: column-reverse;
 }
 
-/*.menu-container {
-	z-index: 99;
-	position: static;
-	
-}*/
-
+/* container for search form */
 .navbar-search {
 	display: flex;
 	align-items: center;
-	z-index: 100;
+	/*z-index: 100;*/
 }
 
+/* nav tag container for search form */
 .emtheme-search-form {
 	flex: 1;
 	display: flex;
@@ -102,23 +129,31 @@ body {
 	margin: 20px 0;
 }
 
+/* actual search form */
+.emtheme-search-form > form {
+	flex: 1;
+
+	display: flex;
+}
+
+/* search input */
 .emtheme-search-input {
-	margin-left: 7px;
+	margin: 0 1.5rem;
 	flex: 1;
 }
+
 .emtheme-search-input:focus {
 	outline: none;
-	/*border-bottom: solid 2px white;*/
 }
 
+/* search button */
 .emtheme-search-button {
-	margin-right: 7px;
+	margin-right: 1.5rem;
+
+	background-color: inherit;
+	border: none;
 }
 
-.emtheme-mobile-arrow {
-	display: flex;
-	align-items: center;
-}
 
 .menu-list {
 	flex-direction: column;
@@ -139,16 +174,40 @@ body {
 }
 
 .sub-menu {
+
+	/* show sub menu after arrow */
 	order: 3;
 	width: 100vw;
 }
 
+/* text set in wp navbar maker */
 .emtheme-navbar-description {
 	position: absolute;
 	right: 10px;
 	top: 10px;
 	font-size: 1.6rem;
 }
+
+/* sub-menu arrow container */
+.mobile-arrow-container {
+	display: flex;
+	align-items: center;
+
+	margin: 0 1rem;
+}
+
+/* menu/arrow icon */
+.nav-arrow-svg,
+.mobile-menu-svg {
+	position: relative;
+	top: 0.2rem;
+	height: 4rem;
+	width: 4rem	;
+}
+
+
+/* 3.0 content */
+
 
 .main {
 	margin-bottom: auto;
@@ -159,11 +218,7 @@ body {
 	margin: 1rem 0;
 }
 
-
-.emtheme-footer {
-	padding: 2rem;
-}
-
+/* wp classes for inserted images */
 .alignright,
 .alignleft,
 .aligncenter {
@@ -171,15 +226,91 @@ body {
 	margin: auto;
 }
 
+
+/* 3.1 SERP */
+
+.emtheme-serp {
+	padding: 0;
+	margin: 0;
+}
+
+.emtheme-search-item {
+	display: block;
+	font-family: arial;
+
+	margin-bottom: 3rem;
+}
+
+/* link */
+.emtheme-search-link {
+	display: inline-block;
+	color: #1a0dab;
+	text-decoration: none;
+	font-family: arial;
+	font-size: 1.8rem;
+
+	padding: 0.2rem 0.5rem;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+
+	background-color: #aaaaaa20;
+}
+
+/* link text */
+.emtheme-search-link-text {
+	font-size: 1rem;
+	color: #006621;
+}
+
+/* container for thumbnail and excerpt */
+.emtheme-search-box {
+	/*display: flex;*/
+}
+
+/* post image */
+.emtheme-search-thumbnail {
+	/*margin-right: 1rem;*/
+}
+
+.emtheme-search-thumbnail > img {
+	width: 100%;
+	height: auto;
+	/*width: auto;*/
+	display: block;
+}
+
+/* post excerpt, either user set or wp generated */
+.emtheme-search-excerpt {
+	font-size: 1.3rem;
+}
+
+/* 4.0 footer */
+
+.emtheme-cc {
+	text-align: center;
+	font-family: Verdana;
+	padding-bottom: 2px;
+}
+
+.emtheme-footer {
+	padding: 2rem;
+}
+
+
+/* 5.0 widgets */
+
+
+
+/* 6.0 misc */
+
+/* go up button window */
 .emtheme-goup {
 	display: inline-block;
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
 
-	/*background-color: pink;*/
 	border-radius: 25%;
-	/*border: solid 2px black;*/
 	cursor: pointer;
 	user-select: none;
 }
@@ -188,11 +319,8 @@ body {
 	width: 5rem;
 }
 
-.goup-arrow {
-	/*fill: red;*/
-}
 
-
+/* privacy info window */
 .emtheme-cookie-container {
 	position: fixed;
 	bottom: 60px;

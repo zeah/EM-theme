@@ -10,7 +10,7 @@
 
 
 /* content area html */
-$html = '<div class="main"><div class="content"><ul>';
+$html = '<div class="main"><div class="content"><ul class="emtheme-serp">';
 
 /* first loop */
 if (have_posts())

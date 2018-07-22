@@ -94,7 +94,7 @@ jQuery(function() {
 
 		var arr = H({class: 'mobile-arrow-container'});
 
-		arr.innerHTML = '<svg class="nav-arrow-svg" xmlns="http://www.w3.org/2000/svg" width="30" height="30"><path class="nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+		arr.innerHTML = '<svg class="nav-arrow-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path class="nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
 
 		icon.innerHTML = '<svg class="mobile-menu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path class="mobile-icon" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>';
 

@@ -32,11 +32,11 @@ final class Emtheme_filter {
 
 		// if matches found
 		if ($matches[1]) {
-
+			
 			// checking syntax:
-			// only [col right], [col center], [col left] is allowed.
+			// only [col right], [col center], [col left] with or without custom width is allowed.
 			foreach($matches[1] as $col)
-				if (!preg_match('/\[col (left|center|right)\]/', $col, $match))	
+				if (!preg_match('/\[col (left|center|right)(| width=(|")\d+.(|px)(|"))\]$/', $col, $match))	
 					return $data; // does nothing
 		
 
@@ -47,10 +47,10 @@ final class Emtheme_filter {
 			$data = $this->str_replace_last('[/col]', '[/col]</div>', $data);
 
 			// adding flex items with custom width
-			$data = preg_replace('/\[col (.*?) width=.*?(\d+).*?\]/', '<div class="content-flex-$1" style="width: $2px">', $data);
+			$data = preg_replace('/\[col (right|center|left) width=(|")\d+.(|px)(|")\]/', '<div class="content-flex-$1" style="width: $2px">', $data);
 
-			// adding flex items with default width
-			$data = preg_replace('/\[col (center|left|right)\]/', '<div class="content-flex-$1" style="width: 250px">', $data);
+			// adding flex items with default width from external css
+			$data = preg_replace('/\[col (center|left|right)\]/', '<div class="content-flex-$1">', $data);
 
 			// closing all flex items
 			$data = str_replace('[/col]', '</div>', $data);
@@ -68,11 +68,11 @@ final class Emtheme_filter {
 	 * @param  String $str     [description]
 	 * @return {String}          [description]
 	 */
-	private function str_replace_last( $search , $replace , $str ) {
+	private function str_replace_last($search, $replace, $str) {
 
-	    if( ( $pos = strrpos( $str , $search ) ) !== false ) {
-	        $search_length  = strlen( $search );
-	        $str    = substr_replace( $str , $replace , $pos , $search_length );
+	    if (($pos = strrpos($str, $search)) !== false) {
+	        $search_length = strlen($search);
+	        $str = substr_replace($str, $replace, $pos, $search_length);
 	    }
 
 	    return $str;
