@@ -44,11 +44,9 @@
 	use rem for accessibility
 */
 html {
-	font-size: 62.5%;
 
-	/**/
-	/*margin: 0 !important;*/
-	/*min-height: 100%;*/
+	/* default size */
+	font-size: 62.5%;
 }
 
 /* 0.2 body */
@@ -254,6 +252,8 @@ body {
 .navbar-identity {
 	
 	/* vertical centers content */
+
+	height: 100%;
 	display: flex;
 	align-items: center;
 }
@@ -269,8 +269,17 @@ body {
 	margin-right: 2rem;
 	
 	/* cropping background image */
-	background-position: center;
-	background-repeat: no-repeat;
+	/*background-position: center;*/
+	/*background-repeat: no-repeat;*/
+}
+
+
+.navbar-logo .custom-logo {
+	height: 4rem;
+	width: auto;
+	/*height: auto;*/
+	/*width: 100%;*/
+	/*min-height: 4rem;*/
 }
 
 .navbar-title {

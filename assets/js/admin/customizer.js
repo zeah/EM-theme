@@ -241,8 +241,8 @@ $(() => { ((api) => {
 	api('emtheme_layout[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-container > .emtheme-search-form').toggle())));
 
 
-	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-logo').toggle();
-	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-logo').toggle())));
+	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-identity').toggle();
+	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-identity').toggle())));
 
 
 	// header background image

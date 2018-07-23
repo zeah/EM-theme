@@ -33,6 +33,11 @@
 // wp_die('<xmp>'.print_r(get_transient('xmlfromfor'), true).'</xmp>');
 
 // make it into a grid !
+// 
+// 
+
+
+$seo = Emtheme_page_seo::get_instance();
 
 $sidebar = ''; 
 ob_start();
@@ -52,6 +57,8 @@ $html .= '<section class="content-column">';
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
+
+		add_action('wp_footer', array($seo, 'add_footer'));
 
 		// post container
 		$html .= '<article class="content">';

@@ -1,6 +1,8 @@
 <?php 
 
-
+/**
+ * 
+ */
 final class Emtheme_page_seo {
 	/* singleton */
 	private static $instance = null;
@@ -26,6 +28,7 @@ final class Emtheme_page_seo {
 
 	private function wp_hooks() {
 		add_action('wp_head', array($this, 'add_head'));
+		// add_action('wp_footer', array($this, 'add_footer'));
 	}
 
 	public function add_meta_box() {
@@ -36,7 +39,7 @@ final class Emtheme_page_seo {
 			'theme_seo_meta',
 			'SEO Options',
 			array($this, 'seo_callback'),
-			'page'
+			$types
 		);
 	}
 
@@ -95,10 +98,36 @@ final class Emtheme_page_seo {
 		
 		$html .= '</div>';
 
+		$html .= '<div><h1>Structured Data</h1>';
+
+		global $post;
+		$struc_data = get_post_meta($post->ID, 'struc_data');
+		if (!$struc_data[0]) $struc_data = ''; 
+		else $struc_data = $struc_data[0];
+
+		if ($struc_data == '') $d = '';
+		else { 
+			$d = json_encode(json_decode($struc_data), JSON_PRETTY_PRINT);
+			$d = str_replace('\\', '', $d);
+
+			if ($d == 'null') $d = 'ERROR IN CODE '.$struc_data; 
+		}
+
+		$html .= '<textarea style="width: 400px; height: 400px;" name="struc_data">'.$d.'</textarea>';
+
+		$html .= '</div>';
 
 		echo $html;
 	}
 
+
+
+
+	/**
+	 * Filter for which type of posts to add seo meta box for.
+	 * 
+	 * @param [type] $data [description]
+	 */
 	public function add_seo_meta($data) {
 
 		array_push($data, 'page', 'post');
@@ -106,6 +135,15 @@ final class Emtheme_page_seo {
 		return $data;
 	}
 
+
+
+
+	/**
+	 * getting emtheme_seo meta data
+	 * 
+	 * @param  [type] $data [description]
+	 * @return [type]       [description]
+	 */
 	private function get_meta($data) {
 		global $post;
 
@@ -115,6 +153,15 @@ final class Emtheme_page_seo {
 
 	}
 
+
+
+
+	/**
+	 * saving seo meta data
+	 * 
+	 * @param  [type] $post_id [description]
+	 * @return [type]          [description]
+	 */
 	public function save($post_id) {
 
 		// is on admin screen
@@ -130,6 +177,7 @@ final class Emtheme_page_seo {
 		if (!wp_verify_nonce($_POST['seo_nonce'], 'seo'.basename(__FILE__))) return;
 
 		if  (isset($_POST['emtheme_seo'])) update_post_meta($post_id, 'emtheme_seo', $this->sanitize($_POST['emtheme_seo']));
+		if  (isset($_POST['struc_data'])) update_post_meta($post_id, 'struc_data', $this->sanitize($_POST['struc_data']));
 
 	}
 
@@ -225,6 +273,25 @@ final class Emtheme_page_seo {
 		if (sizeof($content) > 0 ) $html .= '<meta name="robots" content="'.implode(' ', $content).'">';
 
 		echo $html;
+	}
+
+	public function add_footer() {
+		// if (!is_singular()) return;
+
+		global $post;
+
+		$meta = get_post_meta($post->ID, 'struc_data');
+		// wp_die('<xmp>'.print_r($meta, true).'</xmp>');
+		if (!$meta[0]) return;
+
+		$meta = $meta[0];
+
+		$meta = json_encode(json_decode($meta), JSON_PRETTY_PRINT);
+		$script = '<script type="application/ld+json">'.str_replace('\\', '', $meta).'</script>';
+
+		// only print if it is json
+		if ($meta && $meta != 'null') echo $script;
+
 	}
 
 }

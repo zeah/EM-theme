@@ -438,7 +438,7 @@ final class Emtheme_customizer {
 
 		$cust->add_control('emtheme_layout[logo_navbar_toggle]', array(
 			'section' => 'theme_layout_section',
-			'label' => 'Show Logo in Navbar',
+			'label' => 'Show Logo and Title in Navbar',
 			'description' => 'You need to adjust the actual image\'s dimension to make it fit on the navbar. The navbar will show the actual width, but if the height is greater than the navbar then it will be cropped (and not re-sized.)',
 			'priority' => '8',
 			'type' => 'checkbox'

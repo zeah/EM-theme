@@ -1,5 +1,7 @@
 <?php 
 
+if (version_compare($GLOBALS['wp_version'], '4.9', '<')) return;
+
 require_once 'inc/em_css.php';
 require_once 'inc/em_widget.php';
 require_once 'inc/em_admin.php';
@@ -7,7 +9,6 @@ require_once 'inc/em_google_font.php';
 require_once 'inc/em_search.php';
 require_once 'inc/em_page_seo.php';
 require_once 'inc/em_filter.php';
-
 
 /* */
 

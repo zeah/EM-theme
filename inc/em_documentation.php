@@ -88,6 +88,7 @@ final class Emtheme_documentation {
 								   	<h2><a href="#theme-struc">Structured Data</a></h2>
 								   	<ul>
 								   		<li><a href="#theme-struc-frontpage">Front page only</a></li>
+								   		<li><a href="#theme-struc-page">Page/Post</a></li>
 								   	</ul>
 								   </li>
 								   <li>
@@ -283,9 +284,6 @@ final class Emtheme_documentation {
 
 								   			</li>
 								   			
-								   			<li id="theme-editor-struc"><b>Structured Data</b>
-
-								   			</li>
 								   			</ul>
 								   			</li>
 								   		</ul>
@@ -342,11 +340,14 @@ final class Emtheme_documentation {
 							   			<br><a target="_blank" rel=noopener href="https://search.google.com/structured-data/testing-tool">Testing Tool</a>
 							   			<br><a target="_blank" rel=noopener href="https://schema.org/docs/documents.html">Official Documentation</a>
 							   			<br><a target="_blank" rel=noopener href="https://schema.org/docs/full.html">Full list of types of structured data</a>
+								   			<p>Write the structured data in the testing tool and when it returns no errors then copy it over to the settings in theme.
+								   			<br>Do not add the script tags to the settings. The value of the setting must be valid json and only valid json.</p>
 								   		<ul>
 								   			<li id="theme-struc-frontpage"><b>Front page only</b>
 								   			<br><a target="_blank" rel=noopener href="'.get_site_url().'/wp-admin/options-general.php?page=theme-settings-struc">Settings link</a>
-								   			<p>Write the structured data in the testing tool and when it returns no errors then copy it over to the settings in theme.
-								   			<br>Do not add the script tags to the settings. The value of the setting must be valid json and only valid json.</p>
+								   			</li>
+								   			<li id="theme-struc-page"><b>Page/Post</b>
+								   			<p>Gets added when the page/post is shown as a single page or is a part of the page.</p>
 								   			</li>
 								   		</ul>
 								   </li>

@@ -10,6 +10,7 @@ echo $footer->privacy();
 echo $footer->info();
 echo '</div>';
 
+
 final class Emtheme_footer {
 	/* singleton */
 	private static $instance = null;
@@ -105,6 +106,7 @@ final class Emtheme_footer {
 		$html .= '</footer>';
 		return $html;
 	}
+
 
 	private function filter_info($data) {
 		return wp_kses_post(preg_replace('/[\r\n]/', '<br>', $data));

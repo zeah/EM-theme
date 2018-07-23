@@ -15,12 +15,12 @@ add <nav> to search form DONE
 
 mobile (nav done) og ie css done - test på tnbb
 
-legge til struc data til seo meta box
+legge til struc data til seo meta box DONE
 sidebar widgets on mobile (need to figure out where to put them)
-legg til struc data i nav menyen
+legg til struc data i nav menyen DONE
 tabindex
 
-fiks em_css med å fjerne all isset()
+fiks em_css med å fjerne all isset() DONE
 
 later:
 structured data seo og auto
