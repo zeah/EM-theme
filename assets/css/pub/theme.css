@@ -111,7 +111,7 @@ body {
 	and margin/paddings */
 .emtheme-header-container {
 
-	/*position: relative;*/
+	position: relative;
 
 	align-self: stretch;
 
@@ -159,6 +159,9 @@ body {
 	margin-right: auto;
 }
 
+.emtheme-header-tagline {
+	margin-left: 2rem;
+}
 
 /* 1.2 navbar */
 
@@ -304,6 +307,9 @@ body {
 	margin-right: auto;
 }
 
+.menu-list > .menu-item:last-child > .menu-link {
+	border-right: none !important;
+}
 
 /* moving submenu outside navbar */
 .sub-menu {
@@ -415,12 +421,16 @@ body {
 	padding: 1rem;
 }
 
+.default-template-widget img {
+	display: block;
+}
+
 /* making widgets sticky */
 .default-template-top-widget,
 .default-template-left-widget,
 .default-template-right-widget {
 	padding: 1rem;
-	padding-top: 0;
+	/*padding-top: 0;*/
 	position: sticky;
 	top: 2rem;
 	align-self: flex-start;
@@ -431,7 +441,18 @@ body {
 .default-template-bottom-widget {
 	display: flex;
 	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+
+	/*align-items: center;*/
 }
+
+.default-template-top-widget p,
+.default-template-bottom-widget p {
+	padding: 0;
+	margin: 0;
+}
+
 
 /*
 	grid widget settings and margins

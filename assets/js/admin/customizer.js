@@ -6,7 +6,7 @@ $(() => { ((api) => {
 	let top = api.instance('emtheme_color[nav_bg_top]').get(); 
 	let middle = api.instance('emtheme_color[nav_bg_middle]').get(); 
 	let bottom = api.instance('emtheme_color[nav_bg_bottom]').get();
-	let menuc = $('.navbar-menu');
+	let menuc = $('.navbar-background');
 
 
 	let fixWeight = (o) => {
@@ -65,7 +65,7 @@ $(() => { ((api) => {
 				});
 				break;
 			case 'content':
-				$('.main, .emtheme-footer').css({
+				$('.main, .emtheme-footer, .emtheme-header-tagline').css({
 					fontFamily: '"'+family+'"',
 					fontWeight: weight.replace('i', '')
 				});
@@ -142,7 +142,7 @@ $(() => { ((api) => {
 
 	api('emtheme_color[main_background]', (v) => v.bind((nv) => $('.content, .default-template-widget').css('background-color', nv)));
 	api('emtheme_color[emtop_bg]', (v) => v.bind((nv) => $('.emtheme-header-container').css('background-color', nv)));
-	api('emtheme_color[emtop_font]', (v) => v.bind((nv) => $('.emtheme-header-container').css('color', nv)));
+	api('emtheme_color[emtop_font]', (v) => v.bind((nv) => $('.title-link').css('color', nv)));
 	api('emtheme_color[main_font]', (v) => v.bind((nv) => $('.main').css('color', nv)));
 	api('emtheme_color[footer_bg]', (v) => v.bind((nv) => $('.emtheme-footer').css('background-color', nv)));
 	api('emtheme_color[footer_font]', (v) => v.bind((nv) => $('.emtheme-footer, .emtheme-footer a').css('color', nv)));

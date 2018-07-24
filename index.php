@@ -42,10 +42,30 @@ $seo = Emtheme_page_seo::get_instance();
 $sidebar = ''; 
 ob_start();
 
-dynamic_sidebar('default-template-right');
-dynamic_sidebar('default-template-left');
-dynamic_sidebar('default-template-top');
-dynamic_sidebar('default-template-bottom');
+
+if (is_active_sidebar('default-template-right')) {
+	echo '<aside class="default-template-right-widget default-template-widget">';
+	dynamic_sidebar('default-template-right');
+	echo '</aside>';
+}
+
+if (is_active_sidebar('default-template-left')) {
+	echo '<aside class="default-template-left-widget default-template-widget">';
+	dynamic_sidebar('default-template-left');
+	echo '</aside>';
+}
+
+if (is_active_sidebar('default-template-top')) {
+	echo '<aside class="default-template-top-widget default-template-widget top-widget">';
+	dynamic_sidebar('default-template-top');
+	echo '</aside>';
+}
+
+if (is_active_sidebar('default-template-bottom')) {
+	echo '<aside class="default-template-bottom-widget default-template-widget">';
+	dynamic_sidebar('default-template-bottom');
+	echo '</aside>';
+}
 
 $sidebar .= ob_get_clean();
 
