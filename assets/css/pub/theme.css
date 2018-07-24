@@ -430,7 +430,6 @@ body {
 .default-template-left-widget,
 .default-template-right-widget {
 	padding: 1rem;
-	/*padding-top: 0;*/
 	position: sticky;
 	top: 2rem;
 	align-self: flex-start;

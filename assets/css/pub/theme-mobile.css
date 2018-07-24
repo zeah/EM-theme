@@ -309,6 +309,28 @@ body {
 
 /* 5.0 widgets */
 
+.widget-title {
+	margin: 0;
+	font-size: 1.8rem;
+}
+
+.default-template-widget {
+	padding: 1rem;
+	margin: 1rem 0;
+}
+
+.default-template-widget img {
+	margin: auto;
+	display: block;
+}
+
+.default-template-top-widget,
+.default-template-bottom-widget {
+
+	display: flex;
+	justify-content: space-around;
+
+}
 
 
 /* 6.0 misc */
