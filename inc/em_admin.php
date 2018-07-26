@@ -48,6 +48,10 @@ final class Emtheme_admin {
 			CSS from customizer -> additional css gets shown in tinymce editor */
 		add_filter('tiny_mce_before_init', array($this, 'add_to_tinymce')); 
 
+
+		add_filter( 'contextual_help', array($this, 'screen_info'), 10, 3 );
+
+
 	}
 
 	public function enqueue_sands() {
@@ -80,5 +84,58 @@ final class Emtheme_admin {
 		$options['content_style'] = 'body { font-family: \''.$family.'\'; font-size: '.$size.'px; line-height: '.$lineheight.'}'.preg_replace('/\s+/', ' ', wp_get_custom_css());
 
 		return $options; 
+	}
+
+
+	/**
+	 * Adding screen names and hooks to "screen information" to help
+	 * @return [type]                  [description]
+	 */
+	public function screen_info($contextual_help, $screen_id, $screen) {
+		// The add_help_tab function for screen was introduced in WordPress 3.3.
+	    if ( ! method_exists( $screen, 'add_help_tab' ) )
+	        return $contextual_help;
+	 
+	    global $hook_suffix;
+	 
+	    // List screen properties
+	    $variables = '<ul style="width:50%;float:left;"> <strong>Screen variables </strong>'
+	        . sprintf( '<li> Screen id : %s</li>', $screen_id )
+	        . sprintf( '<li> Screen base : %s</li>', $screen->base )
+	        . sprintf( '<li>Parent base : %s</li>', $screen->parent_base )
+	        . sprintf( '<li> Parent file : %s</li>', $screen->parent_file )
+	        . sprintf( '<li> Hook suffix : %s</li>', $hook_suffix )
+	        . '</ul>';
+	 
+	    // Append global $hook_suffix to the hook stems
+	    $hooks = array(
+	        "load-$hook_suffix",
+	        "admin_print_styles-$hook_suffix",
+	        "admin_print_scripts-$hook_suffix",
+	        "admin_head-$hook_suffix",
+	        "admin_footer-$hook_suffix"
+	    );
+	 
+	    // If add_meta_boxes or add_meta_boxes_{screen_id} is used, list these too
+	    if ( did_action( 'add_meta_boxes_' . $screen_id ) )
+	        $hooks[] = 'add_meta_boxes_' . $screen_id;
+	 
+	    if ( did_action( 'add_meta_boxes' ) )
+	        $hooks[] = 'add_meta_boxes';
+	 
+	    // Get List HTML for the hooks
+	    $hooks = '<ul style="width:50%;float:left;"> <strong>Hooks </strong> <li>' . implode( '</li><li>', $hooks ) . '</li></ul>';
+	 
+	    // Combine $variables list with $hooks list.
+	    $help_content = $variables . $hooks;
+	 
+	    // Add help panel
+	    $screen->add_help_tab( array(
+	        'id'      => 'wptuts-screen-help',
+	        'title'   => 'Screen Information',
+	        'content' => $help_content,
+	    ));
+	 
+	    return $contextual_help;
 	}
 }

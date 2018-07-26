@@ -67,7 +67,7 @@ body {
 
 /* stuff to be hidden by js on desktop */
 .desktop-hidden {
-	display: none !important;
+	display: none;
 }
 
 /* 	container for page 
@@ -259,6 +259,8 @@ body {
 	height: 100%;
 	display: flex;
 	align-items: center;
+
+	margin-right: auto;
 }
 
 /* site logo on navbar */
@@ -266,7 +268,9 @@ body {
 	/* background image url set from php */
 
 	display: block;
-	height: 100%;
+	/*height: 100%;*/
+
+	align-self: center;
 
 	/* margin to menu */
 	margin-right: 2rem;
@@ -278,8 +282,8 @@ body {
 
 
 .navbar-logo .custom-logo {
-	height: 4rem;
-	width: auto;
+	/*height: 4rem;*/
+	/*width: auto;*/
 	/*height: auto;*/
 	/*width: 100%;*/
 	/*min-height: 4rem;*/
@@ -288,14 +292,14 @@ body {
 .navbar-title {
 
 	white-space: nowrap;
-
+	text-decoration: none; 
 	/* pushes search box (if toggled) to the right */
 	margin-right: auto;
 }
 
 /* container for the menu */
 .navbar-menu {
-	flex: 1;
+	/*flex: 1;*/
 	display: flex;
 }
 
@@ -349,6 +353,10 @@ body {
 .emtheme-search-form {
 	display: flex;
 	align-items: center;
+}
+
+.emtheme-search-form > form {
+	white-space: nowrap;
 }
 
 /* search form input */

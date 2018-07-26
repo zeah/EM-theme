@@ -53,7 +53,7 @@ $(() => { ((api) => {
 		// setting css
 		switch (place) {
 			case 'title':
-				$('.emtheme-header-title').css({
+				$('.emtheme-header-title, .navbar-title').css({
 					fontFamily: '"'+family+'"',
 					fontWeight: weight.replace('i', '')
 				});
@@ -217,7 +217,7 @@ $(() => { ((api) => {
 	
 	api('emtheme_font[content_weight]', (v) => v.bind((nv) => style('content')));
 
-	api('emtheme_font[title_size]', (v) => v.bind((nv) => $('.emtheme-header-title').css('font-size', (nv/10)+'rem')));
+	api('emtheme_font[title_size]', (v) => v.bind((nv) => $('.emtheme-header-title, .navbar-title').css('font-size', (nv/10)+'rem')));
 	api('emtheme_font[navbar_size]', (v) => v.bind((nv) => $('.menu-link').css('font-size', (nv/10)+'rem')));
 	api('emtheme_font[content_size]', (v) => v.bind((nv) => $('.main, .emtheme-footer').css('font-size', (nv/10)+'rem')));
 

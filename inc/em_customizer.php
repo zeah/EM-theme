@@ -29,21 +29,19 @@ final class Emtheme_customizer {
 		add_action('customize_controls_enqueue_scripts', array($this, 'customizer_pane_sands'));
 
 		add_action('customize_save_after', array($this, 'clear_css_transient'));
+		add_action('admin_head-nav-menus.php', array($this, 'clear_nav_transient'));
 		// add_action('wp_update_nav_menu', array($this, 'clear_nav_transient'));
-		// add_action('wp_save_nav_menu', array($this, 'clear_nav_transient'));
-		// add_action('wp_save_nav_menu', array($this, 'clear_nav_transient'));
-		// add_action('wp_trash_nav_menu', array($this, 'clear_nav_transient'));
-		// add_action('wp_publish_nav_menu', array($this, 'clear_nav_transient'));
+	
 	}
 
 	public function clear_css_transient() {
 		delete_transient('theme_css');
-		// delete_transient('theme_nav');
+		$this->clear_nav_transient();
 	}
 
-	// public function clear_nav_transient() {
-	// 	delete_transient('theme_nav');
-	// }
+	public function clear_nav_transient() {
+		delete_transient('theme_nav');
+	}
 
 	public function customizer_sands() {
 

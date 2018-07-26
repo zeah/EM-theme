@@ -146,10 +146,19 @@ final class Emtheme_functions {
         add_action('wp_head', array($this, 'add_google_fonts'));
         add_action('admin_head', array($this, 'add_google_fonts'));
 
+        /* adding iframe as allowed tag in posts */
         add_filter('wp_kses_allowed_html', array($this, 'custom_wpkses_post_tags'), 10, 2);
 
 	}
 
+	/**
+	 * Add iFrame to allowed wp_kses_post tags
+	 *
+	 * @param string $tags Allowed tags, attributes, and/or entities.
+	 * @param string $context Context to judge allowed tags by. Allowed values are 'post',
+	 *
+	 * @return mixed
+	 */
 	public function custom_wpkses_post_tags( $tags, $context ) {
 		if ( 'post' === $context ) {
 			$tags['iframe'] = array(
@@ -163,7 +172,7 @@ final class Emtheme_functions {
 		return $tags;
 	}
 
-	
+
 	/*
 		Adding theme specific image sizes.
 

@@ -375,7 +375,7 @@ final class Emtheme_css {
 		$css .= "\n.navbar-background { $col[navbar_background]; }";
 		
 		// if toggled: show site title on navbar with navbar styling
-		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; font-family: $fon[navbar_family]; }";
+		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[title_size]}rem; font-family: $fon[title_family]; font-weight: $fon[title_weight]; }";
 
 		// if toggled or on mobile: show search form on navbar or above top level menu (mobile) with navbar styling
 		$css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
@@ -402,7 +402,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
 
 		// navbar link - contains the dimensions 
-		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 
 		// removes right padding for menu items with submenu (down-arrow is added in its place)
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
