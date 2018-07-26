@@ -35,6 +35,9 @@ if (! function_exists('emtheme_setup')) {
         add_image_size('em_main_column_image', 910);
         add_image_size('em_content_image', 1220);
 
+
+
+
         // activating theme functions
         Emtheme_functions::get_instance();
 
@@ -143,9 +146,24 @@ final class Emtheme_functions {
         add_action('wp_head', array($this, 'add_google_fonts'));
         add_action('admin_head', array($this, 'add_google_fonts'));
 
+        add_filter('wp_kses_allowed_html', array($this, 'custom_wpkses_post_tags'), 10, 2);
+
 	}
 
+	public function custom_wpkses_post_tags( $tags, $context ) {
+		if ( 'post' === $context ) {
+			$tags['iframe'] = array(
+				'src'             => true,
+				'height'          => true,
+				'width'           => true,
+				'frameborder'     => true,
+				'allowfullscreen' => true,
+			);
+		}
+		return $tags;
+	}
 
+	
 	/*
 		Adding theme specific image sizes.
 

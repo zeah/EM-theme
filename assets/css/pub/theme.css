@@ -67,7 +67,7 @@ body {
 
 /* stuff to be hidden by js on desktop */
 .desktop-hidden {
-	display: none;
+	display: none !important;
 }
 
 /* 	container for page 

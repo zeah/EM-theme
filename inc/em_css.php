@@ -257,7 +257,7 @@ final class Emtheme_css {
 	public function get_css() {
 
 		if (get_transient('theme_css')) {
-			wp_add_inline_style('style', get_transient('theme_css'));
+			wp_add_inline_style('style', sanitize_text_field(get_transient('theme_css')));
 			return;
 		}
 

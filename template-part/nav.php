@@ -1,7 +1,11 @@
 <?php 
 
 
-// if (get_transient('theme_nav') && !is_customize_preview()) echo get_transient('theme_nav');
+// if (get_transient('theme_nav') && !is_customize_preview()) {
+// 	// wp_die('<xmp>'.print_r(get_transient('theme_nav'), true).'</xmp>');
+// 	echo wp_kses_post(get_transient('theme_nav'));
+// }
+
 // else {
 	$nav = Emtheme_nav::get_instance();
 	echo $nav->get_html();

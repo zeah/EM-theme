@@ -31,9 +31,9 @@ final class Emtheme_customizer {
 		add_action('customize_save_after', array($this, 'clear_css_transient'));
 		// add_action('wp_update_nav_menu', array($this, 'clear_nav_transient'));
 		// add_action('wp_save_nav_menu', array($this, 'clear_nav_transient'));
+		// add_action('wp_save_nav_menu', array($this, 'clear_nav_transient'));
 		// add_action('wp_trash_nav_menu', array($this, 'clear_nav_transient'));
 		// add_action('wp_publish_nav_menu', array($this, 'clear_nav_transient'));
-
 	}
 
 	public function clear_css_transient() {
