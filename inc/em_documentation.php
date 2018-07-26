@@ -102,10 +102,12 @@ final class Emtheme_documentation {
 									  </ul>
 								   </li>
 								   <li>
-								   	  <h2><a href="">Cache</a></h2>
-								   	  <ul>
-								   	  	<li></li>
-								   	  </ul>
+									  <h2><a href="#theme-features">Passive Features</a></h2>
+									  <ul>
+										 <li><a href="#theme-passive-cache">Cache</a></li>
+										 <li><a href="#theme-passive-struc">Structured Data</a></li>
+										 <li><a href="#theme-passive-view">View Counter</a></li>
+									  </ul>
 								   </li>
 								   ';
 
