@@ -1,16 +1,11 @@
 <?php 
 
-$nav = Emtheme_nav::get_instance();
 
-echo $nav->get_html();
-
-// echo '<div class="navbar-background">
-// 			<div class="navbar-container">
-// 				<div class="navbar-logo">H</div>
-// 				'.$nav->get_nav().'
-// 				<div class="navbar-search">S</div>
-// 			</div>
-// 	  </div>';
+// if (get_transient('theme_nav') && !is_customize_preview()) echo get_transient('theme_nav');
+// else {
+	$nav = Emtheme_nav::get_instance();
+	echo $nav->get_html();
+// }
 
 
 /*
@@ -75,7 +70,7 @@ final class Emtheme_nav {
 		// end of navbar-background and navbar-container
 		$html .= '</div></div>'; 
 
-
+		// set_transient('theme_nav', $html);
 		return $html;
 	}
 
