@@ -9,6 +9,7 @@ require_once 'inc/em_google_font.php';
 require_once 'inc/em_search.php';
 require_once 'inc/em_page_seo.php';
 require_once 'inc/em_filter.php';
+require_once 'inc/em_counter.php';
 
 /* */
 

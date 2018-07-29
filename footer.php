@@ -117,3 +117,6 @@ final class Emtheme_footer {
 
 wp_footer();
 echo '</body></html>';
+
+$counter = Emtheme_counter::get_instance();
+$counter->do_counter();

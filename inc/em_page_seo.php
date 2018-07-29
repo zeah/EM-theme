@@ -275,6 +275,12 @@ final class Emtheme_page_seo {
 		echo $html;
 	}
 
+
+	/**
+	 * gets called in index.php inside The Loop
+	 *
+	 * echoes json-ld structured data retrieved from a post's meta data
+	 */
 	public function add_footer() {
 		// if (!is_singular()) return;
 

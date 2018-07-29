@@ -35,6 +35,8 @@ final class Emtheme_admin {
 		/* Sitemap feature */
 		Emtheme_sitemap::get_instance();
 
+		Emtheme_counter::get_instance();
+
 		/* hooks for users on admin pages */
 		$this->admin_hooks();
 	}

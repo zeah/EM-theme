@@ -1,42 +1,6 @@
 <?php 
 
-
-// if (!get_transient('xmlfromfor')) {
-// 	// wp_die('<xmp>'.print_r('hello', true).'</xmp>');
-	
-// 	$args = array(
-// 	     'headers' => array(
-// 	          'Authorization' => 'Basic ' . base64_encode( 'feeduser_effektivmarkedsføring:$1Hestogdill' )
-// 	     )
-// 	);
-// 	$response = wp_remote_request( 'https://www.finansportalen.no/feed/v3/bank/kredittkort.atom', $args ); 
-	
-
-// 	$temper = str_replace('f:', '', $response['body']);
-
-// 	$xml = simplexml_load_string($temper);
-// 	$json = json_encode($xml);
-// 	$array = json_decode($json,TRUE);
-
-// 	set_transient('xmlfromfor', $array, 60*60*24);
-// }
-
-// $temper = [];
-
-
-// foreach(get_transient('xmlfromfor')['entry'] as $kort) {
-// 	if ($kort['title'] == 'Gold kredittkort' || $kort['title'] == 'Vivo kredittkort' || $kort['title'] == 'Business kredittkort') continue;
-// 	array_push($temper, $kort['title'].' # '.$kort['leverandor_tekst']);
-// }
-
-// wp_die('<xmp>'.print_r($temper, true).'</xmp>');
-// wp_die('<xmp>'.print_r(get_transient('xmlfromfor'), true).'</xmp>');
-
-// make it into a grid !
-// 
-// 
-
-
+/* adds meta data to head via wp_head action */
 $seo = Emtheme_page_seo::get_instance();
 
 $sidebar = ''; 
@@ -71,6 +35,11 @@ $sidebar .= ob_get_clean();
 
 // grid
 $html = '<main class="main main-sidebar">';
+
+
+
+
+// $html .= 
 
 // content grid element 
 $html .= '<section class="content-column">';
