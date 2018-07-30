@@ -244,6 +244,19 @@ img {
 	margin: auto;
 }
 
+.alignright,
+.alightleft {
+	width: 60%;
+	height: auto;
+}
+
+.alignright {
+	float: right;
+}
+
+.alignleft {
+	float: left;
+}
 
 /* 3.1 SERP */
 

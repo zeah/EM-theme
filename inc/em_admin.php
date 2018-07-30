@@ -80,7 +80,7 @@ final class Emtheme_admin {
 		$lineheight = isset($fonts['content_lineheight']) ? floatval($fonts['content_lineheight']) : 1.3;
 
 		// adding external css
-		$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,http://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
+		$options['content_css'] = get_template_directory_uri() . '/assets/css/admin/editor.css,https://fonts.googleapis.com/css?family='.str_replace(' ', '+', $family).$weight;
 
 		// adding content font and css from "additional css"
 		$options['content_style'] = 'body { font-family: \''.$family.'\'; font-size: '.$size.'px; line-height: '.$lineheight.'}'.preg_replace('/\s+/', ' ', wp_get_custom_css());
