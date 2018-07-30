@@ -449,7 +449,7 @@ final class Emtheme_css {
 		$css .= "\nbody { background-color: $col[background]; }";
 		
 		$css .= "\n.main { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; color: $col[main_font]; line-height: $fon[content_lineheight]; }";
-		$css .= "\n.content, .default-template-widget { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
+		$css .= "\n.content, .default-template-widget, .column-404 { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
 		$css .= "\n.emtheme-footer { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";

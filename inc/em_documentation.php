@@ -144,6 +144,9 @@ final class Emtheme_documentation {
 										 		<br>Boxes are not labeled on front-end, and can contain any html code that a normal post would accept.
 										 		<br>A line break (hitting enter) in the footer editor will return a br element on front-end.</p>
 										 		</li>
+
+										 		<li><b>404 page</b>
+										 		<p>Can contain any html tags allowed in posts.</p></li>
 										 	</ul>
 										 </li>
 

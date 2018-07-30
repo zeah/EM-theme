@@ -348,4 +348,8 @@ $(() => { ((api) => {
 	api('theme_footer[aboutus]', (v) => v.bind((nv) => $('.emtheme-footer-aboutus').html(nv.replace(/\n/g, '<br>'))));
 
 
+
+	// 404
+	api('theme_notfound[text]', (v) => v.bind((nv) => $('.column-404').html(nv)));
+
 })(wp.customize); });

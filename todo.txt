@@ -1,3 +1,29 @@
+bugs:
+show navbar search
+hide go up button
+privacy pop up container dekker over 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 privacy mobil css DONE
 add link to front page on header title DONE
 navbar active page DONE
