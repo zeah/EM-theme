@@ -27,6 +27,11 @@ body {
 	margin: 0;
 }
 
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 
 /**/
 .page-container {
@@ -94,6 +99,8 @@ body {
 	overflow: hidden;
 
 	text-decoration: none;
+
+	font-size: 2.8rem;
 }
 
 
@@ -169,6 +176,7 @@ body {
 .menu-link {
 	padding: 1.5rem;
 	overflow: hidden;
+	border-right: none;
 }
 
 .menu-has-child {
