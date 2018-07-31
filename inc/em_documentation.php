@@ -107,7 +107,7 @@ final class Emtheme_documentation {
 										 <li><a href="#theme-passive-cache">Cache</a></li>
 										 <li><a href="#theme-passive-struc">Structured Data</a></li>
 										 <li><a href="#theme-passive-semantic">Semantic HTML</a></li>
-										 <li><a href="#theme-passive-counter">View Counter</a></li>
+										 <li><a href="#theme-passive-counter">Hit Counter</a></li>
 									  </ul>
 								   </li>
 								   ', 'documentation index', 'emtheme');

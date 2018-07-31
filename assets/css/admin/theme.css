@@ -25,6 +25,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 
 
 /* hit counter on page/post lists */
+.column-emlanlistse_sort,
 .column-em_counter {
 	width: 150px;
 }
