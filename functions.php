@@ -150,6 +150,11 @@ final class Emtheme_functions {
         /* adding iframe as allowed tag in posts */
         add_filter('wp_kses_allowed_html', array($this, 'custom_wpkses_post_tags'), 10, 2);
 
+        add_filter('the_content', array($this, 'do_kses'), 10);
+	}
+
+	public function do_kses($data) {
+		return wp_kses_post($data);
 	}
 
 	/**
@@ -169,6 +174,39 @@ final class Emtheme_functions {
 				'frameborder'     => true,
 				'allowfullscreen' => true,
 			);
+			
+			// $tags['svg'] = array(
+			// 	'class'	=> true
+			// );
+
+			// $tags['defs'] = array();
+
+			// $tags['lineargradient'] = array(
+			// 	'id'	=> true,
+			// 	'x1'	=> true,
+			// 	// 'X2'	=> true,
+			// 	// 'y1'	=> true,
+			// 	// 'y2'	=> true
+			// );
+
+			// $tags['stop'] = array(
+			// 	'offset'	=> true,
+			// 	'style'		=> true
+			// );
+
+			// $tags['circle'] = array(
+			// 	'class'	=> true,
+			// 	'cx'	=> true,
+			// 	'cy'	=> true,
+			// 	'r'		=> true
+			// );
+
+			// $tags['rect'] = array(
+			// 	'class'	=> true,
+			// 	'rx'	=> true,
+			// 	'ry'	=> true,
+			// 	'fill'	=> true,
+			// );
 		}
 		return $tags;
 	}
