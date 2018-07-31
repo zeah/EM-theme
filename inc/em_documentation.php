@@ -29,16 +29,30 @@ final class Emtheme_documentation {
 	public function doc_callback() {
 
 		$data = apply_filters('emtheme_doc', []);
-
+		// wp_die('<xmp>'.print_r($data, true).'</xmp>');
+		
 		$html = '<div class="emtheme-documentation">';
 
-		foreach ($data as $key) {
-			if (isset($key['index'])) $html .= '<div><ul>'._x(sprintf('%s', $key['index']), 'An index for the documentation.').'</ul></div>';
 
-			if (isset($key['title'])) $html .= '<div>'._x(sprintf('%s', $key['title']), 'Title for the documentation.').'</div>';
+		$html .= '<div><ul>';
+		foreach ($data as $key)
+			$html .= $key['index'];
+		$html .= '</ul></div>';
 
-			if (isset($key['info'])) $html .= '<div class="emtheme-documentation-info"><ul>'._x(sprintf('%s', $key['info']), 'documentation text').'</ul></div>';
-		}
+		$html .= '<div class="emtheme-documentation-info"><ul>';
+		foreach ($data as $key)
+			$html .= '<div>'.$key['title'].'</div>'.$key['info'];
+		$html .= '</ul></div>';
+
+		// if (isset($data['index']))
+
+		// foreach ($data as $key) {
+		// 	if (isset($key['index'])) $html .= '<div><ul>'._x(sprintf('%s', $key['index']), 'An index for the documentation.').'</ul></div>';
+
+		// 	if (isset($key['title'])) $html .= '<div>'._x(sprintf('%s', $key['title']), 'Title for the documentation.').'</div>';
+
+		// 	if (isset($key['info'])) $html .= '<div class="emtheme-documentation-info"><ul>'._x(sprintf('%s', $key['info']), 'documentation text').'</ul></div>';
+		// }
 
 
 		$html .= '</div>';
