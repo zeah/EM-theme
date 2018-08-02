@@ -173,6 +173,7 @@ final class Emtheme_functions {
 				'width'           => true,
 				'frameborder'     => true,
 				'allowfullscreen' => true,
+				'style'			  => true
 			);
 			
 			// $tags['svg'] = array(
