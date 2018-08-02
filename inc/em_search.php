@@ -34,8 +34,14 @@ final class Emtheme_search {
 	 */
 	private function hooks() {
 		add_filter('search_second', array($this, 'add_to_serp'), 1);
+
+		add_action('wp_head', array($this, 'add_head'));
 	}
 
+
+	public function add_head() {
+		if (is_search()) echo '<meta name="robots" content="noindex,nofollow,noarchive">';
+	}
 
 	/**
 	 * Adds to wp filter: search_second

@@ -268,7 +268,7 @@ final class Emtheme_page_seo {
 		if (isset($meta['nofollow'])) array_push($content, 'nofollow');
 		if (isset($meta['noindex'])) array_push($content, 'noindex');
 		if (isset($meta['noimageindex'])) array_push($content, 'noimageindex');
-		if (isset($meta['noarchive'])) array_push($content, 'nofollow');
+		if (isset($meta['noarchive'])) array_push($content, 'noarchive');
 
 		if (sizeof($content) > 0 ) $html .= '<meta name="robots" content="'.implode(' ', $content).'">';
 
