@@ -36,7 +36,7 @@ if (! function_exists('emtheme_setup')) {
         add_image_size('em_main_column_image', 910);
         add_image_size('em_content_image', 1220);
 
-
+        add_filter('widget_text', 'do_shortcode');
 
 
         // activating theme functions
