@@ -1,7 +1,10 @@
 jQuery(function() {
 	var $ = jQuery;
 
-	var H = function(o = {}) {
+	var H = function(o) {
+
+		if (!o) o = {};
+
 		var e = document.createElement(o.el || 'div');
 
 
@@ -60,12 +63,15 @@ jQuery(function() {
 		var button = document.querySelector('.emtheme-cookie-button');
 		if (!button) return;
 
-		if (location.href.indexOf('customize_changeset') == -1)
-			for (var cookie of decodeURIComponent(document.cookie).split('; '))
-				if (cookie.indexOf('cookieAccept=') == 0) {
+		if (location.href.indexOf('customize_changeset') == -1) {
+			var cookie_list = decodeURIComponent(document.cookie).split('; ')
+			for (var cookie in cookie_list) {
+				if (cookie_list[cookie].indexOf('cookieAccept=') == 0) {
 					element.style.display = 'none';
 					return; 
 				}
+			}
+		}
 
 		element.style.opacity = 1;
 
@@ -164,7 +170,6 @@ jQuery(function() {
 
 	// navbar search feature
 	$('.navbar-search-icon, .navbar-search-cancel-svg').on('click', function() {
-
 
 		$('.navbar-search-popup, .navbar-search-cancel-svg, .navbar-search-icon').toggle();
 		$('.emtheme-search-input').focus();

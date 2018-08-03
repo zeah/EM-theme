@@ -722,6 +722,7 @@ body {
 	align-content: center;
 
 	font-size: 1.6rem;
+	z-index: 100;
 }
 
 /* cookie container */
@@ -851,6 +852,15 @@ body {
 		bottom: 0;
 		left: 0;
 		right: 0;
+	}
+
+	.main {
+		margin: 2rem auto 0;
+		/*display: flex;*/
+	}
+
+	.emtheme-serp {
+		/*justify-self: center;*/
 	}
 
 }
