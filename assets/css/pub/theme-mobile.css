@@ -122,8 +122,14 @@ img {
 	flex-direction: column-reverse;
 }
 
-/* container for search form */
+
+/* hiding desktop search */
 .navbar-search {
+	display: none !important;
+}
+
+/* container for search form */
+.navbar-search-mobile {
 	display: flex;
 	align-items: center;
 	/*z-index: 100;*/
@@ -151,6 +157,11 @@ img {
 /* search input */
 .emtheme-search-input {
 	/*margin: 0 4.5rem;*/
+
+	background-color: inherit;
+	border-top: none;
+	border-left: none;
+	border-right: none;
 	margin-left: 2rem;
 	flex: 1;
 }

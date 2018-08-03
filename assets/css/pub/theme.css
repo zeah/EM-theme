@@ -351,11 +351,14 @@ body {
 
 /* search form container */
 .emtheme-search-form {
-	display: flex;
-	align-items: center;
+	padding: 1rem;
+	/*display: block;*/
+	/*align-items: center;*/
 }
 
 .emtheme-search-form > form {
+	display: flex;
+	align-items: center;
 	white-space: nowrap;
 }
 
@@ -363,9 +366,11 @@ body {
 .emtheme-search-input {
 	background-color: inherit;
 	border: none;
-	width: 15rem;
-
-	margin-left: 2rem;
+	/*width: 15rem;*/
+	/*flex: 1;*/
+	font-size: 3rem;
+	/*margin-left: 2rem;*/
+	/*font-size: 2.2rem;*/
 }
 .emtheme-search-input:focus {
 	border: none;
@@ -381,13 +386,56 @@ body {
 
 
 /* background color for search form on navbar */
-.navbar-search .emtheme-search-button { 
+/*.navbar-search .emtheme-search-button { 
 	background-color: inherit; 
 	border: none; 
 	position: relative; 
 	top: 5px; 
+}*/
+
+.navbar-search-mobile {
+	display: none;
 }
 
+.navbar-search {
+	position: relative;
+	align-self: center;
+	/*display: flex;*/
+	/*flex-direction: column;*/
+	/*align-items: center;*/
+	margin-left: 2rem;
+	cursor: pointer;
+}
+
+.navbar-search-popup {
+	display: none;
+	/*align-items: center;*/
+	/*justify-content: center;*/
+
+	position: absolute;
+	left: -385px;
+	/*top: -10px;*/
+	/*left: 60%;*/
+	/*right: 40%;*/
+	/*width: 400px;*/
+	/*height: 100px;*/
+	margin-top: 0.7rem;
+	/*padding: 2rem;*/
+
+	background-color: white;
+	border: solid 2px;
+	border-radius: 5px;
+
+}
+
+.navbar-search-popup > form > button,
+.navbar-search-popup > form > input {
+	font-size: 2.4rem;
+}
+
+.navbar-search-cancel-svg {
+	display: none;
+}
 
 /* 2.0 content */
 

@@ -359,13 +359,22 @@ final class Emtheme_css {
 			// hover color on links in navbar (hover shouldn't be used on mobile)
 			$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
 		
+
+			$css .= "\n.theme-search-svg, .navbar-search-cancel { fill: $col[navbar_font];}";
+			$css .= "\n.navbar-search-popup { border-color: $col[navbar_background_mobile]; }";
+			$css .= "\n.search-form-icon { fill: $col[navbar_background_mobile]; }";
+			$css .= "\n.navbar-search .emtheme-search-input { color: $col[navbar_background_mobile]; }";
+
+
 		$css .= "\n}";
 		
 		// MOBILE
 		$css .= "\n@media only screen and (max-width: 1279px) {";
 
-		// solid color background for top level menu on mobile
-		$css .= "\n.navbar-menu { background-color: $col[navbar_background_mobile]; }";
+			// solid color background for top level menu on mobile
+			$css .= "\n.navbar-menu { background-color: $col[navbar_background_mobile]; }";
+			$css .= "\n.search-form-icon { fill: $col[navbar_font]; }";
+			$css .= "\n.emtheme-search-input { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border-bottom: solid 2px $col[navbar_font];}";
 		
 		$css .= "\n}";
 
@@ -378,7 +387,11 @@ final class Emtheme_css {
 		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[title_size]}rem; font-family: $fon[title_family]; font-weight: $fon[title_weight]; }";
 
 		// if toggled or on mobile: show search form on navbar or above top level menu (mobile) with navbar styling
-		$css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
+		// $css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
+		// $css .= "\n.theme-search-svg, .navbar-search-cancel { fill: $col[navbar_font];}";
+		// $css .= "\n.navbar-search-popup { border-color: $col[navbar_background_mobile]; }";
+		// $css .= "\n.search-form-icon { fill: $col[navbar_background_mobile]; }";
+		// $css .= "\n.navbar-search .emtheme-search-input { color: $col[navbar_background_mobile]; }";
 
 		// visual hightlight when search form has focus
 		$css .= "\n.navbar-search .emtheme-search-input:focus { border-bottom: 2px solid $col[navbar_font]; }"; 

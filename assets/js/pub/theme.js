@@ -132,7 +132,6 @@ jQuery(function() {
 
 	}
 
-	// if (jQuery(window).width() < 1280)
 	 
 	var desktop = (jQuery(window).width() > 1280);
 
@@ -157,19 +156,27 @@ jQuery(function() {
 
 		}
 
-
-		// if ($(window).width() > 1280 && !desktop) {
-		// 	desktop = true;
-		// 	setDesktopMenu();
-		// }
-
-		// else {
-		// 	desktop = false;
-		// 	setMobileMenu();
-		// }
-
-
 	});
+
+	// var search = {
+		// html: '<div class="navbar-search-popup"><form action="'+location.href+'" method="get" role="search"><input name="s" type="search" autocomplete><button type="submit">Søk</button></form></div>',
+	// }
+
+	// navbar search feature
+	$('.navbar-search-icon, .navbar-search-cancel-svg').on('click', function() {
+
+
+		$('.navbar-search-popup, .navbar-search-cancel-svg, .navbar-search-icon').toggle();
+		$('.emtheme-search-input').focus();
+		// if ($('.navbar-search-popup').length) {
+		// 	$('.navbar-search-popup').remove();
+		// 	return;
+		// }
+		// $('body').append(search.html);
+	});
+
+
+
 	addCookieAccept();
 	addGoUp();
 });
