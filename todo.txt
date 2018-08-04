@@ -2,10 +2,10 @@ bugs:
 show navbar search
 hide go up button
 privacy pop up container dekker over 
+IE only: refresh in mobile nav and change to desktop bug
+
+
 seo meta box: change meta description to textarea
-
-
-
 
 
 

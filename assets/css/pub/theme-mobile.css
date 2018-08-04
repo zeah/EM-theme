@@ -15,6 +15,8 @@
 	6.0 misc
 */
 
+@media only screen and (max-width: 800px) {
+
 html { 
 
 	/* default size */
@@ -49,6 +51,8 @@ img {
 	margin-bottom: auto;
 }
 
+}
+@media only screen and (max-width: 1044px) {
 
 /* 1.0 header */
 .emtheme-header-container {
@@ -56,11 +60,13 @@ img {
 }
 
 
+
 /* 2.0 navbar */
 
 /* background color */
 .navbar-background {
 	height: 4.4rem;
+	align-self: stretch;
 }
 
 /* width */
@@ -109,6 +115,7 @@ img {
 	display: none;
 	position: absolute;
 	top: 4.4rem;
+	left: 0;
 	z-index: 99;
 
 	width: 100vw;
@@ -232,8 +239,12 @@ img {
 	top: 0.2rem;
 	height: 4rem;
 	width: 4rem	;
+
+	margin-right: 1rem;
+}
 }
 
+@media only screen and (max-width: 800px) {
 
 /* 3.0 content */
 
@@ -336,6 +347,7 @@ img {
 
 .emtheme-footer {
 	padding: 2rem;
+	/*align-self: stretch;*/
 }
 
 
@@ -442,4 +454,6 @@ img {
 .emtheme-cookie-fade {
 	opacity: 0 !important;
 	transition: opacity 1s;
+}
+
 }

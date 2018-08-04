@@ -139,23 +139,21 @@ jQuery(function() {
 	}
 
 	 
-	var desktop = (jQuery(window).width() > 1280);
+	var desktop = (jQuery(window).width() > 1044);
 
 	if (!desktop) setMobileMenu();
 
 	jQuery(window).resize(function() { 
-
-
 		if (!desktop) {
 
-			if ($(window).width() > 1279) {
+			if ($(window).width() > 1027) {
 				desktop = true;
 				setDesktopMenu();
 			}
 
 		}
 		else {
-			if ($(window).width() < 1280) {
+			if ($(window).width() < 1028) {
 				desktop = false;
 				setMobileMenu();
 			}

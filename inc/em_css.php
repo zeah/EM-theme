@@ -320,7 +320,7 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
 		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
 
-		$css .= "\n.emtheme-header { width: {$width}rem; }";
+		$css .= "\n.emtheme-header { max-width: 100%; width: {$width}rem; }";
 		
 		$css .= "\n.emtheme-header .emtheme-search-input { color: $col[header_font]; border-bottom: solid 1px $col[header_font]; font-size: {$fon[navbar_size]}rem; }"; 
 
@@ -345,10 +345,11 @@ final class Emtheme_css {
 
 
 		// DESKTOP 
-		$css .= "\n@media only screen and (min-width: 1280px) {";
+		// $css .= "\n@media only screen and (min-width: 1280px) {";
+		$css .= "\n@media only screen and (min-width: 1045px) {";
 
 			// content width (1260px)
-			$css .= "\n.navbar-container { width: {$width}rem; }";
+			$css .= "\n.navbar-container { max-width: 100%; width: {$width}rem; }";
 			
 			// hover color on links in submenu 
 			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
@@ -369,7 +370,8 @@ final class Emtheme_css {
 		$css .= "\n}";
 		
 		// MOBILE
-		$css .= "\n@media only screen and (max-width: 1279px) {";
+		// $css .= "\n@media only screen and (max-width: 1279px) {";
+		$css .= "\n@media only screen and (max-width: 1045px) {";
 
 			// solid color background for top level menu on mobile
 			$css .= "\n.navbar-menu { background-color: $col[navbar_background_mobile]; }";
@@ -455,8 +457,9 @@ final class Emtheme_css {
 
 		$width = $content_width / 10;
 
-		$css = "\n@media only screen and (min-width: 1280px) {";
-		$css .= "\n.main, .emtheme-footer { width: {$width}rem; }";
+		$css = "\n@media only screen and (min-width: 1045px) {";
+		// $css = "\n@media only screen and (min-width: 1280px) {";
+		$css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
 		$css .= "\n}";
 
 		$css .= "\nbody { background-color: $col[background]; }";

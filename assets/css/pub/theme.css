@@ -35,7 +35,11 @@
 	5.0 IE exclusive
 
 
+
+
 */
+
+@media only screen and (min-width: 801px) {
 
 /* 0.1 html */
 
@@ -63,6 +67,11 @@ body {
 
 	/*min-height: 100vh;*/
 	/*justify-content: center;*/
+}
+
+img {
+	max-width: 100%;
+	height: auto;
 }
 
 /* stuff to be hidden by js on desktop */
@@ -102,6 +111,9 @@ body {
 	align-items: center;
 }
 
+}
+
+@media only screen and (min-width: 1045px) {
 /* 1.0 header */
 
 /* 1.1 header */
@@ -437,6 +449,10 @@ body {
 	display: none;
 }
 
+}
+
+@media only screen and (min-width: 801px) {
+
 /* 2.0 content */
 
 /* adds widget areas to main */
@@ -452,6 +468,9 @@ body {
 	"left content right"
 	". bottom .";
 }
+
+
+
 
 /* first paragraph does not have top margin */
 .main p:first-child {
@@ -657,6 +676,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	width: 100%;
 }
 
 /* copy right element */
@@ -668,7 +688,7 @@ body {
 
 /* container for actual footer */
 .emtheme-footer {
-
+	align-self: stretch;
 	/* positioning content */
 	display: flex;
 	justify-content: space-around;
@@ -682,7 +702,7 @@ body {
 .emtheme-footer-social,
 .emtheme-footer-contact,
 .emtheme-footer-aboutus {
-	max-width: 35rem;
+	/*max-width: 35rem;*/
 	padding: 2rem 0;
 }
 
@@ -791,7 +811,7 @@ body {
 }
 
 
-
+}
 
 
 /* internet explorer only */
@@ -802,14 +822,17 @@ body {
 	}
 
 	body {
-		display: block;
-		min-height: 100%;
+		/*display: block;*/
+		/*min-height: 100%;*/
 		position: relative;
 	}
 
 	.page-container {
 		display: block;
-		min-height: 100vh;
+
+		/*position: relative;*/
+		/*max-width: 100% !important;*/
+		/*min-height: 100%;*/
 	}
 
 	.main-sidebar {
@@ -817,6 +840,8 @@ body {
 		-ms-grid-columns: auto 1fr auto;
 		-ms-grid-rows: auto 1fr auto;
 
+
+		max-width: 100%;
 		margin-bottom: 30rem;
 	}
 
@@ -848,10 +873,15 @@ body {
 	}
 
 	.emtheme-footer-container {
-		position: absolute;
+		/*position: absolute;*/
 		bottom: 0;
 		left: 0;
 		right: 0;
+		margin-top: 100px;
+		width: 100% !important;
+		display: flex;
+		/*justify-content: center;*/
+		/*justify-self: center;*/
 	}
 
 	.main {
@@ -863,4 +893,14 @@ body {
 		/*justify-self: center;*/
 	}
 
+}
+@media only screen and (max-width: 920px) {
+	.main-sidebar {
+		display: flex;
+		flex-direction: column;		
+	}
+
+	.default-template-widget {
+		margin: 1rem auto;
+	}
 }
