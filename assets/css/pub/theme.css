@@ -4,6 +4,10 @@
 	A lot of css is set through inline-css by php reading from customizer settings (inc/em_css.php)
 	All colors, fonts, images and most dimensions.
 
+	break-points:
+		content style to min-width 801px
+		header & navbar style to min-width 1044px
+
 	LAYOUT
 	|html
 	|	body (flex column)
