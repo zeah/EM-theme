@@ -35,7 +35,7 @@ if (have_posts())
 $html .= $html_first . $html_second;
 
 /**
- * converst data from filters to html
+ * converst escaped data from filters to html
  * one post at a time 
  * @param  Array $data from wp filters
  * @return String       html converted from data
@@ -102,7 +102,7 @@ get_template_part('template-part/bigtop');
 get_template_part('template-part/nav');
 
 /* echoes the serp */
-echo wp_kses_post($html);
+echo $html;
 
 /* get the footer */
 get_footer();

@@ -625,6 +625,11 @@ img {
 
 /* 2.3 serp 
    made to match google serp */
+
+.emtheme-serp {
+	padding: 0;
+}
+
 .emtheme-search-item {
 	display: block;
 	font-family: arial;
@@ -692,10 +697,10 @@ img {
 
 /* container for actual footer */
 .emtheme-footer {
-	align-self: stretch;
+	align-self: center;
 	/* positioning content */
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 
 	box-sizing: border-box;
 	padding: 0 2rem;
@@ -706,7 +711,7 @@ img {
 .emtheme-footer-social,
 .emtheme-footer-contact,
 .emtheme-footer-aboutus {
-	/*max-width: 35rem;*/
+	flex-basis: 30%;
 	padding: 2rem 0;
 }
 
