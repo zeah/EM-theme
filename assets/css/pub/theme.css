@@ -697,7 +697,7 @@ img {
 
 /* container for actual footer */
 .emtheme-footer {
-	align-self: center;
+	align-self: stretch;
 	/* positioning content */
 	display: flex;
 	justify-content: space-between;
