@@ -47,6 +47,8 @@ final class Emtheme_css {
 		$lay = get_theme_mod('emtheme_layout');
 		if (!is_array($lay)) $lay = [];
 		
+		global $content_width;
+
 		// COLOR SECTION
 		$colors = [];
 
@@ -230,6 +232,7 @@ final class Emtheme_css {
 		$layout['navbar_padding'] = $lay['navbar_padding'] ? floatval($lay['navbar_padding']) / 10 : '0.6';
 		$layout['navbar_search'] = ($lay['search_navbar_toggle'] && $lay['search_navbar_toggle'] != '') ? $lay['search_navbar_toggle'] : false;
 		$layout['goup_toggle'] = $lay['goup_toggle'] ? true : false;
+		$layout['content_width'] = $lay['content_width'] ? (intval($lay['content_width']) / 10) : ($content_width / 10); 
 
 		$this->layout = $layout;
 
@@ -454,13 +457,16 @@ final class Emtheme_css {
 		global $content_width;
 		$fon = $this->fonts;
 		$col = $this->colors;
+		$lay = $this->layout;
 
-		$width = $content_width / 10;
+		// $width = $content_width / 10;
 
 		$css = "\n@media only screen and (min-width: 1045px) {";
 		// $css = "\n@media only screen and (min-width: 1280px) {";
-		$css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
-		$css .= "\n}";
+		// $css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
+		// $css .= "\n}";
+
+		$css .= ".content-column { width: {$lay['content_width']}rem; }"; 
 
 		$css .= "\nbody { background-color: $col[background]; }";
 		

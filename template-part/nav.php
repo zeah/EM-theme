@@ -46,7 +46,7 @@ final class Emtheme_nav {
 		$html .= '<div class="navbar-identity'.(!$show['logo_navbar_toggle'] ? ' desktop-hidden' : '').'"'.($logo ? '' : ' style="display: none;"').'>';
 
 		// logo from customizer
-		if (function_exists('get_custom_logo'))
+		if (function_exists('get_custom_logo') && get_custom_logo())
 			$html .= '<div class="navbar-logo">'.get_custom_logo().'</div>';
 
 		// site title
@@ -63,8 +63,14 @@ final class Emtheme_nav {
 		// search template
 		
 		if (!wp_is_mobile()) {
-			$html .= '<div class="navbar-search"><svg class="navbar-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="theme-search-svg" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><svg class="navbar-search-cancel-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="navbar-search-cancel" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
-			$html .= '<div class="navbar-search-popup">'.get_search_form(false).'</div></div>';
+			if ($show['search_navbar_toggle']) {
+				$html .= '<div class="navbar-search"><svg class="navbar-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="theme-search-svg" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><svg class="navbar-search-cancel-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="navbar-search-cancel" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+				$html .= '<div class="navbar-search-popup">'.get_search_form(false).'</div></div>';
+			}
+			elseif (is_customize_preview()) {
+				$html .= '<div class="navbar-search" style="display: none;"><svg class="navbar-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="theme-search-svg" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><svg class="navbar-search-cancel-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="navbar-search-cancel" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/><path d="M0 0h24v24H0z" fill="none"/></svg>';
+				$html .= '<div class="navbar-search-popup">'.get_search_form(false).'</div></div>';				
+			}
 		}
 		else $html .= '<div class="navbar-search-mobile">'.get_search_form(false).'</div>';
 		// $html .= '<div class="navbar-search'.(!$show['search_navbar_toggle'] ? ' desktop-hidden' : '').'"'.(!$search ? ' style="display: none;"' : '').'>'.get_search_form(false).'</div>';

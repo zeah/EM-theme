@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans');
 
-
-a.toplevel_page_em-settings-page > div.wp-menu-image:before,
 a.toplevel_page_em-documentation-page > div.wp-menu-image:before {
 	content: 'EM';
 	position: relative;
@@ -176,6 +174,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	/*margin-bottom: 10px;*/
 }
 
+#customize-control-emtheme_layout-content_width,
 #customize-control-theme_background-header_opacity {
 	/*position: relative;*/
 	display: flex !important;
@@ -184,6 +183,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	align-items: center;
 
 }
+#customize-control-emtheme_layout-content_width > input,
 #customize-control-theme_background-header_pos_y > input,
 #customize-control-theme_background-header_pos_x > input,
 #customize-control-theme_background-header_opacity > input {
@@ -204,6 +204,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
     order: 3;
 }
 
+#customize-control-emtheme_layout-content_width > input:hover,
 #customize-control-theme_background-header_pos_y > input::hover,
 #customize-control-theme_background-header_pos_x > input::hover,
 #customize-control-theme_background-header_opacity > input:hover {
@@ -211,6 +212,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 }
 
 /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+#customize-control-emtheme_layout-content_width > input::-webkit-slider-thumb,
 #customize-control-theme_background-header_pos_y > input::-webkit-slider-thumb,
 #customize-control-theme_background-header_pos_x > input::-webkit-slider-thumb,
 #customize-control-theme_background-header_opacity > input::-webkit-slider-thumb {
@@ -226,6 +228,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
     z-index: 10;
 }
 
+#customize-control-emtheme_layout-content_width > input::-moz-range-thumb,
 #customize-control-theme_background-header_pos_y > input::-moz-range-thumb,
 #customize-control-theme_background-header_pos_x > input::-moz-range-thumb,
 #customize-control-theme_background-header_opacity > input::-moz-range-thumb {
@@ -236,7 +239,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
     z-index: 10;
 }
 
-
+#customize-control-emtheme_layout-content_width > label,
 #customize-control-theme_background-header_pos_y > label,
 #customize-control-theme_background-header_pos_x > label,
 #customize-control-theme_background-header_opacity > label {
@@ -253,9 +256,10 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	z-index: 5;
 
 	order: 2;
-	width: 50px;
+	width: 60px;
+	/*margin-right: 20px;*/
 
-	text-align: center;
+	text-align: left;
 }
 
 

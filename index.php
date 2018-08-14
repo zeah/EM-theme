@@ -48,7 +48,8 @@ if (have_posts()) {
 		the_post();
 
 		add_action('wp_footer', array($seo, 'add_footer'));
-
+		// wp_die('<xmp>'.print_r(get_the_content(), true).'</xmp>');
+		
 		// post container
 		$html .= '<article class="content">';
 

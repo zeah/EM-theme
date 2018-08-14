@@ -48,7 +48,7 @@ final class Emtheme_admin {
 
 		/* 	adding css to tinymce 
 			CSS from customizer -> additional css gets shown in tinymce editor */
-		add_filter('tiny_mce_before_init', array($this, 'add_to_tinymce')); 
+		// add_filter('tiny_mce_before_init', array($this, 'add_to_tinymce')); 
 
 
 		add_filter( 'contextual_help', array($this, 'screen_info'), 10, 3 );

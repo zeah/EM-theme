@@ -98,7 +98,10 @@ final class Emtheme_functions {
 
 		/* adding image to dropdown selector when inserting media into post */
         add_filter('image_size_names_choose', array($this, 'add_image_size'));
+		add_action('enqueue_block_editor_assets', array($this, 'gutenberg_style'));
 
+		// clear css transient when doing admin 
+		if (get_transient('theme_css')) delete_transient('theme_css');
 	}
 
 
@@ -131,11 +134,25 @@ final class Emtheme_functions {
         /* adding iframe as allowed tag in posts */
         add_filter('wp_kses_allowed_html', array($this, 'custom_wpkses_post_tags'), 10, 2);
 
+        // add_filter('safe_style_css', array($this, 'do_safe_css'));
+		// add_filter( 'safe_style_css', function( $styles ) {
+			// array_push($styles, 'background-image');			
+		    // $styles[] = 'background-image';
+		    // return $styles;
+		// } );
         add_filter('the_content', array($this, 'do_kses'), 10);
 	}
 
+	// public function do_safe_css($css) {
+	// 	array_push($css, 'background-image');			
+	// 	return $css;
+	// }
+
 	public function do_kses($data) {
-		return wp_kses_post($data);
+
+		return preg_replace('/<\/?script.*?>/', '', $data);
+
+		// return wp_kses_post($data);
 	}
 
 	/**
@@ -156,6 +173,10 @@ final class Emtheme_functions {
 				'allowfullscreen' => true,
 				'style'			  => true
 			);
+			// $tags['p'] = array(
+			// 	'style'		=> array(),
+			// 	'class'		=> true
+			// );
 			
 			// $tags['svg'] = array(
 			// 	'class'	=> true
@@ -285,6 +306,46 @@ final class Emtheme_functions {
 		$google = Emtheme_google_font::get_instance();
 
 		echo $google->get_link();
+	}
+
+	public function gutenberg_style() {
+		global $content_width;
+
+		$layout = get_theme_mod('emtheme_layout');
+		$font = get_theme_mod('emtheme_font');
+
+		if (!is_array($layout)) $layout = [];
+
+		$content_column_width = $layout['content_width'] ? intval($layout['content_width']) : intval($content_width);
+		$content_family = $font['content_family'];
+		$content_weight = $font['content_weight'];
+		$content_lh = $font['content_lineheight']; 
+		
+		// wp_die('<xmp>'.print_r($content_lh, true).'</xmp>');
+		
+
+		$styles = '';
+
+		if ($content_family) $styles .= '.edit-post-visual-editor p {font-family: "'.$content_family.'" !important;}';
+		if ($content_weight) $styles .= '.edit-post-visual-editor p {font-weight: '.$content_weight.' !important;}';
+		if ($content_lh) $styles .= '.edit-post-visual-editor p {line-height: '.$content_lh.' !important;}';
+
+		// Increase width of Title
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: '.intval($content_column_width+98).'px;}';
+		// $styles = 'body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title {max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $content_column_width ) + 98 ) . 'px;}';
+
+		// Increase width of all Blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: '.intval($content_column_width + 28).'px;}';
+		// $styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block {max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $content_column_width ) + 28 ) . 'px;}';
+
+		// Increase width of Wide blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: '.intval($content_column_width + 28 + 400).'px;}';
+		// $styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="wide"] {max-width: ' . esc_attr( get_theme_mod( 'ephemeris_layout_width', $content_column_width ) + 28 + 400 ) . 'px;}';
+
+		// Remove max-width on Full blocks
+		$styles .= 'body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block[data-align="full"] {max-width: none;}';
+
+		echo '<style type="text/css">' . $styles . '</style>';
 	}
 
 }

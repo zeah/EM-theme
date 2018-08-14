@@ -85,6 +85,14 @@
 	$('#customize-control-theme_background-header_opacity').append($opacity);
 
 	$('#customize-control-theme_background-header_opacity > input').on('input', (e) => $opacity.html(Math.floor(e.target.value*100)+'%'));
+	
+	$width = $('<span>', {'class': 'bg-head-op-nr'});
+
+	$width.html($('#customize-control-emtheme_layout-content_width > input')[0].value+'px');
+
+	$('#customize-control-emtheme_layout-content_width').append($width);
+
+	$('#customize-control-emtheme_layout-content_width > input').on('input', (e) => $width.html(e.target.value+'px'));
 
 
 

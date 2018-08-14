@@ -456,6 +456,28 @@ final class Emtheme_customizer {
 			'type' => 'checkbox'
 		));
 
+		global $content_width;
+		$cust->add_setting('emtheme_layout[content_width]', array(
+			'type' => 'theme_mod',
+			'transport' => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'default' => $content_width
+		));
+
+		$cust->add_control('emtheme_layout[content_width]', array(
+			'type' => 'range',
+			'label' => 'Content column width',
+			'section' => 'theme_layout_section',
+			'capability' => 'edit_posts',
+			'priority' => 12,
+			'input_attrs' => array(
+				'min' => 600,
+				'max' => 1260,
+				'step' => 1
+			)
+
+		));
+
 		$cust->add_setting('emtheme_layout[goup_toggle]', array(
 			'type' => 'theme_mod',
 			'transport' => 'postMessage',
