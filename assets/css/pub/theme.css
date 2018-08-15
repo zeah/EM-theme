@@ -78,6 +78,10 @@ img {
 	height: auto;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 /* stuff to be hidden by js on desktop */
 .desktop-hidden {
 	display: none;
@@ -453,6 +457,18 @@ img {
 	display: none;
 }
 
+.navbar-search-button {
+	background-color: inherit;
+	border: none;
+}
+
+.navbar-search-button:focus {
+	background-color: inherit;
+	border: none;
+	outline: none;
+}
+
+
 }
 
 @media only screen and (min-width: 801px) {
@@ -485,6 +501,7 @@ img {
 .main {
 	margin-top: 2rem;
 	margin-bottom: auto;
+	max-width: 100%;
 }
 
 
@@ -658,15 +675,25 @@ img {
 }
 
 /* post image */
-.emtheme-search-thumbnail {
-	margin-right: 1rem;
+.emtheme-search-box > img {
+	display: block;
+
+	height: 9rem;
+	width: auto;
+
+	margin-right: 2rem;
 }
 
+/*.emtheme-search-thumbnail {
+	margin-right: 1rem;
+	width: 25rem;
+}*/
+/*
 .emtheme-search-thumbnail > img {
 	height: 5rem;
 	width: auto;
 	display: block;
-}
+}*/
 
 /* post excerpt, either user set or wp generated */
 .emtheme-search-excerpt {

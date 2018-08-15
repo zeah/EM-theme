@@ -11,5 +11,12 @@ echo '<link rel="preconnect" href="https://fonts.googleapis.com/">';
 wp_head();
 
 
+$color = get_theme_mod('emtheme_color');
+
+if (!is_array($color)) $color = [];
+
+if ($color['nav_bg_top']) echo '<meta name="theme-color" content="'.sanitize_hex_color($color['nav_bg_top']).'">';
+
+
 echo '</head><body '; body_class(); echo '>';
 echo '<div class="page-container">';

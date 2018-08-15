@@ -10,7 +10,7 @@
 
 
 /* content area html */
-$html = '<div class="main"><div class="content"><ul class="emtheme-serp">';
+$html = '<div class="main"><div class="content"><h2>Search Results</h2><ul class="emtheme-serp">';
 
 /* first loop */
 if (have_posts())
@@ -72,7 +72,8 @@ function emtheme_search_serp($data) {
 		$html .= '<div class="emtheme-search-box">';
 
 		/* if post has thumbnail */
-		if ($data[0]['thumbnail']) $html .= '<div class="emtheme-search-thumbnail">'.$data[0]['thumbnail'].'</div>';
+		if ($data[0]['thumbnail']) $html .= $data[0]['thumbnail'];
+		// if ($data[0]['thumbnail']) $html .= '<div class="emtheme-search-thumbnail">'.$data[0]['thumbnail'].'</div>';
 
 		/* user set excerpt or wp generated excerpt */
 		$html .= '<span class="emtheme-search-excerpt">'.$data[0]['excerpt'].'</span>';

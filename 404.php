@@ -15,7 +15,7 @@ if (isset($text['text']) && $text['text'] != '') $text = $text['text'];
 else $text = 'This page does not exist.<br><a href="'.esc_url(home_url()).'">Please visit our front page</a>';
 
 // content grid element 
-$html .= '<section class="column-404">'.wp_kses_post($text);
+$html .= '<section class="column-404">'.apply_filters('the_content', $text);
 
 $html .= '</section>';
 

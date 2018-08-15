@@ -107,6 +107,7 @@ img {
 	text-decoration: none;
 
 	font-size: 2.8rem;
+	margin-left: 1rem;
 }
 
 
@@ -315,21 +316,13 @@ img {
 	color: #006621;
 }
 
-/* container for thumbnail and excerpt */
-.emtheme-search-box {
-	/*display: flex;*/
-}
 
-/* post image */
-.emtheme-search-thumbnail {
-	/*margin-right: 1rem;*/
-}
-
-.emtheme-search-thumbnail > img {
-	width: 100%;
+.emtheme-search-box > img {
+	width: 70%;
 	height: auto;
 	/*width: auto;*/
 	display: block;
+	/*margin: auto;*/
 }
 
 /* post excerpt, either user set or wp generated */

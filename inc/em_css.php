@@ -464,9 +464,9 @@ final class Emtheme_css {
 		$css = "\n@media only screen and (min-width: 1045px) {";
 		// $css = "\n@media only screen and (min-width: 1280px) {";
 		// $css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
-		// $css .= "\n}";
 
-		$css .= ".content-column { width: {$lay['content_width']}rem; }"; 
+		$css .= ".content-column, .emtheme-serp, .column-404 { width: {$lay['content_width']}rem; }"; 
+		$css .= "\n}";
 
 		$css .= "\nbody { background-color: $col[background]; }";
 		

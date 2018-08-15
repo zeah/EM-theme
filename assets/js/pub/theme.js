@@ -167,7 +167,8 @@ jQuery(function() {
 	// }
 
 	// navbar search feature
-	$('.navbar-search-icon, .navbar-search-cancel-svg').on('click', function() {
+	// $('.navbar-search-icon, .navbar-search-cancel-svg').on('click', function() {
+	$('.navbar-search-button').on('click', function() {
 
 		$('.navbar-search-popup, .navbar-search-cancel-svg, .navbar-search-icon').toggle();
 		$('.emtheme-search-input').focus();
