@@ -46,7 +46,8 @@ $html .= '<section class="content-column">';
 if (have_posts()) {
 	while (have_posts()) {
 		the_post();
-
+		// wp_die('<xmp>'.print_r(get_the_title(), true).'</xmp>');
+		
 		add_action('wp_footer', array($seo, 'add_footer'));
 		// wp_die('<xmp>'.print_r(get_the_content(), true).'</xmp>');
 		
