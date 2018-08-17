@@ -8,6 +8,8 @@
  * Filter either returns array with ['title'], ['thumbnail'], ['excerpt'] and ['link'] OR ['html']
  */
 
+// $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+ // $actual_link = 'hdfhk';
 
 /* content area html */
 $html = '<div class="main"><div class="content"><h2>Search Results</h2><ul class="emtheme-serp">';
@@ -66,7 +68,8 @@ function emtheme_search_serp($data) {
 		$html .= '<a class="emtheme-search-link" href="'.$data[0]['link'].'">'.$data[0]['title'].'</a>';
 		
 		/* html text of link */
-		$html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
+		// $html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
+		$html .= '<div class="emtheme-search-link-text">'.THEME_ACTUAL_URL.preg_replace('/^.*?\/\/.*?\//', '/', $data[0]['link']).'</div>';
 		
 		/* container for thumbnail and excerpt */
 		$html .= '<div class="emtheme-search-box">';

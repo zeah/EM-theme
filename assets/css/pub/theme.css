@@ -319,7 +319,7 @@ img {
 
 /* container for the menu */
 .navbar-menu {
-	flex: 1;
+	/*flex: 1;*/
 	display: flex;
 }
 
@@ -460,6 +460,7 @@ img {
 .navbar-search-button {
 	background-color: inherit;
 	border: none;
+	cursor:pointer;
 }
 
 .navbar-search-button:focus {
@@ -720,15 +721,20 @@ img {
 	font-family: Verdana;
 	font-size: 1rem;
 	margin: 0.5rem 0;
+	width: 100%;
+	text-align: center;
 }
 
 /* container for actual footer */
 .emtheme-footer {
-	align-self: stretch;
+	min-width: 50%;
+	max-width: 80%;
+	/*align-self: stretch;*/
 	/* positioning content */
 	display: flex;
 
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	box-sizing: border-box;
 	padding: 0 2rem;
 }
@@ -740,7 +746,7 @@ img {
 .emtheme-footer-aboutus {
 	flex-basis: 20%;
 	padding: 2rem 0;
-	margin-right: 2rem;
+	/*margin-right: 10rem;*/
 }
 
 

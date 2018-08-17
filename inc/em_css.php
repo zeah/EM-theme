@@ -354,15 +354,14 @@ final class Emtheme_css {
 			// content width (1260px)
 			$css .= "\n.navbar-container { max-width: 100%; width: {$width}rem; }";
 			
-			// hover color on links in submenu 
-			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
-			
 			// top level hover color
 			$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
 			
 			// hover color on links in navbar (hover shouldn't be used on mobile)
 			$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
-		
+			
+			// hover color on links in submenu 
+			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
 
 			$css .= "\n.theme-search-svg, .navbar-search-cancel { fill: $col[navbar_font];}";
 			$css .= "\n.navbar-search-popup { border-color: $col[navbar_background_mobile]; }";
@@ -473,7 +472,7 @@ final class Emtheme_css {
 		$css .= "\n.main { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; color: $col[main_font]; line-height: $fon[content_lineheight]; }";
 		$css .= "\n.content, .default-template-widget, .column-404 { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
-		$css .= "\n.emtheme-footer { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-footer-container { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
 
 		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";

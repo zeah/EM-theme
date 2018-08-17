@@ -13,6 +13,9 @@ require_once 'inc/em_counter.php';
 
 /* */
 
+// define('THEME_ACTUAL_URL', "(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST])":
+define('THEME_ACTUAL_URL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]");
+
 /* content area is 1280px wide with 20px padding */
 // (1280px on chrome's very large font size setting equals to 1920px wide content.)
 if (!isset($content_width)) $content_width = 1240;

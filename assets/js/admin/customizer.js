@@ -144,7 +144,7 @@ $(() => { ((api) => {
 	api('emtheme_color[emtop_bg]', (v) => v.bind((nv) => $('.emtheme-header-container').css('background-color', nv)));
 	api('emtheme_color[emtop_font]', (v) => v.bind((nv) => $('.title-link').css('color', nv)));
 	api('emtheme_color[main_font]', (v) => v.bind((nv) => $('.main').css('color', nv)));
-	api('emtheme_color[footer_bg]', (v) => v.bind((nv) => $('.emtheme-footer').css('background-color', nv)));
+	api('emtheme_color[footer_bg]', (v) => v.bind((nv) => $('.emtheme-footer-container').css('background-color', nv)));
 	api('emtheme_color[footer_font]', (v) => v.bind((nv) => $('.emtheme-footer, .emtheme-footer a').css('color', nv)));
 
 
@@ -230,22 +230,29 @@ $(() => { ((api) => {
 		$('.menu-has-child > .menu-link').css('padding', (nv/10)+'rem 0 '+(nv/10)+'rem 1.5rem');
 	}));
 
-	// console.log(api.instance('emtheme_layout[header_toggle]').get());
 	if (api.instance('emtheme_layout[header_toggle]').get()) $('.emtheme-header-container').toggle();
 	api('emtheme_layout[header_toggle]', (v => v.bind((nv) => $('.emtheme-header-container').toggle())));
 
 	if (api.instance('emtheme_layout[search_toggle]').get()) $('.emtheme-header .emtheme-search-form').toggle();
 	api('emtheme_layout[search_toggle]', (v => v.bind((nv) => $('.emtheme-header .emtheme-search-form').toggle())));
 
-	// if (!api.instance('emtheme_layout[search_navbar_toggle]').get()) $('.navbar-search').toggle();
 	api('emtheme_layout[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-search').toggle())));
 
-	// if (!api.instance('emtheme_layout[search_navbar_toggle]').get()) $('.navbar-container > .emtheme-search-form').toggle();
-	// api('emtheme_layout[search_navbar_toggle]', (v => v.bind((nv) => $('.navbar-container > .emtheme-search-form').toggle())));
 
 
-	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-identity').toggle();
-	api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-identity').toggle())));
+	if (!api.instance('emtheme_layout[logo_navbar_toggle]').get()) {
+		$('.navbar-menu').css('flex', '1');
+		$('.navbar-identity').toggle(); 
+	}
+
+	api('emtheme_layout[logo_navbar_toggle]', (v) => v.bind((nv) => { 
+		$('.navbar-identity').toggle();
+
+		if (api.instance('emtheme_layout[logo_navbar_toggle]').get()) $('.navbar-menu').css('flex', '0 1 auto');
+		else $('.navbar-menu').css('flex', '1');
+
+	}));
+	// api('emtheme_layout[logo_navbar_toggle]', (v => v.bind((nv) => $('.navbar-identity').toggle())));
 
 
 	api('emtheme_layout[content_width]', (v) => v.bind((nv) => $('.content-column').width(nv)));
@@ -272,7 +279,7 @@ $(() => { ((api) => {
 				}
 			}
 
-			console.dir(data);
+			// console.dir(data);
 		},
 
 		c: (o) => o ? 'theme_background['+o+']' : false,
@@ -347,7 +354,8 @@ $(() => { ((api) => {
 
 
 	// footer 
-	api('theme_footer[active]', (v) => v.bind((nv) => $('.emtheme-footer-container').toggle()));
+	if (api.instance('theme_footer[active]').get()) $('.emtheme-footer-social, .emtheme-footer-contact, .emtheme-footer-aboutus').toggle();
+	api('theme_footer[active]', (v) => v.bind((nv) => $('.emtheme-footer-social, .emtheme-footer-contact, .emtheme-footer-aboutus').toggle()));
 	api('theme_footer[social]', (v) => v.bind((nv) => $('.emtheme-footer-social').html(nv.replace(/\n/g, '<br>'))));
 	api('theme_footer[contact]', (v) => v.bind((nv) => $('.emtheme-footer-contact').html(nv.replace(/\n/g, '<br>'))));
 	api('theme_footer[aboutus]', (v) => v.bind((nv) => $('.emtheme-footer-aboutus').html(nv.replace(/\n/g, '<br>'))));
