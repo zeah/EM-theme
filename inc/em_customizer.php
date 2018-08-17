@@ -412,6 +412,7 @@ final class Emtheme_customizer {
 		$cust->add_control('emtheme_layout[header_toggle]', array(
 			'section' => 'theme_layout_section',
 			'label' => 'Hide Header',
+			'description' => _x('The header will only be shown to desktop users (width > 1044px.)<br>Other users will see the header/navbar mobile layout.', 'customizer: description for header toggle', 'emtheme'),
 			'priority' => '5',
 			'type' => 'checkbox'
 		));
@@ -438,6 +439,7 @@ final class Emtheme_customizer {
 		$cust->add_control('emtheme_layout[search_navbar_toggle]', array(
 			'section' => 'theme_layout_section',
 			'label' => 'Show Navbar Search',
+			'description' => _x('Navbar search will always be shown to mobile users in the dropdown.', 'customizer: description for navbar search toggle', 'emtheme'),
 			'priority' => '7',
 			'type' => 'checkbox'
 		));

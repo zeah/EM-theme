@@ -8,9 +8,11 @@
  * Filter either returns array with ['title'], ['thumbnail'], ['excerpt'] and ['link'] OR ['html']
  */
 
+// $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+ // $actual_link = 'hdfhk';
 
 /* content area html */
-$html = '<div class="main"><div class="content"><ul class="emtheme-serp">';
+$html = '<div class="main"><div class="content"><h2>Search Results</h2><ul class="emtheme-serp">';
 
 /* first loop */
 if (have_posts())
@@ -66,13 +68,15 @@ function emtheme_search_serp($data) {
 		$html .= '<a class="emtheme-search-link" href="'.$data[0]['link'].'">'.$data[0]['title'].'</a>';
 		
 		/* html text of link */
-		$html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
+		// $html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
+		$html .= '<div class="emtheme-search-link-text">'.THEME_ACTUAL_URL.preg_replace('/^.*?\/\/.*?\//', '/', $data[0]['link']).'</div>';
 		
 		/* container for thumbnail and excerpt */
 		$html .= '<div class="emtheme-search-box">';
 
 		/* if post has thumbnail */
-		if ($data[0]['thumbnail']) $html .= '<div class="emtheme-search-thumbnail">'.$data[0]['thumbnail'].'</div>';
+		if ($data[0]['thumbnail']) $html .= $data[0]['thumbnail'];
+		// if ($data[0]['thumbnail']) $html .= '<div class="emtheme-search-thumbnail">'.$data[0]['thumbnail'].'</div>';
 
 		/* user set excerpt or wp generated excerpt */
 		$html .= '<span class="emtheme-search-excerpt">'.$data[0]['excerpt'].'</span>';

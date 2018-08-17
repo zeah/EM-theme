@@ -13,6 +13,9 @@ require_once 'inc/em_counter.php';
 
 /* */
 
+// define('THEME_ACTUAL_URL', "(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST])":
+define('THEME_ACTUAL_URL', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]");
+
 /* content area is 1280px wide with 20px padding */
 // (1280px on chrome's very large font size setting equals to 1920px wide content.)
 if (!isset($content_width)) $content_width = 1240;
@@ -102,6 +105,13 @@ final class Emtheme_functions {
 
 		// clear css transient when doing admin 
 		if (get_transient('theme_css')) delete_transient('theme_css');
+
+		add_filter('default_page_template_title', array($this, 'rename_default_template'));
+
+	}
+
+	public function rename_default_template() {
+		return 'Page w/ margins';
 	}
 
 
@@ -379,3 +389,40 @@ final class Emtheme_functions {
 
 // 	return $data.' hi';
 // }
+// 
+// 
+// add_filter('default_page_template_title', function() {
+// 			return 'hello';
+// 		    // return __('My default template name', 'your_text_domain');
+// 		});
+// 		
+// Minimum required version.
+// 
+// 
+
+/* From Sven of wordpress.stackexcange.com */
+define( 'THEME_REQUIRED_PHP_VERSION', '5.4.0' );
+
+add_action( 'after_switch_theme', 'check_theme_setup' );
+function check_theme_setup(){
+
+  // Compare versions.
+  if ( version_compare(phpversion(), THEME_REQUIRED_PHP_VERSION, '<') ) :
+
+  // Theme not activated info message.
+  add_action( 'admin_notices', 'my_admin_notice' );
+  function my_admin_notice() {
+  ?>
+    <div class="update-nag">
+      <?php _e( 'You need to update your PHP version to run Circle Theme.', 'emtheme' ); ?> <br />
+      <?php _e( 'Actual version is:', 'emtheme' ) ?> <strong><?php echo phpversion(); ?></strong>, <?php _e( 'required is', 'emtheme' ) ?> <strong><?php echo THEME_REQUIRED_PHP_VERSION; ?></strong>
+    </div>
+  <?php
+  }
+
+  // Switch back to previous theme.
+  switch_theme( $old_theme->stylesheet );
+    return false;
+
+  endif;
+}

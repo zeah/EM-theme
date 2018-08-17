@@ -53,38 +53,38 @@ final class Emtheme_footer {
 		if (!is_array($info)) $info = [];
 
 		// if in customizer page, then only "display: none" the container element if footer is disabled. 
-		if (is_customize_preview()) {
-			$html .= '<footer class="emtheme-footer-container"'.($info['active'] ? ' style="display: none"' : '').'><div class="emtheme-footer">';
+		// if (is_customize_preview()) {
+		// 	$html .= '<footer class="emtheme-footer-container"'.($info['active'] ? ' style="display: none"' : '').'><div class="emtheme-footer">';
 
-			if ($info['social']) $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
-			// if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+		// 	if ($info['social']) $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
+		// 	// if (isset($info['social']) && $info['social'] != '') $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
 			
-			if ($info['contact']) $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
-			// if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+		// 	if ($info['contact']) $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
+		// 	// if (isset($info['contact']) && $info['contact'] != '') $html .= '<div class="emtheme-footer-contact">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['contact'])).'</div>';
 
-			if ($info['aboutus']) $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
+		// 	if ($info['aboutus']) $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
 
-			$html .= '</div></footer>';
-			return $html;
-		}
+		// 	$html .= '</div></footer>';
+		// 	return $html;
+		// }
 
 		// don't output anything in front-end if footer is disabled.
 		// if ($info['active']) return;
 
 		$html = '<footer class="emtheme-footer-container">';
 		
-		// copyright text
-		$cr = get_option('theme_em_stuff');
+		// // copyright text
+		// $cr = get_option('theme_em_stuff');
 
-		$cr = $cr ? $cr : 'All rights reserved <a href="https://www.effektivmarkedsforing.no">Effektiv Markedsføring</a> © 2018 -';
+		// $cr = $cr ? $cr : 'All rights reserved <a href="https://www.effektivmarkedsforing.no">Effektiv Markedsføring</a> © 2018 -';
 
-		$cr .= ' '.date('Y');
+		// $cr .= ' '.date('Y');
 
-		$html .= '<div class="emtheme-cc">'.wp_kses_post($cr).'</div>';
+		// $html .= '<div class="emtheme-cc">'.wp_kses_post($cr).'</div>';
 
 		// footer info
-		if (!$info['active']) {
-			$html .= '<div class="emtheme-footer">';
+		$html .= '<div class="emtheme-footer">';
+		if (!$info['active'] || is_customize_preview()) {
 
 			if ($info['social']) $html .= '<div class="emtheme-footer-social">'.$this->filter_info($info['social']).'</div>';
 			// if ($info['social']) $html .= '<div class="emtheme-footer-social">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['social'])).'</div>';
@@ -100,9 +100,21 @@ final class Emtheme_footer {
 			// if ($info['aboutus']) $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
 			// if (isset($info['aboutus']) && $info['aboutus'] != '') $html .= '<div class="emtheme-footer-aboutus">'.wp_kses_post(preg_replace('/[\r\n]/', '<br>', $info['aboutus'])).'</div>';	
 
-			$html .= '</div>';
+
+
 		}
 
+
+		// copyright text
+		$cr = get_option('theme_em_stuff');
+
+		$cr = $cr ? $cr : 'All rights reserved <a href="https://www.effektivmarkedsforing.no">Effektiv Markedsføring</a> © 2018 -';
+
+		$cr .= ' '.date('Y');
+
+		$html .= '<div class="emtheme-cc">'.wp_kses_post($cr).'</div>';
+
+		$html .= '</div>';
 		$html .= '</footer>';
 		return $html;
 	}

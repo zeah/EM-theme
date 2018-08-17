@@ -78,6 +78,10 @@ img {
 	height: auto;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 /* stuff to be hidden by js on desktop */
 .desktop-hidden {
 	display: none;
@@ -315,7 +319,7 @@ img {
 
 /* container for the menu */
 .navbar-menu {
-	flex: 1;
+	/*flex: 1;*/
 	display: flex;
 }
 
@@ -453,6 +457,19 @@ img {
 	display: none;
 }
 
+.navbar-search-button {
+	background-color: inherit;
+	border: none;
+	cursor:pointer;
+}
+
+.navbar-search-button:focus {
+	background-color: inherit;
+	border: none;
+	outline: none;
+}
+
+
 }
 
 @media only screen and (min-width: 801px) {
@@ -485,6 +502,7 @@ img {
 .main {
 	margin-top: 2rem;
 	margin-bottom: auto;
+	max-width: 100%;
 }
 
 
@@ -658,15 +676,25 @@ img {
 }
 
 /* post image */
-.emtheme-search-thumbnail {
-	margin-right: 1rem;
+.emtheme-search-box > img {
+	display: block;
+
+	height: 9rem;
+	width: auto;
+
+	margin-right: 2rem;
 }
 
+/*.emtheme-search-thumbnail {
+	margin-right: 1rem;
+	width: 25rem;
+}*/
+/*
 .emtheme-search-thumbnail > img {
 	height: 5rem;
 	width: auto;
 	display: block;
-}
+}*/
 
 /* post excerpt, either user set or wp generated */
 .emtheme-search-excerpt {
@@ -693,15 +721,20 @@ img {
 	font-family: Verdana;
 	font-size: 1rem;
 	margin: 0.5rem 0;
+	width: 100%;
+	text-align: center;
 }
 
 /* container for actual footer */
 .emtheme-footer {
-	align-self: stretch;
+	min-width: 50%;
+	max-width: 80%;
+	/*align-self: stretch;*/
 	/* positioning content */
 	display: flex;
 
-	justify-content: center;
+	flex-wrap: wrap;
+	justify-content: space-between;
 	box-sizing: border-box;
 	padding: 0 2rem;
 }
@@ -713,7 +746,7 @@ img {
 .emtheme-footer-aboutus {
 	flex-basis: 20%;
 	padding: 2rem 0;
-	margin-right: 2rem;
+	/*margin-right: 10rem;*/
 }
 
 
