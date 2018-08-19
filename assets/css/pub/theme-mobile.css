@@ -257,6 +257,7 @@ img {
 .content {
 	padding: 1rem;
 	margin: 1rem 0;
+	overflow: auto;
 }
 
 /* wp classes for inserted images */

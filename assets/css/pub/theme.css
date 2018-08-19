@@ -588,6 +588,7 @@ img {
 	box-sizing: border-box;
 	padding: 2rem;
 	margin-bottom: 2rem;
+	overflow: auto;
 }
 
 /* post content title */
