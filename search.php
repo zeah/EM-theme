@@ -9,7 +9,7 @@
  */
 
 // $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
- // $actual_link = 'hdfhk';
+// $actual_link = 'hdfhk';
 
 /* content area html */
 $html = '<div class="main"><div class="content"><h2>Search Results</h2><ul class="emtheme-serp">';
