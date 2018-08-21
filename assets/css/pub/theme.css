@@ -736,7 +736,7 @@ img {
 .emtheme-footer-social,
 .emtheme-footer-contact,
 .emtheme-footer-aboutus {
-	flex-basis: 20%;
+	flex-basis: 30%;
 	padding: 2rem 0;
 	/*margin-right: 10rem;*/
 }
