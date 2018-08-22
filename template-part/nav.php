@@ -61,6 +61,8 @@ final class Emtheme_nav {
 
 			$h .= '</div>';
 
+			$h .= '<button type="button" onclick="document.querySelector(\'.navbar-menu\').classList.toggle(\'navbar-menu-show\')" class="mobile-icon-container"><svg class="mobile-menu-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><path class="mobile-icon" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg></button>';
+
 		}
 		else if (is_customize_preview()) {
 			
@@ -105,8 +107,8 @@ final class Emtheme_nav {
 			$h .= $this->get_nav();
 			
 			if ($show['search_navbar_toggle']) {
-				$h .= '<div class="navbar-search"><button type=button class="navbar-search-button"><svg class="navbar-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="theme-search-svg" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><svg class="navbar-search-cancel-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="navbar-search-cancel" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>';
-				$h .= '<div class="navbar-search-popup">'.get_search_form(false).'</div></div>';
+				$h .= '<div class="navbar-search"><button type=button class="navbar-search-button"><svg class="navbar-search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="theme-search-svg" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg><svg class="navbar-search-cancel-svg navbar-hide" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path class="navbar-search-cancel" d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"/><path d="M0 0h24v24H0z" fill="none"/></svg></button>';
+				$h .= '<div class="navbar-search-popup navbar-hide">'.get_search_form(false).'</div></div>';
 			}
 
 			$h .= '</div>';
@@ -259,7 +261,47 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
 			// adding custom classes
 			else $classes .= ' '.$name;
 
-			$output .= sprintf('<li class="menu-item%s"><a itemprop="url" class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s%s</a>%s',
+			if (wp_is_mobile()) 
+				$output .= sprintf('<li class="menu-item%s"><a itemprop="url" class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s</a>%s%s',
+					
+					// adds "menu-has-child" class to parent items
+					$has_child, 
+					
+					// adds "menu-current" to nav item which matches current page
+					(($item->object_id == get_the_ID()) ? ' menu-current' : ''), 
+
+					// translates nav depth to css class 
+					($depth == 0) ? ' menu-level-top' : ' menu-level-second',
+
+					// adds user made classes (from menu customizer)
+					esc_html($classes), 
+
+					// the url to which the nav item points to
+					esc_url($item->url),
+
+					// user created rel - meant to signal relationship between sites
+					($item->xfn) ? ' '.esc_html($item->xfn) : '',
+
+					// user created title attribute (from menu customizer) (shows as tooltip)
+					($item->attr_title) ? ' title="'.esc_html($item->attr_title).'"' : '',
+					
+					// (user set) whether to open page in new tab or same window
+					($item->target) ? ' target="_blank"' : '',
+
+					// text of nav item (the html anchor)
+					esc_html($item->title),
+
+					// adds visual to parent nav items
+					($has_child) ? '<div class="mobile-arrow-container"><svg onclick="var sm = this.parentNode.nextSibling; if (sm) sm.classList.toggle(\'submenu-show\')" class="nav-arrow-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+										<path class="nav-arrow" d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/>
+									</svg></div>' : '', // add icon if true
+
+					// user created descriptions. shows up when hover on same nav item.
+					($item->description) ? '<span class="emtheme-navbar-description">'.esc_html($item->description).'</span>' : ''
+				);
+					
+			else
+				$output .= sprintf('<li class="menu-item%s"><a itemprop="url" class="menu-link%s%s%s" href="%s" rel="noopener%s"%s%s>%s%s</a>%s',
 					
 					// adds "menu-has-child" class to parent items
 					$has_child, 

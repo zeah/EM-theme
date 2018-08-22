@@ -417,6 +417,10 @@ img {
 	top: 5px; 
 }*/
 
+.navbar-hide {
+	display: none;
+}
+
 .navbar-search-mobile {
 	display: none;
 }
@@ -429,7 +433,7 @@ img {
 }
 
 .navbar-search-popup {
-	display: none;
+	/*display: none;*/
 
 	position: absolute;
 	left: -385px;
@@ -449,7 +453,7 @@ img {
 }
 
 .navbar-search-cancel-svg {
-	display: none;
+	/*display: none;*/
 }
 
 .navbar-search-button {
