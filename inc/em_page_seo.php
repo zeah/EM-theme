@@ -48,16 +48,19 @@ final class Emtheme_page_seo {
 
 		$html .= '<div class="emtheme-seo-container">';
 
-		$html .= '<div>';
+		$html .= '<div style="width: 550px">';
 		$html .= '<h1>SERP apperance</h1>';
-		$html .= '<div>Custom Title <input type="text" name="emtheme_seo[custom_title]" value="'.esc_attr($this->get_meta('custom_title')).'"></div>';
-		$html .= '<div>Meta Description<input type="text" name="emtheme_seo[meta_description]" value="'.esc_attr($this->get_meta('meta_description')).'"></div>';
+		$html .= '<div>Custom Title<input style="width: 100%; margin: 0" type="text" name="emtheme_seo[custom_title]" value="'.esc_attr($this->get_meta('custom_title')).'"></div>';
+
+		$html .= '<div>Meta Description<br><textarea name="emtheme_seo[meta_description]" style="width: 100%; height: 10rem;">'.esc_html($this->get_meta('meta_description')).'</textarea></div>';
+
+		// $html .= '<div>Meta Description<input type="text" name="emtheme_seo[meta_description]" value="'.esc_attr($this->get_meta('meta_description')).'"></div>';
 		$html .= '</div>';
 
 		$html .= '<div>';
 		
 		$html .= '<h1>Web Crawlers:</h1>';
-		$html .= '<div>Canonical<input type="text" name="emtheme_seo[canonical]" value="'.esc_attr($this->get_meta('canonical')).'"></div>';
+		$html .= '<div class="emtheme-seo-canonical">Canonical<input type="text" name="emtheme_seo[canonical]" value="'.esc_attr($this->get_meta('canonical')).'"></div>';
 
 		// $html .= '<div class="emtheme-seo-crawlers">
 		// 			<label for="em_seo_canonical">Canonical</label> 
@@ -89,10 +92,10 @@ final class Emtheme_page_seo {
 
 		$html .= '<div>';
 		$html .= '<h1>Social media link apperance</h1>';
-		$html .= '<div>Title <input type="text" name="emtheme_seo[soc_title]" value="'.esc_attr($this->get_meta('soc_title')).'"></div>';
+		$html .= '<div class="emtheme-seo-soc">Title <input type="text" name="emtheme_seo[soc_title]" value="'.esc_attr($this->get_meta('soc_title')).'"></div>';
 		// $html .= '<div>Image</div><input type="text" name="emtheme_seo[soc_image]" value="'.esc_attr($this->get_meta('soc_image')).'">';
 		// $html .= '<div>Site name <input type="text" name="emtheme_seo[soc_sitename]" value="'.esc_attr($this->get_meta('soc_sitename')).'"></div>';
-		$html .= '<div>Description <input type="text" name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></div>';
+		$html .= '<div class="emtheme-seo-soc">Description <input type="text" name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></div>';
 		// $html .= '<div>Description <textarea name="emtheme_seo[soc_description]" value="'.esc_attr($this->get_meta('soc_description')).'"></textarea></div>';
 		$html .= '</div>';
 		
@@ -217,7 +220,7 @@ final class Emtheme_page_seo {
 
 		// title and meta description
 		if (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<title>'.esc_html($meta['custom_title']).'</title>';
-		else $html .= '<title>'.esc_html(get_bloginfo('name')).'</title>';
+		else $html .= '<title>'.esc_html($post->post_title).'</title>';
 
 		if (isset($meta['meta_description']) && $meta['meta_description'] != '') $html .= '<meta name="description" content="'.esc_html($meta['meta_description']).'">';
 	

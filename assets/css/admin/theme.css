@@ -39,7 +39,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 }
 
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1680px) {
 
 	.emtheme-seo-container {
 		display: flex;
@@ -47,7 +47,9 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 		font-size: 16px;
 	}
 
-	.emtheme-seo-container > div > div {
+	.emtheme-seo-soc,
+	.emtheme-seo-crawlers {
+	/*.emtheme-seo-container > div > div {*/
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -71,15 +73,19 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 		margin-bottom: 10px;
 	}
 }
-@media only screen and (max-width: 1279px) {
+@media only screen and (max-width: 1679px) {
 
 	.emtheme-seo-container > div {
 	}
 
-	.emtheme-seo-container > div > div {
+	.emtheme-seo-canonical,
+	.emtheme-seo-soc,
+	.emtheme-seo-crawlers {
+	/*.emtheme-seo-container > div > div {*/
 		margin-bottom: 30px;
 		display: flex;
 		justify-content: space-between;
+		max-width: 550px;
 	}
 
 }
