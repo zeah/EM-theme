@@ -90,11 +90,18 @@ jQuery(function() {
 
 		if ($('.mobile-icon-container').length) return;
 
+		// console.log(document.querySelectorAll('.mobile-icon-container'));
+
 		var container = document.querySelector('.navbar-container');
 		var menu = document.querySelector('.navbar-menu');
 
-		$('.navbar-identity, .navbar-search').show();
+		// $('.navbar-identity, .navbar-search').show();
 
+		var identity = document.querySelector('.navbar-identity');
+		if (identity) identity.style.display = 'block';
+
+		var search = document.querySelector('.navbar-search');
+		if (search) search.style.display = 'block';
 
 		var icon = H({class: 'mobile-icon-container'});
 

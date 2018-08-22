@@ -399,9 +399,13 @@ img {
 
 /* search form button */
 .emtheme-search-button {
-	background-color: inherit;
+	background-color: transparent;
 	border: none;
 	cursor: pointer;
+}
+
+.navbar-search-button {
+	background-color: transparent;
 }
 
 
@@ -579,7 +583,7 @@ img {
 	box-sizing: border-box;
 	padding: 2rem;
 	margin-bottom: 2rem;
-	overflow: auto;
+	/*overflow: auto;*/
 }
 
 /* post content title */
