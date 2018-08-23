@@ -468,6 +468,12 @@ final class Emtheme_css {
 		$css .= ".content-column, .emtheme-serp, .column-404 { max-width: {$lay['content_width']}rem; }"; 
 		$css .= "\n}";
 
+		$css .= "\n@media only screen and (min-width: 801px) {";
+
+			$css .= "\n.main-sidebar { grid-template-columns: auto minmax(auto, {$lay['content_width']}rem) auto; }";
+
+		$css .= "\n}";
+
 		$css .= "\nbody { background-color: $col[background]; }";
 		
 		$css .= "\n.main { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; color: $col[main_font]; line-height: $fon[content_lineheight]; }";

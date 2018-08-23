@@ -480,7 +480,7 @@ img {
 .main-sidebar {
 	display: grid;
 
-	grid-template-columns: auto 1fr auto;
+	/*grid-template-columns: auto 1fr auto;*/
 	grid-template-rows: auto 1fr auto;
 
 	grid-template-areas:
@@ -632,6 +632,7 @@ img {
 .content-flex-center {
 	flex: 1;
 	order: 2;
+	overflow: auto;
 }
 
 .content-flex-right {
