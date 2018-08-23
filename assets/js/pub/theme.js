@@ -1,5 +1,5 @@
 (function() {
-	console.log('hi');
+	// console.log('hi');
 	// var $ = jQuery;
 	var H = function(o) {
 
@@ -168,11 +168,13 @@
 
 		var b = document.querySelectorAll('.mobile-arrow-container');
 		for (var i = 0; i < b.length; i++) {
-			b[i].remove();
+			b[i].parentNode.removeChild(b[i]);
+			// b[i].remove();
 		}
 
 		var c = document.querySelector('.mobile-icon-container');
-		if (c) c.remove();
+		if (c) c.parentNode.removeChild(c);
+		// if (c) c.remove();
 
 	}
 
@@ -197,7 +199,8 @@
 			
 			var a = document.querySelectorAll('.nav-arrow-container');
 			for (var i = 0; i < a.length; i++)
-				a[i].remove();
+				a[i].parentNode.removeChild(a[i]);
+				// a[i].remove();
 				// a[i].style.display = 'none';
 
 		}

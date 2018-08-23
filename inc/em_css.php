@@ -419,7 +419,8 @@ final class Emtheme_css {
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
 
 		// navbar link - contains the dimensions 
-		$css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$css .= "\n.menu-link { display: flex; align-items: center; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		// $css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 
 		// removes right padding for menu items with submenu (down-arrow is added in its place)
 		$css .= "\n.menu-has-child > .menu-link { padding-right: 0 }";
