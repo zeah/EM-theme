@@ -33,15 +33,15 @@ final class Emtheme_documentation {
 		
 		$html = '<div class="emtheme-documentation">';
 
-
-		$html .= '<div><ul>';
+		// wp_die('<xmp>'.print_r($data, true).'</xmp>');
+		$html .= '<div><ul class="emtheme-documentation-number">';
 		foreach ($data as $key)
 			$html .= $key['index'];
 		$html .= '</ul></div>';
 
-		$html .= '<div class="emtheme-documentation-info"><ul>';
+		$html .= '<div class="emtheme-documentation-info"><ul class="emtheme-documentation-number">';
 		foreach ($data as $key)
-			$html .= '<div>'.$key['title'].'</div>'.$key['info'];
+			$html .= '<li>'.$key['title'].'</li><ul class="emtheme-documentation-alpha">'.$key['info'].'</ul>';
 		$html .= '</ul></div>';
 
 		// if (isset($data['index']))
@@ -66,7 +66,7 @@ final class Emtheme_documentation {
 
 		$data['theme']['title'] = '<h1>EM Theme</h1>';
 
-		$data['theme']['index'] = _x('<li>
+		$data['theme']['index'] = _x('<li class="emtheme-documentation-title">THEME</li><ul class="emtheme-documentation-alpha"><li>
 									  <h2><a href="#theme-templates">Theme Templates</a></h2>
 									  <ul>
 										 <li><a href="#theme-template-default">Default</a></li>
@@ -123,7 +123,7 @@ final class Emtheme_documentation {
 										 <li><a href="#theme-passive-semantic">Semantic HTML</a></li>
 										 <li><a href="#theme-passive-counter">Hit Counter</a></li>
 									  </ul>
-								   </li>
+								   </li></ul><div class="emtheme-documentation-title">PLUGINS</div>
 								   ', 'documentation index', 'emtheme');
 
 		$data['theme']['info'] = _x('<li id="theme-templates">

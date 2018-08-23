@@ -118,7 +118,38 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 	flex-direction: row;
 }
 
-.emtheme-documentation-info > ul > li,
+.emtheme-documentation-number {
+	list-style-type: decimal;
+	/*font-size: 20px;*/
+}
+
+.emtheme-documentation-number > li {
+	margin-bottom: 30px;
+}
+
+.emtheme-documentation-alpha {
+	list-style-type: lower-alpha;
+}
+
+.emtheme-documentation-alpha > li > h2 {
+	margin-top: 25px;
+}
+
+.emtheme-documentation-alpha > li > ul {
+	list-style-type: lower-roman;
+}
+
+.emtheme-documentation-alpha > li > ul > li > ul {
+	list-style-type: circle;
+}
+
+.emtheme-documentation-title {
+	font-size: 24px;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+
+/*.emtheme-documentation-info > ul > li,
 .emtheme-documentation > div > ul > li {
 	list-style-type: decimal;
 	margin-bottom: 25px !important;
@@ -132,7 +163,7 @@ a.toplevel_page_em-settings-page > div.wp-menu-image:before {
 .emtheme-documentation-info > div > ul > li > ul > li > ul > li,
 .emtheme-documentation > div > ul > li > ul > li > ul > li {
 	list-style-type: lower-roman;
-}
+}*/
 
 /*
 	Customizer Pane	
