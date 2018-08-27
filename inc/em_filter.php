@@ -47,8 +47,10 @@ final class Emtheme_filter {
 			$data = $this->str_replace_last('[/col]', '[/col]</div>', $data);
 
 			// adding flex items with custom width
-			$data = preg_replace('/\[col (right|center|left) width=(|")\d+.(|px)(|")\]/', '<div class="content-flex-$1" style="width: $2px">', $data);
-
+			$data = preg_replace('/\[col (right|center|left) width="?(\d+)(?:px)?"?\]/', '<div class="content-flex-$1" style="width: $2px">', $data);
+			# $data = preg_replace('/\[col (right|center|left) width=(|")\d+.(|px)(|")\]/', '<div class="content-flex-$1" style="width: $2px">', $data);
+			// wp_die('<xmp>'.print_r($data, true).'</xmp>');
+			
 			// adding flex items with default width from external css
 			$data = preg_replace('/\[col (center|left|right)\]/', '<div class="content-flex-$1">', $data);
 
