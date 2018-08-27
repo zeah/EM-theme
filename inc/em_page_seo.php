@@ -33,13 +33,16 @@ final class Emtheme_page_seo {
 
 	public function add_meta_box() {
 
-		$types = apply_filters('seo_meta', []);
+		$types = get_post_types(['public' => true]);
+      	unset($types[array_search('attachment', $types)]);
 
 		add_meta_box(
 			'theme_seo_meta',
 			'SEO Options',
 			array($this, 'seo_callback'),
-			$types
+			$types,
+			'advanced',
+			'low'
 		);
 	}
 

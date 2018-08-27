@@ -38,7 +38,9 @@ final class Emtheme_sitemap {
 
 	public function add_meta_box() {
 
-		$types = apply_filters('sitemap_meta', []);
+		// $types = apply_filters('sitemap_meta', []);
+		$types = get_post_types(['public' => true]);
+      	unset($types[array_search('attachment', $types)]);
 
 		add_meta_box(
 			'theme_sitemap_meta',
@@ -124,7 +126,12 @@ final class Emtheme_sitemap {
 	 */
 	public function add_sitemap() {
 
-      	$type = apply_filters('sitemap_meta', []);
+      	// $type = apply_filters('sitemap_meta', []);
+      	// 
+      	$type = get_post_types(['public' => true]);
+      	unset($type[array_search('attachment', $type)]);
+
+      	// wp_die('<xmp>'.print_r($type, true).'</xmp>');
 
         $postsForSitemap = get_posts(array(
             'numberposts' => -1,

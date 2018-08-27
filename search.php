@@ -12,7 +12,7 @@
 // $actual_link = 'hdfhk';
 
 /* content area html */
-$html = '<div class="main"><div class="content"><h2>Søke Resultat</h2><ul class="emtheme-serp">';
+$html = '<div class="main"><div class="content"><h2>Søkeresultat:</h2><ul class="emtheme-serp">';
 
 /* first loop */
 if (have_posts())

@@ -148,6 +148,10 @@
 		for (var i = 0; i < d.length; i++)
 			d[i].classList.toggle('navbar-hide');
 
+		var e = document.querySelector('.emtheme-search-input');
+
+		if (e) e.focus();
+
 	} 
 
 	var navbarSearch = document.querySelector('.navbar-search-button');

@@ -427,3 +427,6 @@ function check_theme_setup(){
 
   endif;
 }
+
+
+// wp_die('<xmp>'.print_r(get_post_types(['public' => true]), true).'</xmp>');
