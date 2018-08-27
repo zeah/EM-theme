@@ -68,8 +68,8 @@ function emtheme_search_serp($data) {
 		$html .= '<a class="emtheme-search-link" href="'.$data[0]['link'].'">'.$data[0]['title'].'</a>';
 		
 		/* html text of link */
-		// $html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
-		$html .= '<div class="emtheme-search-link-text">'.THEME_ACTUAL_URL.preg_replace('/^.*?\/\/.*?\//', '/', $data[0]['link']).'</div>';
+		$html .= '<div class="emtheme-search-link-text">'.$data[0]['link'].'</div>';
+		// $html .= '<div class="emtheme-search-link-text">'.THEME_ACTUAL_URL.preg_replace('/^.*?\/\/.*?\//', '/', $data[0]['link']).'</div>';
 		
 		/* container for thumbnail and excerpt */
 		$html .= '<div class="emtheme-search-box">';
