@@ -259,7 +259,7 @@ final class Emtheme_functions {
 	public function add_frontend_sands() {
 
 		/* adding script for mobile nav and search feature */
-        wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/theme.js', array(), '1.0.0', true);
+        wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/theme.js', array(), '1.0.1', true);
         // wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/theme.js', array('jquery'), '0.0.3', true);
 
         /* adding css files to front-end - desktop sizes vs others */

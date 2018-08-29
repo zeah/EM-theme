@@ -410,7 +410,7 @@ final class Emtheme_css {
 		$css .= "\n.menu-level-top { border-right: $col[navbar_border]; }";
 		
 		// the UL container for menu
-		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; margin: auto; }";
+		$css .= "\n.menu-list { display: flex; padding: 0; margin: 0; }";
 
 		// submenu
 		$css .= "\n.sub-menu { display: none; padding: 0; margin: 0; background-color: $col[submenu_background]; z-index: 99; color: $col[submenu_font]; border: solid 1px $col[submenu_border]; }";

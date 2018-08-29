@@ -321,6 +321,7 @@ img {
 .navbar-menu {
 	/*flex: 1;*/
 	display: flex;
+	align-self: stretch;
 }
 
 /* 	nav container for ul element of nav items 
@@ -329,6 +330,12 @@ img {
 
 	/* sets navbar search box to "aligned right" */
 	margin-right: auto;
+
+	display: flex;
+}
+
+.menu-link {
+	height: 100%;
 }
 
 .menu-list > .menu-item:last-child > .menu-link {
