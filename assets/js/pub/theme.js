@@ -204,11 +204,13 @@
 
 			var decoded = decodeURIComponent(pair[0]);
 
-			if (decoded === 'gclid')
-				adding += 'gclid' + '=' + pair[1] + '&';
+			if (decoded === 'gclid') adding += 'gclid' + '=' + pair[1] + '&';
 
-			else if (decoded === 'msclkid')
-				adding += 'msclkid' + '=' + pair[1] + '&';
+			if (decoded === 'gclid') adding += 'epi' + '=' + pair[1] + '&';
+
+			if (decoded === 'msclkid') adding += 'msclkid' + '=' + pair[1] + '&';
+			
+			if (decoded === 'msclkid') adding += 'epi' + '=' + pair[1] + '&';
 		}
 
 		// removing last &
