@@ -29,16 +29,26 @@ final class Emtheme_footer {
 	 * @return html element for privacy statement
 	 */
 	public function privacy() {
+
+		if (isset($_COOKIE['cookieAccept'])) return;
+
 		$pri = get_theme_mod('theme_privacy');
 		
 		// getting values or default values and escaping
 		$pri_text = isset($pri['text']) ? $pri['text'] : 'By continuing to use this site you agree to our terms of privacy.';
 		$pri_button = isset($pri['button_text']) ? $pri['button_text'] : 'OK';
 
-		return '<aside class="emtheme-cookie-container">
-				<div class="emtheme-cookie">
-					<div class="emtheme-cookie-text">'.wp_kses_post($pri_text).'</div>
-					<button class="emtheme-cookie-button" type="button">'.esc_html($pri_button).'</button>
+		// return '<aside class="emtheme-cookie-container">
+		// 		<div class="emtheme-cookie">
+		// 			<div class="emtheme-cookie-text">'.wp_kses_post($pri_text).'</div>
+		// 			<button class="emtheme-cookie-button" type="button">'.esc_html($pri_button).'</button>
+		// 		</div>
+		// 	  </aside>';
+		// 	  
+		return '<aside class="theme-privacy-container">
+				<div class="theme-privacy">
+					<button class="theme-privacy-button" type="button">'.esc_html($pri_button).'</button>
+					<div class="theme-privacy-text">'.apply_filters('the_content', wp_kses_post($pri_text)).'</div>
 				</div>
 			  </aside>';
 	}

@@ -337,20 +337,20 @@ $(() => { ((api) => {
 	}));
 
 	// privacy window 
-	api('theme_privacy[text]', (v) => v.bind((nv) => $('.emtheme-cookie-text').html(nv)));
+	api('theme_privacy[text]', (v) => v.bind((nv) => $('.theme-privacy-text').html(nv.replace(/\n/g, '<br>'))));
 
-	api('theme_privacy[bg]', (v) => v.bind((nv) => $('.emtheme-cookie').css('background-color', nv)));
+	api('theme_privacy[bg]', (v) => v.bind((nv) => $('.theme-privacy').css('background-color', nv)));
 	
-	api('theme_privacy[font]', (v) => v.bind((nv) => $('.emtheme-cookie').css('color', nv)));
+	api('theme_privacy[font]', (v) => v.bind((nv) => $('.theme-privacy').css('color', nv)));
 
-	api('theme_privacy[button_text]', (v) => v.bind((nv) => $('.emtheme-cookie-button').html(nv)));
+	api('theme_privacy[button_text]', (v) => v.bind((nv) => $('.theme-privacy-button').html(nv)));
 
 	api('theme_privacy[button_bg]', (v) => v.bind((nv) => { 
-		$('.emtheme-cookie-button').css('background-color', nv);
-		$('.emtheme-cookie').css('border', 'solid 1px '+nv); 
+		$('.theme-privacy-button').css('background-color', nv);
+		$('.theme-privacy').css('border', 'dashed 4px '+nv); 
 	}));
 	
-	api('theme_privacy[button_font]', (v) => v.bind((nv) => $('.emtheme-cookie-button').css('color', nv)));
+	api('theme_privacy[button_font]', (v) => v.bind((nv) => $('.theme-privacy-button').css('color', nv)));
 
 
 	// footer 

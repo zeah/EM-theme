@@ -55,32 +55,33 @@
 	}
 
 
-	// adding privacy accept window
+	// privacy window: button event & cookie reading
 	var addCookieAccept = function() {
-		var element = document.querySelector('.emtheme-cookie');
+		var element = document.querySelector('.theme-privacy-container');
+		// var element = document.querySelector('.emtheme-cookie');
 		if (!element) return;
 
-		var button = document.querySelector('.emtheme-cookie-button');
+		var button = document.querySelector('.theme-privacy-button');
 		if (!button) return;
 
-		if (location.href.indexOf('customize_changeset') == -1) {
-			var cookie_list = decodeURIComponent(document.cookie).split('; ')
-			for (var cookie in cookie_list) {
-				if (cookie_list[cookie].indexOf('cookieAccept=') == 0) {
-					element.style.display = 'none';
-					return; 
-				}
-			}
-		}
+		// if (location.href.indexOf('customize_changeset') == -1) {
+		// 	var cookie_list = decodeURIComponent(document.cookie).split('; ')
+		// 	for (var cookie in cookie_list) 
+		// 		if (cookie_list[cookie].indexOf('cookieAccept=') == 0) {
+		// 			element.style.display = 'none';
+		// 			return; 
+		// 		}
+			
+		// }
 
-		element.style.opacity = 1;
+		// element.style.opacity = 1;
 
 		button.addEventListener('click', function() { 
 			var d = new Date();
 			d.setTime(d.getTime() + (120*24*60*60*1000));
 
 			document.cookie = 'cookieAccept=ok;expires='+d.toUTCString()+';path=/'; 
-			element.classList.add('emtheme-cookie-fade');
+			element.classList.add('theme-privacy-fade');
 		});
 
 	}
@@ -158,7 +159,7 @@
 	 
 	var desktop = (window.innerWidth > 1045);
 
-	if (!desktop) mobile();
+	if (!desktop) setMobile();
 
 	// redo
 	window.addEventListener('resize', function() {
@@ -201,7 +202,7 @@
 		for (var i in query) {
 			var pair = query[i].split('=');
 
-			var decoded = decodeURIComponent(pair[0];
+			var decoded = decodeURIComponent(pair[0]);
 
 			if (decoded === 'gclid')
 				adding += 'gclid' + '=' + pair[1] + '&';

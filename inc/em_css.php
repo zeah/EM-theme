@@ -483,9 +483,9 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-footer-container { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
 
-		$css .= "\n.emtheme-cookie-container { font-family: $fon[content_family]; }";
-		$css .= "\n.emtheme-cookie { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: solid 1px $col[privacy_button_bg]; }";
-		$css .= "\n.emtheme-cookie-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
+		$css .= "\n.theme-privacy-container { font-family: $fon[content_family]; }";
+		$css .= "\n.theme-privacy { background-color: $col[privacy_bg]; color: $col[privacy_font]; border: dashed 4px $col[privacy_button_bg]; }";
+		$css .= "\n.theme-privacy-button { background-color: $col[privacy_button_bg]; color: $col[privacy_button_font]; }";
 		$css .= "\n.emtheme-goup { background-color: $col[goup_bg]; border: solid 2px $col[goup_font]; }";
 		$css .= "\n.emtheme-goup-arrow { fill: $col[goup_font]; }";
 		
