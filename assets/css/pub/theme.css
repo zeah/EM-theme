@@ -913,6 +913,7 @@ img {
 		margin-bottom: 30rem;
 	}
 
+	.content,
 	.content-flex {
 		width: 780px;
 		max-width: 100%;
