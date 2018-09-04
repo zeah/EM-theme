@@ -232,8 +232,8 @@ final class Emtheme_css {
 		$layout['navbar_padding'] = $lay['navbar_padding'] ? floatval($lay['navbar_padding']) / 10 : '0.6';
 		$layout['navbar_search'] = ($lay['search_navbar_toggle'] && $lay['search_navbar_toggle'] != '') ? $lay['search_navbar_toggle'] : false;
 		$layout['goup_toggle'] = $lay['goup_toggle'] ? true : false;
-		$layout['content_width'] = $lay['content_width'] ? (intval($lay['content_width']) / 10) : ($content_width / 10); 
-
+		$layout['content_width'] = $lay['content_width'] ? floatval((intval($lay['content_width']) / 10)) : floatval($content_width / 10); 
+		
 		$this->layout = $layout;
 
 	}
@@ -460,7 +460,8 @@ final class Emtheme_css {
 		$lay = $this->layout;
 
 		// $width = $content_width / 10;
-
+		// wp_die('<xmp>'.print_r($content_width, true).'</xmp>');
+		
 		$css = "\n@media only screen and (min-width: 1045px) {";
 		// $css = "\n@media only screen and (min-width: 1280px) {";
 		// $css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
