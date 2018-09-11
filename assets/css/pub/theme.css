@@ -5,7 +5,7 @@
 	All colors, fonts, images and most dimensions.
 
 	break-points:
-		content style to min-width 801px
+		content style to min-width 816px
 		header & navbar style to min-width 1044px
 
 	LAYOUT
@@ -43,7 +43,7 @@
 
 */
 
-@media only screen and (min-width: 801px) {
+@media only screen and (min-width: 816px) {
 
 /* 0.1 html */
 
@@ -477,7 +477,7 @@ img {
 
 }
 
-@media only screen and (min-width: 801px) {
+@media only screen and (min-width: 816px) {
 
 /* 2.0 content */
 

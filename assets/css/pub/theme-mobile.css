@@ -15,7 +15,7 @@
 	6.0 misc
 */
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 815px) {
 
 html { 
 
@@ -264,7 +264,7 @@ img {
 }
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 815px) {
 
 /* 3.0 content */
 
@@ -274,9 +274,14 @@ img {
 }
 
 .content {
-	padding: 1rem;
+	padding: 0;
 	margin: 1rem 0;
 	overflow: auto;
+}
+
+.content-title,
+.content-post > * {
+	padding: 0 1rem;
 }
 
 /* wp classes for inserted images */
