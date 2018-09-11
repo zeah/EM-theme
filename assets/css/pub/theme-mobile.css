@@ -38,6 +38,10 @@ img {
 	box-sizing: border-box;
 }
 
+p:empty {
+	display: none;
+}
+
 /**/
 .page-container {
 

@@ -82,6 +82,10 @@ img {
 	box-sizing: border-box;
 }
 
+p:empty {
+	display: none;
+}
+
 /* stuff to be hidden by js on desktop */
 .desktop-hidden {
 	display: none;
