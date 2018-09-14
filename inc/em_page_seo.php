@@ -24,9 +24,11 @@ final class Emtheme_page_seo {
 		add_action('add_meta_boxes', array($this, 'add_meta_box'));
 		add_filter('seo_meta', array($this, 'add_seo_meta'));
 		add_action('save_post', array($this, 'save'));
+
 	}
 
 	private function wp_hooks() {
+		remove_action( 'wp_head', 'rel_canonical' );
 		add_action('wp_head', array($this, 'add_head'));
 		// add_action('wp_footer', array($this, 'add_footer'));
 	}
