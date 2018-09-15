@@ -113,6 +113,7 @@ final class Emtheme_documentation {
 										 <li><a href="#theme-features-sitemap">Sitemap.xml</a></li>
 										 <li><a href="#theme-features-searchpage">Internal SERP</a></li>
 										 <li><a href="#theme-features-notfound">Page not found</a></li>
+										 <li><a href="#theme-features-tracking">Tracking</a></li>
 									  </ul>
 								   </li>
 								   <li>
@@ -395,6 +396,12 @@ final class Emtheme_documentation {
 										 <li id="theme-features-notfound"><b>Page Not Found</b>
 										 <p>The page not found (404 error) has two elements. One content and a widget bar on the left side.
 										 <br>The content area is set from customizer -> site identity and the setting accepts all html which a post does.</p>
+										 </li>
+
+										 <li id="theme-features-tracking"><b>Tracking</b>
+										 <p><b>Link Converting</b>
+
+										 </p>
 										 </li>
 
 									  </ul>
