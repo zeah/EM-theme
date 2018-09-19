@@ -509,7 +509,7 @@ p:empty {
 
 /* content area */
 .main {
-	/*margin-top: 2rem;*/
+	margin-top: 2rem;
 	margin-bottom: auto;
 	max-width: 100%;
 }
