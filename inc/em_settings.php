@@ -72,6 +72,7 @@ final class Emtheme_settings {
 		register_setting('theme-tracking-options', 'theme_tracking_data', ['sanitize_callback' => array($this, 'sanitize')]);
 		add_settings_section('theme-tracking-settings', 'Link Conversions', array($this, 'tracking_settings'), 'theme-settings-tracking');
 		add_settings_field('theme-tracking-convert', 'Convert links', array($this, 'tracking_convert'), 'theme-settings-tracking', 'theme-tracking-settings');
+		add_settings_field('theme-tracking-ignore', 'Ignore links with existing query string', array($this, 'tracking_ignore'), 'theme-settings-tracking', 'theme-tracking-settings');
 		add_settings_field('theme-tracking-gclid', 'gclid', array($this, 'gclid_convert'), 'theme-settings-tracking', 'theme-tracking-settings');
 		add_settings_field('theme-tracking-msclkid', 'msclkid', array($this, 'msclkid_convert'), 'theme-settings-tracking', 'theme-tracking-settings');
 		add_settings_field('theme-tracking-custom', 'custom', array($this, 'custom_convert'), 'theme-settings-tracking', 'theme-tracking-settings');
@@ -182,7 +183,8 @@ final class Emtheme_settings {
 		// 
 
 		$tracking = get_option('theme_tracking_data');
-
+		// wp_die('<xmp>'.print_r($tracking, true).'</xmp>');
+		
 		if (!is_array($tracking)) $tracking = [];
 
 		$custom = $tracking['custom'];
@@ -225,8 +227,13 @@ final class Emtheme_settings {
 				$script .= 'a += "'.$this->san_js($custom['four_name']).'='.$this->san_js($custom['four_value']).'&";';
 
 
-					// removing last &
-			$script .= 'a = a.substring(0, a.length-1); var l = document.getElementsByTagName("a"); for (var i in l) { var u = l[i].href; if (!u) continue; if (u.indexOf("?") != -1) l[i].href += "&" + a; else l[i].href += "?" + a;}})();</script>';
+			// removing last &
+			$script .= 'a = a.substring(0, a.length-1); var l = document.getElementsByTagName("a"); for (var i in l) { var u = l[i].href; if (!u) continue;';
+			
+			if ($tracking['ignore']) $script .= 'if (u.indexOf("?") == -1) l[i].href += "?" + a;';
+			else $script .= 'if (u.indexOf("?") != -1) l[i].href += "&" + a; else l[i].href += "?" + a;';
+
+			$script .= '}})();</script>';
 
 
 				echo $script;
@@ -323,6 +330,13 @@ final class Emtheme_settings {
 		if (!is_array($data)) $data = [];
 
 		echo '<input type=checkbox name="theme_tracking_data[convert]"'.($data['convert'] ? ' checked' : '').'>';
+	}
+
+	public function tracking_ignore() {
+		$data = get_option('theme_tracking_data');
+		if (!is_array($data)) $data = [];
+
+		echo '<input type=checkbox name="theme_tracking_data[ignore]"'.($data['ignore'] ? ' checked' : '').'>';
 	}
 
 	public function gclid_convert() {
