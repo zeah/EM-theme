@@ -28,7 +28,7 @@ final class Emtheme_settings {
 
 	public function add_menu() {
 		// add_menu_page('EMSettings', 'Settings', 'manage_options', 'em-settings-page', array($this, 'settings_callback'), 'none', 262);
-		add_submenu_page('options-general.php', 'SEO', 'SEO', 'manage_options', 'theme-settings-seo', array($this, 'seo_settings_callback'));
+		add_submenu_page('options-general.php', 'Tagmanager', 'Tagmanager', 'manage_options', 'theme-settings-seo', array($this, 'seo_settings_callback'));
 		add_submenu_page('options-general.php', 'Structured Data', 'Structured Data', 'manage_options', 'theme-settings-struc', array($this, 'struc_settings_callback'));
 		add_submenu_page('options-general.php', 'Tracking', 'Tracking', 'manage_options', 'theme-settings-tracking', array($this, 'tracking_settings_callback'));
 		add_submenu_page('', 'EM', 'EM', 'manage_options', 'theme-settings-em', array($this, 'em_settings_callback'));
