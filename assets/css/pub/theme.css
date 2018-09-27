@@ -337,6 +337,10 @@ p:empty {
 	display: flex;
 }
 
+.menu-list {
+	height: 100%;
+}
+
 .menu-link {
 	height: 100%;
 }
