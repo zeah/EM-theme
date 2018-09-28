@@ -73,6 +73,8 @@ add_filter( 'github_updater_set_options',
 	} );
 
 
+
+
 /*  */
 final class Emtheme_functions {
 	private static $instance = null;
