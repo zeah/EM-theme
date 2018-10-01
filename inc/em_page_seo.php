@@ -46,6 +46,15 @@ final class Emtheme_page_seo {
 			'advanced',
 			'low'
 		);
+
+		add_meta_box(
+			'theme_titlepage',
+			'Hide page name as on-page title',
+			array($this, 'titlepage_callback'),
+			$types,
+			'side'
+
+		);
 	}
 
 	public function seo_callback($post) {
@@ -129,7 +138,15 @@ final class Emtheme_page_seo {
 	}
 
 
+	public function titlepage_callback($post) {
+		$meta = get_post_meta($post->ID, 'theme_showtitle');
 
+		if (isset($meta[0])) $meta = $meta[0];
+		else $meta = false;
+		// echo print_r($_POST['theme_showtitle'], true);
+
+		echo '<input type=checkbox name="theme_showtitle" id="theme-showtitle"'.($meta ? ' checked' : '').'><label for="theme-showtitle">Hide Title</label>';
+	}
 
 	/**
 	 * Filter for which type of posts to add seo meta box for.
@@ -184,9 +201,11 @@ final class Emtheme_page_seo {
 		// nonce is checked
 		if (!wp_verify_nonce($_POST['seo_nonce'], 'seo'.basename(__FILE__))) return;
 
-		if  (isset($_POST['emtheme_seo'])) update_post_meta($post_id, 'emtheme_seo', $this->sanitize($_POST['emtheme_seo']));
-		if  (isset($_POST['struc_data'])) update_post_meta($post_id, 'struc_data', $this->sanitize($_POST['struc_data']));
+		if (isset($_POST['emtheme_seo'])) update_post_meta($post_id, 'emtheme_seo', $this->sanitize($_POST['emtheme_seo']));
+		if (isset($_POST['struc_data'])) update_post_meta($post_id, 'struc_data', $this->sanitize($_POST['struc_data']));
 
+		if (isset($_POST['theme_showtitle'])) update_post_meta($post_id, 'theme_showtitle', $this->sanitize($_POST['theme_showtitle']));
+		else update_post_meta($post_id, 'theme_showtitle', '');
 	}
 
 
