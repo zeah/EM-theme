@@ -634,7 +634,7 @@ p:empty {
 	on [col left/center/right] matched in post content. */
 .content-flex {
 	display: flex;
-	margin: 2rem 0;
+	/*margin: 2rem 0;*/
 }
 
 .content-flex-left {
