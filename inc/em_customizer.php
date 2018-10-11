@@ -260,6 +260,13 @@ final class Emtheme_customizer {
 							'',
 							'#000000', 
 							131, 'sanitize_hex_color');
+
+
+		// $this->add($cust, 'emtheme_color[theme_color]', 'colors', 'color', 
+		// 					_x('Font', 'The color of the mobile browser.', 'emtheme'), 
+		// 					'',
+		// 					'#000000', 
+		// 					131, 'sanitize_hex_color');
 		
 	}
 
