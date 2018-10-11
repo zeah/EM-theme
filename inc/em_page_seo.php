@@ -24,13 +24,12 @@ final class Emtheme_page_seo {
 		add_action('add_meta_boxes', array($this, 'add_meta_box'));
 		add_filter('seo_meta', array($this, 'add_seo_meta'));
 		add_action('save_post', array($this, 'save'));
-
+		add_action('admin_footer-post.php', array($this, 'admin_scripts'));
 	}
 
 	private function wp_hooks() {
 		remove_action( 'wp_head', 'rel_canonical' );
 		add_action('wp_head', array($this, 'add_head'));
-		// add_action('wp_footer', array($this, 'add_footer'));
 	}
 
 	public function add_meta_box() {
@@ -64,9 +63,9 @@ final class Emtheme_page_seo {
 
 		$html .= '<div style="width: 550px">';
 		$html .= '<h1>SERP apperance</h1>';
-		$html .= '<div>Custom Title<input style="width: 100%; margin: 0" type="text" name="emtheme_seo[custom_title]" value="'.esc_attr($this->get_meta('custom_title')).'"></div>';
+		$html .= '<div style="display: flex; flex-wrap: wrap;"><div style="width: 100%">Custom Title</div><input class="theme-seo-title" style="flex: 1; margin: 0" type="text" name="emtheme_seo[custom_title]" value="'.esc_attr($this->get_meta('custom_title')).'"><input style="width: 40px; color: black; border: none;" class="theme-seo-title-input" disabled></div>';
 
-		$html .= '<div>Meta Description<br><textarea name="emtheme_seo[meta_description]" style="width: 100%; height: 10rem;">'.esc_html($this->get_meta('meta_description')).'</textarea></div>';
+		$html .= '<div>Meta Description<br><textarea class="theme-seo-metadesc" name="emtheme_seo[meta_description]" style="width: 100%; height: 10rem;">'.esc_html($this->get_meta('meta_description')).'</textarea><input style="width: 40px; color: black; border: none;" class="theme-seo-metadesc-input"></div>';
 
 		// $html .= '<div>Meta Description<input type="text" name="emtheme_seo[meta_description]" value="'.esc_attr($this->get_meta('meta_description')).'"></div>';
 		$html .= '</div>';
@@ -325,6 +324,28 @@ final class Emtheme_page_seo {
 		// only print if it is json
 		if ($meta && $meta != 'null') echo $script;
 
+	}
+
+	public function admin_scripts() {
+		echo '<script>
+
+		(() => { 
+			let title = document.querySelector(".theme-seo-title");
+			let titleCounter = document.querySelector(".theme-seo-title-input");
+
+			let meta = document.querySelector(".theme-seo-metadesc");
+			let metaCounter = document.querySelector(".theme-seo-metadesc-input");
+
+			// if (!title || !titleCounter || !meta || !metaCounter) return;
+
+			titleCounter.value = title.value.length;
+			metaCounter.value = meta.value.length;
+			
+			title.addEventListener("input", () => titleCounter.value = title.value.length);
+			meta.addEventListener("input", () => metaCounter.value = meta.value.length);
+		})();
+
+		</script>';
 	}
 
 }

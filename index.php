@@ -47,7 +47,7 @@ if (have_posts()) {
 	while (have_posts()) {
 		the_post();
 		
-		add_action('wp_footer', array($seo, 'add_footer'));
+		add_action('wp_footer', array($seo, 'add_footer')); // for multi-post pages
 		
 		// post container
 		$html .= '<article class="content">';
