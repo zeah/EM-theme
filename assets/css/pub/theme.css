@@ -626,6 +626,7 @@ p:empty {
 }
 
 .aligncenter {
+	display: block;
 	margin: auto;
 }
 
