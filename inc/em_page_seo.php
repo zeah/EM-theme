@@ -336,7 +336,7 @@ final class Emtheme_page_seo {
 			let meta = document.querySelector(".theme-seo-metadesc");
 			let metaCounter = document.querySelector(".theme-seo-metadesc-input");
 
-			// if (!title || !titleCounter || !meta || !metaCounter) return;
+			if (!title || !titleCounter || !meta || !metaCounter) return;
 
 			titleCounter.value = title.value.length;
 			metaCounter.value = meta.value.length;
