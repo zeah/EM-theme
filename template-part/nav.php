@@ -339,7 +339,7 @@ class Emtheme_nav_walker extends Walker_Nav_menu {
     }
 
     function end_el(&$output, $object, $depth = 0, $args = array()) {
-    	$outout .= '</li>';
+    	$output .= '</li>';
     }
 
 }

@@ -243,7 +243,7 @@ final class Emtheme_page_seo {
 
 		// title and meta description
 		if (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<title>'.esc_html($meta['custom_title']).'</title>';
-		else $html .= '<title>'.esc_html($post->post_title).'</title>';
+		//else $html .= '<title>'.esc_html($post->post_title).'</title>';
 
 		if (isset($meta['meta_description']) && $meta['meta_description'] != '') $html .= '<meta name="description" content="'.esc_html($meta['meta_description']).'">';
 	
@@ -269,7 +269,7 @@ final class Emtheme_page_seo {
 		elseif (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<meta name="og:title" content="'.esc_attr($meta['custom_title']).'">';
 		
 		// if custom or page title not set, then use site name
-		else $html .= '<title>'.esc_html(get_bloginfo('name')).'</title>';
+		//else $html .= '<title>'.esc_html(get_bloginfo('name')).'</title>';
 
 		// type
 		$html .= '<meta property="og:type" content="website">';
@@ -336,7 +336,7 @@ final class Emtheme_page_seo {
 			let meta = document.querySelector(".theme-seo-metadesc");
 			let metaCounter = document.querySelector(".theme-seo-metadesc-input");
 
-			// if (!title || !titleCounter || !meta || !metaCounter) return;
+			if (!title || !titleCounter || !meta || !metaCounter) return;
 
 			titleCounter.value = title.value.length;
 			metaCounter.value = meta.value.length;
