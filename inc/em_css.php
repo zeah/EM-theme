@@ -358,7 +358,7 @@ final class Emtheme_css {
 			$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
 			
 			// hover color on links in navbar (hover shouldn't be used on mobile)
-			$css .= "\n.menu-link:hover { $col[navbar_hover]; }";
+			$css .= "\n.menu-level-top:hover { $col[navbar_hover]; }";
 			
 			// hover color on links in submenu 
 			$css .= "\n.menu-level-second:hover { background-color: $col[submenu_hover]; }";
