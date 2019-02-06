@@ -131,6 +131,7 @@ final class Emtheme_footer {
 
 
 	private function filter_info($data) {
+		return preg_replace('/[\r\n]/', '<br>', $data);
 		return wp_kses_post(preg_replace('/[\r\n]/', '<br>', $data));
 	}
 

@@ -639,21 +639,21 @@ final class Emtheme_customizer {
 							_x('Social Info', 'front-end footer element', 'emtheme'), 
 							_x('Is shown as the left-most column.', 'description of social info footer element', 'emtheme'), 
 							'', 
-							160, 'wp_kses_post');
+							160, '');
 
 		/* textarea for adding to info footer in center or right position */
 		$this->add($cust, 'theme_footer[contact]', 'title_tagline', 'textarea', 
 							_x('Contact Info', 'front-end footer element', 'emtheme'), 
 							_x('Is shown in the middle or on the left.', 'description of contact footer element', 'emtheme'), 
 							'', 
-							161, 'wp_kses_post');
+							161, '');
 
 		/* textarea for adding to info footer in right position */
 		$this->add($cust, 'theme_footer[aboutus]', 'title_tagline', 'textarea', 
 							_x('About Us Info', 'front-end footer element', 'emtheme'), 
 							_x('Is shown as the right-most column.', 'description of about us footer element', 'emtheme'), 
 							'', 
-							162, 'wp_kses_post');
+							162, '');
 
 
 		/**/
