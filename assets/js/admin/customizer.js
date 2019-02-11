@@ -178,7 +178,8 @@ $(() => { ((api) => {
 			
 
 	// navbar font color 
-	api('emtheme_color[navbar_font]', (v) => v.bind((nv) => $('.menu-level-top, .menu-list > li > .emtheme-navbar-description').css('color', nv)));
+	// api('emtheme_color[navbar_font]', (v) => v.bind((nv) => $('.menu-level-top, .menu-list > li > .emtheme-navbar-description').css('color', nv)));
+	api('emtheme_color[navbar_font]', (v) => v.bind((nv) => $('.menu-level-top, .navbar-title').css('color', nv)));
 
 
 
