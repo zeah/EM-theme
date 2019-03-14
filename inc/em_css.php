@@ -320,7 +320,7 @@ final class Emtheme_css {
 
 		$css .= "\n.title-link { color: $col[header_font]; }";
 		
-		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
+		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; font-weight: $fon[title_weight]; }";
 		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
 
 		$css .= "\n.emtheme-header { max-width: 100%; width: {$width}rem; }";
