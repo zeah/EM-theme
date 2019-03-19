@@ -58,8 +58,9 @@ final class Emtheme_google_font {
 	}
 
 	public function get_link() {
-
+		
 		$data = apply_filters('google_link', []);
+		// wp_die('<xmp>'.print_r($data, true).'</xmp>');
 
 		// wp_die('<xmp>'.print_r($data, true).'</xmp>');
 		foreach($data as &$d)
@@ -70,7 +71,8 @@ final class Emtheme_google_font {
 			$out .= str_replace(' ', '+', $k).':'.implode($v, ',').'|';
 
 		$out = rtrim($out, '|');
-		
+		// wp_die('<xmp>'.print_r($out, true).'</xmp>');
+		// $out = 'merriweather|400,700';
 		// wp_die('<xmp>'.print_r($out, true).'</xmp>');
 
  		return '<link href="https://fonts.googleapis.com/css?family='.esc_attr($out).'" rel="stylesheet">';
