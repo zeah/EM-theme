@@ -33,6 +33,31 @@ final class Emtheme_css {
 
 	}
 
+	public function get_css() {
+
+		// if (get_transient('theme_css')) {
+		// 	wp_add_inline_style('style', sanitize_text_field(get_transient('theme_css')));
+		// 	return;
+		// }
+
+		$this->css_values();
+
+		$lay = get_theme_mod('emtheme_layout');
+		if (!is_array($lay)) $lay = [];
+
+		$html = '';
+
+		
+		if (!$lay['header_toggle'] || $lay['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
+
+		$html .= $this->navbar();
+
+		$html .= $this->page();
+
+		set_transient('theme_css', $html);
+
+		wp_add_inline_style('style', $html);
+	}
 
 	private function css_values() {
 		/* getting color css and fixing return */
@@ -52,15 +77,43 @@ final class Emtheme_css {
 		// COLOR SECTION
 		$colors = [];
 
+		$data = [
+					'background' => '#eee',
+					'main_background' => '#fff', 
+					// 'main_shadow',
+					'main_font' => '#000',
+					'header_font' => '#000',
+					'header_background' => '#fff',
+					'search' => '#000',
+					'header_background_image' => '',
+					'header_background_image_opacity' => '0.5',
+					'navbar_font' => '#fff',
+					// 'nav_bg_top',
+					'navbar_border' => 'none',
+					'submenu_font' => '#000',
+					'submenu_background' => '#eee',
+					'submenu_hover' => '#ddd',
+					'submenu_border' => '#bbb',
+					// 'active' => '#33663390',
+					'footer_bg' => '#000',
+					'footer_font' => '#fff',
+					'goup_bg' => '#ccc',
+					'goup_font' => '#000'
+				];
+
+		// $colors['background'] = sanitize_hex_color('#'.get_background_color());
+
+
+		foreach ($data as $key => $value)
+			$colors[$key] = $this->color($key, $value); 
+
 		// page background color (body tag)
-		$colors['background'] = sanitize_hex_color('#'.get_background_color());
-		if ($colors['background'] == '') $colors['background'] = '#eee';
+		// if ($colors['background'] == '') $colors['background'] = '#eee';
 
 		// main background color 
-		$colors['main_background'] = $col['main_background'] ? sanitize_hex_color($col['main_background']) : '#fff';
+		// $colors['main_background'] = $this->col('main_background') ? sanitize_hex_color($col['main_background']) : '#fff';
 		
-		if ($col['main_shadow']) {
-
+		if ($this->col('main_shadow')) {
 			if ($col['main_shadow'] == '') $css = 'none';
 			else $css = '0 0 2px '.sanitize_hex_color($col['main_shadow']);
 
@@ -69,30 +122,30 @@ final class Emtheme_css {
 		else $colors['main_shadow'] = 'none';
 
 		// font color in main area
-		$colors['main_font'] = $col['main_font'] ? sanitize_hex_color($col['main_font']) : '#000';
+		// $colors['main_font'] = $this->col('main_font') ? sanitize_hex_color($col['main_font']) : '#000';
 
 
 		// header font
-		$colors['header_font'] = $col['emtop_font'] ? sanitize_hex_color($col['emtop_font']) : '#000';
+		// $colors['header_font'] = $this->col('emtop_font') ? sanitize_hex_color($col['emtop_font']) : '#000';
 
 		// header background
-		$colors['header_background'] = $col['emtop_bg'] ? sanitize_hex_color($col['emtop_bg']) : '#fff';
+		// $colors['header_background'] = $this->col('emtop_bg') ? sanitize_hex_color($col['emtop_bg']) : '#fff';
 
 		// search
-		$colors['search'] = $col['search'] ? sanitize_hex_color($col['search']) : '#000';
+		// $colors['search'] = $this->col('search') ? sanitize_hex_color($col['search']) : '#000';
 		
 		// bg image
-		$colors['header_background_image'] = $col['emtop_bg_image'] ? esc_url($col['emtop_bg_image']) : '';
+		// $colors['header_background_image'] = $this->col('emtop_bg_image') ? esc_url($col['emtop_bg_image']) : '';
 		
 		// bg image opacity
-		$colors['header_background_image_opacity'] = $col['emtop_bg_image_opacity'] ? esc_html($col['emtop_bg_image_opacity']) : '0.5';
+		// $colors['header_background_image_opacity'] = $this->col('emtop_bg_image_opacity') ? esc_html($col['emtop_bg_image_opacity']) : '0.5';
 
 		// navbar font
-		$colors['navbar_font'] = $col['navbar_font'] ? sanitize_hex_color($col['navbar_font']) : '#ffffff';
+		// $colors['navbar_font'] = $this->col('navbar_font') ? sanitize_hex_color($col['navbar_font']) : '#ffffff';
 		
 		// navbar bg
 		// creating linear-gradient if set
-		if ($col['nav_bg_top']) {
+		if ($this->col('nav_bg_top')) {
 			$col['nav_bg_top'] = sanitize_hex_color($col['nav_bg_top']);
 			$col['nav_bg_middle'] = sanitize_hex_color($col['nav_bg_middle']);
 			$col['nav_bg_bottom'] = sanitize_hex_color($col['nav_bg_bottom']);
@@ -118,7 +171,7 @@ final class Emtheme_css {
 
 		// navbar hover
 		// creating linear-gradient if set
-		if ($col['nav_bg_hover_top']) {
+		if ($this->col('nav_bg_hover_top')) {
 
 			$col['nav_bg_hover_top'] = sanitize_hex_color($col['nav_bg_hover_top']);
 			$col['nav_bg_hover_middle'] = sanitize_hex_color($col['nav_bg_hover_middle']);
@@ -137,44 +190,43 @@ final class Emtheme_css {
 
 		}
 		else $colors['navbar_hover'] = 'background-color: #353';
-
 		// navbar borders
-		$colors['navbar_border'] = $col['navbar_border'] ? 'solid 1px '.sanitize_hex_color($col['navbar_border']) : 'none';
+		// $colors['navbar_border'] = $this->col('navbar_border') ? 'solid 1px '.sanitize_hex_color($col['navbar_border']) : 'none';
 
 
 		// submenu font
-		$colors['submenu_font'] = $col['submenu_font'] ? sanitize_hex_color($col['submenu_font']) : '#000';
+		// $colors['submenu_font'] = $this->col('submenu_font') ? sanitize_hex_color($col['submenu_font']) : '#000';
 		
 		// submenu bg
-		$colors['submenu_background'] = $col['submenu_bg'] ? sanitize_hex_color($col['submenu_bg']) : '#eee';
+		// $colors['submenu_background'] = $this->col('submenu_bg') ? sanitize_hex_color($col['submenu_bg']) : '#eee';
 						
 		// submenu hover
-		$colors['submenu_hover'] = $col['submenu_hover'] ? sanitize_hex_color($col['submenu_hover']) : '#ddd';
+		// $colors['submenu_hover'] = $this->col('submenu_hover') ? sanitize_hex_color($col['submenu_hover']) : '#ddd';
 
 		// submenu border
-		$colors['submenu_border'] = $col['submenu_border'] ? sanitize_hex_color($col['submenu_border']) : '#bbb';
+		// $colors['submenu_border'] = $this->col('submenu_border') ? sanitize_hex_color($col['submenu_border']) : '#bbb';
 
 
 		// active page marker
-		$colors['active'] = $col['navbar_active'] ? sanitize_hex_color($col['navbar_active']).'90' : '#33663390';
+		$colors['active'] = $this->col('navbar_active') ? sanitize_hex_color($col['navbar_active']).'90' : '#33663390';
 
 
 		/* FOOTER */
 		
 		// footer background
-		$colors['footer_bg'] = $col['footer_bg'] ? sanitize_hex_color($col['footer_bg']) : '#000';
+		// $colors['footer_bg'] = $this->col('footer_bg') ? sanitize_hex_color($col['footer_bg']) : '#000';
 
 		// footer font color
-		$colors['footer_font'] = $col['footer_font'] ? sanitize_hex_color($col['footer_font']) : '#fff';
+		// $colors['footer_font'] = $this->col('footer_font') ? sanitize_hex_color($col['footer_font']) : '#fff';
 
 
 		/* GO UP BUTTON */
 
 		// go up background 
-		$colors['goup_bg'] = $col['goup_bg'] ? sanitize_hex_color($col['goup_bg']) : '#ccc';
+		// $colors['goup_bg'] = $this->col('goup_bg') ? sanitize_hex_color($col['goup_bg']) : '#ccc';
 
 		// go up font color
-		$colors['goup_font'] = $col['goup_font'] ? sanitize_hex_color($col['goup_font']) : '#000';
+		// $colors['goup_font'] = $this->col('goup_font') ? sanitize_hex_color($col['goup_font']) : '#000';
 
 		// privacy css
 		$pri = get_theme_mod('theme_privacy');
@@ -189,7 +241,6 @@ final class Emtheme_css {
 		
 
 		$this->colors = $colors;
-
 
 
 
@@ -257,31 +308,31 @@ final class Emtheme_css {
 		return $data;
 	}
 
-	public function get_css() {
+	// public function get_css() {
 
-		if (get_transient('theme_css')) {
-			wp_add_inline_style('style', sanitize_text_field(get_transient('theme_css')));
-			return;
-		}
+	// 	if (get_transient('theme_css')) {
+	// 		wp_add_inline_style('style', sanitize_text_field(get_transient('theme_css')));
+	// 		return;
+	// 	}
 
-		$this->css_values();
+	// 	$this->css_values();
 
-		$lay = get_theme_mod('emtheme_layout');
-		if (!is_array($lay)) $lay = [];
+	// 	$lay = get_theme_mod('emtheme_layout');
+	// 	if (!is_array($lay)) $lay = [];
 
-		$html = '';
+	// 	$html = '';
 
 		
-		if (!$lay['header_toggle'] || $lay['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
+	// 	if (!$lay['header_toggle'] || $lay['header_toggle'] == '' || is_customize_preview()) $html .= $this->top();
 
-		$html .= $this->navbar();
+	// 	$html .= $this->navbar();
 
-		$html .= $this->page();
+	// 	$html .= $this->page();
 
-		set_transient('theme_css', $html);
+	// 	set_transient('theme_css', $html);
 
-		wp_add_inline_style('style', $html);
-	}
+	// 	wp_add_inline_style('style', $html);
+	// }
 
 	private function top() {
 		global $content_width;
@@ -320,12 +371,17 @@ final class Emtheme_css {
 
 		$css .= "\n.title-link { color: $col[header_font]; }";
 		
-		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: {$fon[title_size]}rem; }";
-		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; }";
-
-		$css .= "\n.emtheme-header { max-width: 100%; width: {$width}rem; }";
+		$temp = $fon['title_size'].'rem';
+		$css .= "\n.emtheme-header-title { font-family: $fon[title_family]; font-size: $temp; }";
 		
-		$css .= "\n.emtheme-header .emtheme-search-input { color: $col[header_font]; border-bottom: solid 1px $col[header_font]; font-size: {$fon[navbar_size]}rem; }"; 
+		$temp = $fon['content_size'].'rem';
+		$css .= "\n.emtheme-header-tagline { font-family: $fon[content_family]; font-size: $temp; }";
+
+		$temp = $width.'rem';
+		$css .= "\n.emtheme-header { max-width: 100%; width: $temp; }";
+		
+		$temp = $fon['navbar_size'].'rem';
+		$css .= "\n.emtheme-header .emtheme-search-input { color: $col[header_font]; border-bottom: solid 1px $col[header_font]; font-size: $temp; }"; 
 
 		
 
@@ -352,7 +408,8 @@ final class Emtheme_css {
 		$css .= "\n@media only screen and (min-width: 1045px) {";
 
 			// content width (1260px)
-			$css .= "\n.navbar-container { max-width: 100%; width: {$width}rem; }";
+			$temp = $width.'rem';
+			$css .= "\n.navbar-container { max-width: 100%; width: $temp; }";
 			
 			// top level hover color
 			$css .= "\n.menu-has-child:hover { $col[navbar_hover]; }";
@@ -378,7 +435,8 @@ final class Emtheme_css {
 			// solid color background for top level menu on mobile
 			$css .= "\n.navbar-menu { background-color: $col[navbar_background_mobile]; }";
 			$css .= "\n.search-form-icon { fill: $col[navbar_font]; }";
-			$css .= "\n.emtheme-search-input { color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border-bottom: solid 2px $col[navbar_font];}";
+			$temp = $fon['navbar_size'];
+			$css .= "\n.emtheme-search-input { color: $col[navbar_font]; font-size: $temp; border-bottom: solid 2px $col[navbar_font];}";
 		
 		$css .= "\n}";
 
@@ -388,7 +446,8 @@ final class Emtheme_css {
 		$css .= "\n.navbar-background { $col[navbar_background]; }";
 		
 		// if toggled: show site title on navbar with navbar styling
-		$css .= "\n.navbar-title { color: $col[navbar_font]; font-size: {$fon[title_size]}rem; font-family: $fon[title_family]; font-weight: $fon[title_weight]; }";
+		$temp = $fon['title_size'].'rem';
+		$css .= "\n.navbar-title { margin-left: 2rem; color: $col[navbar_font]; font-size: $temp; font-family: $fon[title_family]; font-weight: $fon[title_weight]; }";
 
 		// if toggled or on mobile: show search form on navbar or above top level menu (mobile) with navbar styling
 		// $css .= "\n.navbar-search .emtheme-search-input { background-color: inherit; color: $col[navbar_font]; font-size: {$fon[navbar_size]}rem; border: none; border-bottom: 1px solid {$col[navbar_font]}50; }";
@@ -419,7 +478,9 @@ final class Emtheme_css {
 		$css .= "\n.menu-item { position: relative; list-style: none; }";
 
 		// navbar link - contains the dimensions 
-		$css .= "\n.menu-link { display: flex; align-items: center; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
+		$temp = $lay['navbar_padding'].'rem';
+		$temp2 = $fon['navbar_size'].'rem';
+		$css .= "\n.menu-link { display: flex; align-items: center; box-sizing: border-box; padding: $temp 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: $temp2; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 		// $css .= "\n.menu-link { display: flex; align-items: center; height: 100%; box-sizing: border-box; padding: {$lay[navbar_padding]}rem 1.5rem; font-family: \"$fon[navbar_family]\"; font-size: {$fon[navbar_size]}rem; font-weight: $fon[navbar_weight]; text-decoration: none; color: $col[navbar_font]; white-space: nowrap;}";
 
 		// removes right padding for menu items with submenu (down-arrow is added in its place)
@@ -467,21 +528,25 @@ final class Emtheme_css {
 		// $css .= "\n.main, .emtheme-footer-container { max-width: 100%; width: {$width}rem; }";
 
 		// $css .= ".content-column, .emtheme-serp, .column-404 { width: {$lay['content_width']}rem; max-width: 100%; }"; 
-		$css .= ".content-column, .emtheme-serp, .column-404 { max-width: {$lay['content_width']}rem; }"; 
+
+		$temp = $lay['content_width'].'rem';
+		$css .= ".content-column, .emtheme-serp, .column-404 { max-width: $temp; }"; 
 		$css .= "\n}";
 
 		$css .= "\n@media only screen and (min-width: 801px) {";
 
-			$css .= "\n.main-sidebar { grid-template-columns: auto minmax(auto, {$lay['content_width']}rem) auto; }";
+			$temp = $lay['content_width'].'rem';
+			$css .= "\n.main-sidebar { grid-template-columns: auto minmax(auto, $temp) auto; }";
 
 		$css .= "\n}";
 
 		$css .= "\nbody { background-color: $col[background]; }";
 		
-		$css .= "\n.main { font-family: $fon[content_family]; font-size: {$fon[content_size]}rem; color: $col[main_font]; line-height: $fon[content_lineheight]; }";
+		$temp = $fon['content_size'].'rem';
+		$css .= "\n.main { font-family: $fon[content_family]; font-size: $temp; color: $col[main_font]; line-height: $fon[content_lineheight]; }";
 		$css .= "\n.content, .default-template-widget, .column-404 { background-color: $col[main_background]; box-shadow: $col[main_shadow]; }";
 
-		$css .= "\n.emtheme-footer-container { background-color: $col[footer_bg]; font-size: {$fon[content_size]}rem; color: $col[footer_font]; font-family: $fon[content_family]; }";
+		$css .= "\n.emtheme-footer-container { background-color: $col[footer_bg]; font-size: $temp; color: $col[footer_font]; font-family: $fon[content_family]; }";
 		$css .= "\n.emtheme-footer a { color: $col[footer_font]; }";
 
 		$css .= "\n.theme-privacy-container { font-family: $fon[content_family]; }";
@@ -491,5 +556,39 @@ final class Emtheme_css {
 		$css .= "\n.emtheme-goup-arrow { fill: $col[goup_font]; }";
 		
 		return $css;
-	}	
+	}
+
+
+	private function color($name, $default) {
+		$c = get_theme_mod('emtheme_color');
+
+		if (isset($c[$name]) && $c[$name]) return $c[$name];
+
+		return $default;
+	}
+
+
+	private function font($name, $default) {
+		$f = get_theme_mod('emtheme_font');
+
+		if (isset($f[$name]) && $f[$name]) return $f[$name];
+
+		return $default;
+	}
+
+
+
+	private function col($name) {
+		$c = get_theme_mod('emtheme_color');
+		if (isset($c[$name]) && $c[$name]) return $c[$name];
+
+		return '';
+	}
+
+	private function fon($name) {
+		$c = get_theme_mod('emtheme_font');
+		if (isset($c[$name]) && $c[$name]) return $c[$name];
+
+		return '';
+	}
 }
