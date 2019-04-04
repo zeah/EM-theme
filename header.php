@@ -2,6 +2,8 @@
 
 require_once 'inc/em_css.php';
 
+// echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">';
+// echo '<html lang="'.get_locale().'"><head>';
 echo '<!DOCTYPE html><html lang="'.get_locale().'"><head>';
 echo '<meta name="viewport" content="width=device-width, initial-scale=1">';
 echo '<link rel="preconnect" href="https://fonts.googleapis.com/">';
