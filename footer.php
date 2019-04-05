@@ -4,8 +4,7 @@
 $footer = Emtheme_footer::get_instance();
 
 
-/* echo privacy user accept window */
-echo $footer->privacy();
+// echo $footer->privacy();
 
 echo $footer->info();
 echo '</div>';

@@ -790,84 +790,57 @@ p:empty {
 */
 
 /* full width container */
-.theme-privacy-container,
-.emtheme-cookie-container {
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-
-	/* centering content */
-	/*display: flex;*/
-	/*justify-content: center;*/
-	/*align-content: center;*/
-
+.theme-privacy-container {
+	max-height: 5rem;
+	border: none !important;
 
 	font-size: 1.6rem;
 	z-index: 100;
+	transition: max-height 1s;
 }
 
-/* cookie container */
-.theme-privacy,
-.emtheme-cookie {
+.theme-privacy {
 
-	display: inline-block;
+	display: flex;
+	flex-direction: row-reverse;
 
-	margin-left: 60%;
-	margin-right: 10%;
-	/*display: inline-flex;*/
-	/*min-width: 30%;*/
-	/*max-width: 60%;*/
-	padding: 2rem;
-	padding-bottom: 5rem;
-	/*border: double 3px black;*/
-	justify-content: space-between;
-	/*border-radius: 10px;*/
-	/*background-color: red;*/
-	/*opacity: 0;*/
-	border-bottom: none !important;
+	justify-content: space-around;
+
+	padding: 1rem 0;
 }
 
-.theme-privacy-text,
-.emtheme-cookie-text {
-	align-self: center;
-	/*padding-right: 5rem;*/
-	margin-right: 10rem;
-	user-select: none;
+.theme-privacy-text {
+	display: flex;
+	align-items: center;
+	margin: 0;
 }
 
 .theme-privacy-text > p:first-child {
 	margin-top: 0;
 }
 
+.theme-privacy-text > p:last-child {
+	margin-bottom: 0;
 }
 
-.theme-privacy-button,
-.emtheme-cookie-button {
-	padding: 1rem 2.5rem;
+}
 
-	padding: 1rem 2rem 0.8rem 2rem;
-
-	float: right;
-	/*align-self: center;*/
-	
+.theme-privacy-button {
 	border: none;
-	/*border-radius: 10px;*/
-	font-size: 2rem;
-
 	cursor: pointer;
 	user-select: none;
+	padding: .5rem 2rem;
+	font-size: 1.8rem;
 }
 
-.theme-privacy-button:focus,
-.emtheme-cookie-button:focus {
+.theme-privacy-button:focus {
 	outline:none;
 }
 
-.theme-privacy-fade,
-.emtheme-cookie-fade {
-	opacity: 0 !important;
-	transition: opacity 1s;
+.theme-privacy-fade {
+	max-height: 0;
 }
+
 
 /* 4.3 404 page */
 

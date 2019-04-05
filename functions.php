@@ -277,8 +277,8 @@ final class Emtheme_functions {
         // wp_enqueue_script('front-end-theme', get_theme_file_uri().'/assets/js/pub/theme.js', array('jquery'), '0.0.3', true);
 
         /* adding css files to front-end - desktop sizes vs others */
-        wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '1.0.1', '(min-width: 816px)');
-        wp_enqueue_style('mobile-style', get_theme_file_uri().'/assets/css/pub/theme-mobile.css', array(), '1.0.0', '(max-width: 1044px)');
+        wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '1.0.2', '(min-width: 816px)');
+        wp_enqueue_style('mobile-style', get_theme_file_uri().'/assets/css/pub/theme-mobile.css', array(), '1.0.1', '(max-width: 1044px)');
 
         // wp_enqueue_style('style', get_theme_file_uri().'/assets/css/pub/theme.css', array(), '0.0.2', '(min-width: 1280px)');
         // wp_enqueue_style('mobile-style', get_theme_file_uri().'/assets/css/pub/theme-mobile.css', array(), '0.0.1', '(max-width: 1279px)');

@@ -1,5 +1,7 @@
 (function() {
 
+	var qs = function (n) {	return document.querySelector(n) }
+
 	// helper function
 	var H = function(o) {
 
@@ -64,24 +66,15 @@
 		var button = document.querySelector('.theme-privacy-button');
 		if (!button) return;
 
-		// if (location.href.indexOf('customize_changeset') == -1) {
-		// 	var cookie_list = decodeURIComponent(document.cookie).split('; ')
-		// 	for (var cookie in cookie_list) 
-		// 		if (cookie_list[cookie].indexOf('cookieAccept=') == 0) {
-		// 			element.style.display = 'none';
-		// 			return; 
-		// 		}
-			
-		// }
-
-		// element.style.opacity = 1;
 
 		button.addEventListener('click', function() { 
 			var d = new Date();
 			d.setTime(d.getTime() + (120*24*60*60*1000));
 
-			document.cookie = 'cookieAccept=ok;expires='+d.toUTCString()+';path=/'; 
+			document.cookie = 'cookieAccept=ok;expires='+d.toUTCString()+';path=/';
+			// element.parentElement.removeChild(element);
 			element.classList.add('theme-privacy-fade');
+			// jQuery(element).slideUp(300);
 		});
 
 	}
