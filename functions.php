@@ -133,6 +133,7 @@ final class Emtheme_functions {
 	private function wp_hooks() {
 
 		/* Scripts AND Styles */
+        // add_action('wp_head', array($this, 'add_frontend_sands'));
         add_action('wp_enqueue_scripts', array($this, 'add_frontend_sands'));
 		Emtheme_css::get_instance();
 
