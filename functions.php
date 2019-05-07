@@ -76,7 +76,17 @@ add_filter( 'github_updater_set_options',
 
 
 function wpb_disable_feed() {
-	wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
+	// header("HTTP/1.1 404 Not Found");
+	header("HTTP/1.1 301 Moved Permanently");
+	header("Location: ".get_bloginfo('url'));
+	exit();
+	// global $wp_query;
+	// $wp_query->set_404();
+	// wp_die('<xmp>'.print_r($wp_query, true).'</xmp>');
+	
+	// wp_die('<xmp>'.print_r('hi', true).'</xmp>');
+	
+	// wp_die( __('No feed available,please visit our <a href="'. get_bloginfo('url') .'">homepage</a>!') );
 }
  
 add_action('do_feed', 'wpb_disable_feed', 1);
