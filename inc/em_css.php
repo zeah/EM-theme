@@ -251,19 +251,19 @@ final class Emtheme_css {
 		$fonts['content_family'] = ($fon['content_family'] && $fon['content_family'] != '') ? esc_html($fon['content_family']) : 'Open Sans';
 		
 		// content weight
-		$fonts = array_merge($fonts, $this->check_weight(($fon['content_weight'] ? $fon['content_weight'] : false), 'content'));
+		$fonts = array_merge($fonts, $this->check_weight((isset($fon['content_weight']) ? $fon['content_weight'] : false), 'content'));
 
 		// content font size
-		$fonts['content_size'] = $fon['content_size'] ? floatval($fon['content_size']) / 10 : '1.6';
+		$fonts['content_size'] = isset($fon['content_size']) ? floatval($fon['content_size']) / 10 : '1.6';
 
 		// content lineheight
-		$fonts['content_lineheight'] = $fon['content_lineheight'] ? esc_html($fon['content_lineheight']) : 1.3;
+		$fonts['content_lineheight'] = isset($fon['content_lineheight']) ? esc_html($fon['content_lineheight']) : 1.3;
 
 		// title font family
-		$fonts['title_family'] = ($fon['title_family'] && $fon['title_family'] != '') ? esc_html($fon['title_family']) : 'Roboto';
+		$fonts['title_family'] = (isset($fon['title_family']) && $fon['title_family'] != '') ? esc_html($fon['title_family']) : 'Roboto';
 
 		// title weight
-		$fonts = array_merge($fonts, $this->check_weight(($fon['title_weight'] ? $fon['title_weight'] : false), 'title'));
+		$fonts = array_merge($fonts, $this->check_weight((isset($fon['title_weight']) ? $fon['title_weight'] : false), 'title'));
 
 		// title font size
 		$fonts['title_size'] = $fon['title_size'] ? floatval($fon['title_size']) / 10 : '4';
@@ -272,17 +272,17 @@ final class Emtheme_css {
 		$fonts['navbar_family'] = ($fon['navbar_family'] && $fon['navbar_family'] != '') ? esc_html($fon['navbar_family']) : 'Roboto';
 
 		// navbar weight / style
-		$fonts = array_merge($fonts, $this->check_weight(($fon['navbar_weight'] ? $fon['navbar_weight'] : false), 'navbar'));
+		$fonts = array_merge($fonts, $this->check_weight((isset($fon['navbar_weight']) ? $fon['navbar_weight'] : false), 'navbar'));
 
 		// navbar font-size
-		$fonts['navbar_size'] = $fon['navbar_size'] ? floatval($fon['navbar_size']) / 10 : '2';
+		$fonts['navbar_size'] = isset($fon['navbar_size']) ? floatval($fon['navbar_size']) / 10 : '2';
 
 		$this->fonts = $fonts;
 
 		// layout
-		$layout['navbar_padding'] = $lay['navbar_padding'] ? floatval($lay['navbar_padding']) / 10 : '0.6';
+		$layout['navbar_padding'] = isset($lay['navbar_padding']) ? floatval($lay['navbar_padding']) / 10 : '0.6';
 		$layout['navbar_search'] = ($lay['search_navbar_toggle'] && $lay['search_navbar_toggle'] != '') ? $lay['search_navbar_toggle'] : false;
-		$layout['goup_toggle'] = $lay['goup_toggle'] ? true : false;
+		$layout['goup_toggle'] = isset($lay['goup_toggle']) ? true : false;
 		$layout['content_width'] = $lay['content_width'] ? floatval((intval($lay['content_width']) / 10)) : floatval($content_width / 10); 
 		
 		$this->layout = $layout;

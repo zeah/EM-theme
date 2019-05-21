@@ -187,9 +187,9 @@ final class Emtheme_settings {
 		
 		if (!is_array($tracking)) $tracking = [];
 
-		$custom = $tracking['custom'];
+		$custom = isset($tracking['custom']) ? $tracking['custom'] : false;
 		
-		if ($tracking['convert']) {
+		if (isset($tracking['convert']) && $tracking['convert']) {
 			$script = '<script>(function() { var s = window.location.search.substring(1); if (!s) return; var a = ""; var q = s.split("&"); for (var i in q) { var p = q[i].split("=");var d = decodeURIComponent(p[0]);';
 
 			if ($tracking['gclid']) $script .= 'if (d === "gclid") a += "gclid" + "=" + p[1] + "&";';			
