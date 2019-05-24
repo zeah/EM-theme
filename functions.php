@@ -125,7 +125,7 @@ final class Emtheme_functions {
 
 		/* adding image to dropdown selector when inserting media into post */
         add_filter('image_size_names_choose', array($this, 'add_image_size'));
-		add_action('enqueue_block_editor_assets', array($this, 'gutenberg_style'));
+		// add_action('enqueue_block_editor_assets', array($this, 'gutenberg_style'));
 
 		// clear css transient when doing admin 
 		if (get_transient('theme_css')) delete_transient('theme_css');
