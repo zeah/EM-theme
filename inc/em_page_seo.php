@@ -59,7 +59,7 @@ final class Emtheme_page_seo {
 	public function seo_callback($post) {
 		wp_nonce_field('seo'.basename(__FILE__), 'seo_nonce');
 
-		$html .= '<div class="emtheme-seo-container">';
+		$html = '<div class="emtheme-seo-container">';
 
 		$html .= '<div style="width: 550px">';
 		$html .= '<h1>SERP apperance</h1>';
@@ -173,7 +173,7 @@ final class Emtheme_page_seo {
 
 		$meta = get_post_meta($post->ID, 'emtheme_seo');
 		if (!isset($meta[0])) return false;
-		else return $meta[0][$data];
+		else return isset($meta[0][$data]) ? $meta[0][$data] : '';
 
 	}
 
