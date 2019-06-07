@@ -59,6 +59,7 @@ if (have_posts()) {
 		if (!$meta_title) $html .= '<h1 class="content-title content-title-text">'.esc_html(get_the_title()).'</h1>';
 
 		// content container (wp_kses is added to the_content filter at priority of 10 (before shortcodes are executed))
+		// $html .= '<div class="content-post">'.get_the_content().'</div>';
 		$html .= '<div class="content-post">'.apply_filters('the_content', get_the_content()).'</div>';
 		
 		$html .= '</article>';
