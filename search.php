@@ -14,6 +14,9 @@
 /* content area html */
 $html = '<div class="main"><div class="content"><h2>Søkeresultat:</h2><ul class="emtheme-serp">';
 
+$html_first = '';
+$html_second = '';
+
 /* first loop */
 if (have_posts())
 	while (have_posts()) {
