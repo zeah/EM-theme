@@ -30,6 +30,13 @@ final class Emtheme_page_seo {
 	private function wp_hooks() {
 		remove_action( 'wp_head', 'rel_canonical' );
 		add_action('wp_head', array($this, 'add_head'));
+		add_filter( 'pre_get_document_title', [$this, 'generate_custom_title'], 10 );
+	}
+
+	public function generate_custom_title($title) {
+		$t = $this->get_meta('custom_title');
+		if ($t) return $t;
+		return $title;
 	}
 
 	public function add_meta_box() {
@@ -242,7 +249,7 @@ final class Emtheme_page_seo {
 		$html = '';
 
 		// title and meta description
-		if (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<title>'.esc_html($meta['custom_title']).'</title>';
+		// if (isset($meta['custom_title']) && $meta['custom_title'] != '') $html .= '<title>'.esc_html($meta['custom_title']).'</title>';
 		//else $html .= '<title>'.esc_html($post->post_title).'</title>';
 
 		if (isset($meta['meta_description']) && $meta['meta_description'] != '') $html .= '<meta name="description" content="'.esc_html($meta['meta_description']).'">';
